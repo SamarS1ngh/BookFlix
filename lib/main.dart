@@ -1,39 +1,25 @@
+import 'package:bookflix/Screens/profile.dart';
+import 'package:bookflix/Screens/saved.dart';
+import 'package:bookflix/Screens/search.dart';
 import 'package:flutter/material.dart';
+import 'Screens/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  List<Widget> Screenslist = [MyHomePage(), Saved(), Search(), profile()];
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'BookFlix',
-      theme: ThemeData(
-        primaryColor: Color.fromARGB(255, 219, 118, 236),
-      ),
-      home: MyHomePage(title: 'BookFlix'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  String title;
-  MyHomePage({required this.title});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'BookFlix',
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        home: MyHomePage());
   }
 }
