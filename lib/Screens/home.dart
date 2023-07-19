@@ -1,6 +1,10 @@
+import 'package:bookflix/Screens/search.dart';
+import 'package:bookflix/widgets/fiction.dart';
+import 'package:bookflix/widgets/mangalist.dart';
+import 'package:bookflix/widgets/nonfiction.dart';
+import 'package:bookflix/widgets/scifilist.dart';
+import 'package:bookflix/widgets/trendinglist.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:bookflix/main.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -8,66 +12,149 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int selectedindex = 0;
-
-  void onTapped(int index) {
-    setState(() {
-      selectedindex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'BookFlix',
-            style: TextStyle(color: Colors.white),
-          ),
-          elevation: 0,
-          backgroundColor: Color.fromARGB(255, 230, 176, 239),
+        child: Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return Search();
+                  }));
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 20,
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color.fromARGB(255, 237, 236, 236)),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(Icons.search),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Search books...',
+                        style: TextStyle(color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Trending',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(
+                      Icons.arrow_right_alt,
+                      color: Color.fromARGB(255, 174, 40, 198),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            trendinglist(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Manga',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(
+                      Icons.arrow_right_alt,
+                      color: Color.fromARGB(255, 174, 40, 198),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            mangalist(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Fiction',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(
+                      Icons.arrow_right_alt,
+                      color: Color.fromARGB(255, 174, 40, 198),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            fictionlist(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Sci-fi & fantasy',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(
+                      Icons.arrow_right_alt,
+                      color: Color.fromARGB(255, 174, 40, 198),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            scifilist(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Non-fiction',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Icon(
+                      Icons.arrow_right_alt,
+                      color: Color.fromARGB(255, 174, 40, 198),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            nonficlist()
+          ],
         ),
-        body: MyApp().Screenslist[selectedindex],
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: selectedindex,
-            onTap: onTapped,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Color.fromARGB(255, 225, 137, 240),
-            unselectedItemColor: Colors.grey,
-            selectedFontSize: 15,
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-            selectedIconTheme: IconThemeData(size: 26),
-
-            // selectedLabelStyle:
-            //     TextStyle(color: Color.fromARGB(255, 196, 15, 228)),
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home_outlined,
-                    size: 30,
-                  ),
-                  label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.bookmark_border_outlined,
-                    size: 28,
-                  ),
-                  label: 'Saved'),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.search_outlined,
-                    size: 28,
-                  ),
-                  label: 'Search'),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person_2_outlined,
-                    size: 28,
-                  ),
-                  label: 'Profile'),
-            ]),
       ),
-    );
+    ));
   }
 }

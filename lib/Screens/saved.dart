@@ -12,6 +12,6 @@ class Saved extends StatefulWidget {
 class _SavedState extends State<Saved> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold());
+    return SafeArea(child: Scaffold(body: Text('Saved')));
   }
 }

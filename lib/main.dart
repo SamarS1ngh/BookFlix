@@ -3,6 +3,7 @@ import 'package:bookflix/Screens/saved.dart';
 import 'package:bookflix/Screens/search.dart';
 import 'package:flutter/material.dart';
 import 'Screens/home.dart';
+import 'widgets/homepagewithbottomnavbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: MyHomePage());
+        home: homepagewithbottomnavbar());
   }
 }
