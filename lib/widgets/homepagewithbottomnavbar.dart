@@ -20,7 +20,6 @@ class _homepagewithbottomnavbarState extends State<homepagewithbottomnavbar> {
   List<Widget> list = [
     MyHomePage(),
     Saved(),
-    Search(),
     profile(),
   ];
 
@@ -34,14 +33,6 @@ class _homepagewithbottomnavbarState extends State<homepagewithbottomnavbar> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'BookFlix',
-            style: TextStyle(color: Color.fromARGB(255, 230, 155, 243)),
-          ),
-          elevation: 0,
-          backgroundColor: Colors.white,
-        ),
         body: list.elementAt(selectedindex),
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: selectedindex,
@@ -65,12 +56,12 @@ class _homepagewithbottomnavbarState extends State<homepagewithbottomnavbar> {
                     size: 28,
                   ),
                   label: 'Saved'),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.search_outlined,
-                    size: 28,
-                  ),
-                  label: 'Search'),
+              // BottomNavigationBarItem(
+              //     icon: Icon(
+              //       Icons.search_outlined,
+              //       size: 28,
+              //     ),
+              //     label: 'Search'),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.person_2_outlined,

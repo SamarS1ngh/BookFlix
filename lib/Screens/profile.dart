@@ -12,6 +12,16 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body: Text('profile')));
+    return SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                'BookFlix',
+                style: TextStyle(color: Color.fromARGB(255, 230, 155, 243)),
+              ),
+              elevation: 0,
+              backgroundColor: Colors.white,
+            ),
+            body: Text('profile')));
   }
 }

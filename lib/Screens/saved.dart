@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Saved extends StatefulWidget {
   const Saved({super.key});
@@ -12,6 +10,14 @@ class Saved extends StatefulWidget {
 class _SavedState extends State<Saved> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body: Text('Saved')));
+    return SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+                elevation: .5,
+                title: Text(
+                  'Saved',
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                )),
+            body: Text('Saved')));
   }
 }
