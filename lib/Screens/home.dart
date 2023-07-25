@@ -23,51 +23,66 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Item> scifiBooks = [];
   List<Item> nonficBooks = [];
 
-  Future<void> fetchDataForTopics() async {
-    final List<Future<List<Item>>> futures = [
-      fetchBooks(popularUrl),
-      fetchBooks(mangaUrl),
-      fetchBooks(scifiUrl),
-      fetchBooks(fictionUrl),
-      fetchBooks(nonficUrl)
-    ];
+  // Future<void> fetchDataForTopics() async {
+  //   final List<Future<List<Item>>> futures = [
+  //     fetchBooks(popularUrl),
+  //     // fetchBooks(mangaUrl),
+  //     // fetchBooks(scifiUrl),
+  //     // fetchBooks(fictionUrl),
+  //     // fetchBooks(nonficUrl)
+  //   ];
 
-    final List<List<Item>> results = await Future.wait(futures);
-    setState(() {
-      popularBooks = results[0];
-      mangaBooks = results[1];
-      scifiBooks = results[2];
-      ficBooks = results[3];
-      nonficBooks = results[4];
-    });
-  }
+  //   final List<List<Item>> results = await Future.wait(futures);
+  //   setState(() {
+  //     popularBooks = results[0];
+  //     // mangaBooks = results[1];
+  //     // scifiBooks = results[2];
+  //     // ficBooks = results[3];
+  //     // nonficBooks = results[4];
+  //   });
+  // }
 
-  Future<List<Item>> fetchBooks(String url) async {
+  Future<void> fetchBooks(String url) async {
     try {
       print('Making api call');
       final response = await http.get(Uri.parse(url));
       if (response.body != null) {
         if (response.statusCode == 200) {
           print('Api call successful');
+
           final Map<String, dynamic> jsonData = json.decode(response.body);
-          return Bookfetch.fromJson(jsonData).items;
+          // print(jsonData);
+          // final Bookfetch bookfetch = Bookfetch.fromJson(jsonData);
+          if (jsonData.containsKey('items')) {
+            try {
+              setState(() {
+                popularBooks = Bookfetch.fromJson(jsonData).items;
+              });
+            } catch (e) {
+              print(e);
+            }
+          }
+
+          print(popularBooks);
+          // return bookfetch.items;
         } else {
-          return [];
+          print('call failed with status code ${response.statusCode}');
+          //   return [];
         }
       } else {
-        return [];
+        print('response body is null');
+        //   return [];
       }
     } catch (e) {
-      print("call failed");
       print(e);
-      return [];
+      //  return [];
     }
   }
 
   @override
   void initState() {
     super.initState();
-    fetchDataForTopics();
+    fetchBooks(popularUrl);
   }
 
   @override
@@ -85,13 +100,22 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 60,
-              width: 100,
-              child: popularBooks.isEmpty
-                  ? CircularProgressIndicator()
-                  : Image.network(
-                      popularBooks[0].volumeInfo.imageLinks.thumbnail),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: popularBooks.isEmpty
+                    ? const SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ))
+                    : Image.network(
+                        popularBooks[0].volumeInfo.imageLinks.thumbnail,
+                        height: 100,
+                        width: 100,
+                      ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
