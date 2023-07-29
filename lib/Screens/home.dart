@@ -51,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
           print('Api call successful');
 
           final Map<String, dynamic> jsonData = json.decode(response.body);
+          // print(response.body);
+          print(Bookfetch.fromJson(jsonData).items);
           // print(jsonData);
           // final Bookfetch bookfetch = Bookfetch.fromJson(jsonData);
           if (jsonData.containsKey('items')) {
@@ -59,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 popularBooks = Bookfetch.fromJson(jsonData).items;
               });
             } catch (e) {
-              print(e);
+              print('error is :${e}');
             }
           }
 
@@ -74,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //   return [];
       }
     } catch (e) {
-      print(e);
+      print('error is :${e}');
       //  return [];
     }
   }
