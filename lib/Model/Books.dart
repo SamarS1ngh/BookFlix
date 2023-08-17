@@ -2,6 +2,8 @@
 //
 //     final bookfetch = bookfetchFromJson(jsonString);
 
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 Bookfetch bookfetchFromJson(String str) => Bookfetch.fromJson(json.decode(str));

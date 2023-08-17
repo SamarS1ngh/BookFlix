@@ -1,17 +1,18 @@
-import 'package:bookflix/Constants.dart';
-import 'package:bookflix/Screens/search.dart';
-import 'package:bookflix/widgets/fiction.dart';
-import 'package:bookflix/widgets/mangalist.dart';
-import 'package:bookflix/widgets/nonfiction.dart';
-import 'package:bookflix/widgets/scifilist.dart';
-import 'package:bookflix/widgets/trendinglist.dart';
+// ignore_for_file: avoid_print
+
+import 'package:bookflix/Utils/Routes/app_router_const.dart';
+import 'package:bookflix/Utils/constants.dart';
+import 'package:bookflix/View/Widgets/booklist.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../Model/Books.dart';
+import '../../../Model/Books.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 popularBooks = Bookfetch.fromJson(jsonData).items;
               });
             } catch (e) {
-              print('error is :${e}');
+              print('error is :$e');
             }
           }
 
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //   return [];
       }
     } catch (e) {
-      print('error is :${e}');
+      print('error is :$e');
       //  return [];
     }
   }
@@ -123,18 +124,15 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return Search();
-                  }));
+                  context.pushNamed(AppRouteConst.search);
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height / 20,
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Color.fromARGB(255, 237, 236, 236)),
-                  child: Row(
+                      color: const Color.fromARGB(255, 237, 236, 236)),
+                  child: const Row(
                     children: [
                       SizedBox(
                         width: 10,
@@ -152,11 +150,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Most Popular',
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
@@ -171,12 +169,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            trendinglist(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+            const Booklist(),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Manga',
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
@@ -191,12 +189,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            mangalist(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+            const Booklist(),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Fiction',
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
@@ -211,12 +209,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            fictionlist(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+            const Booklist(),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Sci-fi & fantasy',
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
@@ -231,12 +229,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            scifilist(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+            const Booklist(),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Non-fiction',
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
@@ -251,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            nonficlist()
+            const Booklist()
           ],
         ),
       ),

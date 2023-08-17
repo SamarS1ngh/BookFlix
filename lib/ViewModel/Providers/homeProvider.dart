@@ -1,7 +1,8 @@
-import 'package:bookflix/Constants.dart';
+// ignore_for_file: file_names
+
+import 'package:bookflix/Utils/constants.dart';
 import 'package:bookflix/Service/apiservice.dart';
 import 'package:flutter/material.dart';
-
 import '../../Model/Books.dart';
 
 class HomeNotifer extends ChangeNotifier {
@@ -13,8 +14,7 @@ class HomeNotifer extends ChangeNotifier {
     String order,
   ) async {
     String url = "";
-    url = baseUrl +
-        "q=${type}&printType=${printType}&orderBy=${order}&key=${key}";
+    url = "${baseUrl}q=$type&printType=$printType&orderBy=$order&key=$key";
     return await api.fetchBooks(url);
   }
 

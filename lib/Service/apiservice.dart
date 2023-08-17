@@ -1,5 +1,3 @@
-import 'package:bookflix/Constants.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../Model/Books.dart';
@@ -9,6 +7,7 @@ class ApiService {
     try {
       print('Making api call');
       final response = await http.get(Uri.parse(url));
+      // ignore: unnecessary_null_comparison
       if (response.body != null) {
         if (response.statusCode == 200) {
           print('Api call successful');

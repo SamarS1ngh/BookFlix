@@ -1,10 +1,8 @@
-import 'package:bookflix/Screens/home.dart';
-import 'package:bookflix/Screens/profile.dart';
-import 'package:bookflix/Screens/saved.dart';
-import 'package:bookflix/Screens/search.dart';
+// ignore_for_file: camel_case_types
+import 'package:bookflix/View/Screens/HomePage/home.dart';
+import 'package:bookflix/View/Screens/Profile/profile.dart';
+import 'package:bookflix/View/Screens/Saved/saved.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class homepagewithbottomnavbar extends StatefulWidget {
   const homepagewithbottomnavbar({super.key});
@@ -18,9 +16,9 @@ class _homepagewithbottomnavbarState extends State<homepagewithbottomnavbar> {
   int selectedindex = 0;
 
   List<Widget> list = [
-    MyHomePage(),
-    Saved(),
-    profile(),
+    const MyHomePage(),
+    const Saved(),
+    const profile(),
   ];
 
   void onTapped(int index) {
@@ -38,12 +36,12 @@ class _homepagewithbottomnavbarState extends State<homepagewithbottomnavbar> {
             currentIndex: selectedindex,
             onTap: onTapped,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Color.fromARGB(255, 174, 40, 198),
+            selectedItemColor: const Color.fromARGB(255, 174, 40, 198),
             unselectedItemColor: Colors.grey,
             selectedFontSize: 15,
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-            selectedIconTheme: IconThemeData(size: 26),
-            items: const <BottomNavigationBarItem>[
+            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            selectedIconTheme: const IconThemeData(size: 26),
+            items: const [
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.home_outlined,
@@ -56,12 +54,6 @@ class _homepagewithbottomnavbarState extends State<homepagewithbottomnavbar> {
                     size: 28,
                   ),
                   label: 'Saved'),
-              // BottomNavigationBarItem(
-              //     icon: Icon(
-              //       Icons.search_outlined,
-              //       size: 28,
-              //     ),
-              //     label: 'Search'),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.person_2_outlined,

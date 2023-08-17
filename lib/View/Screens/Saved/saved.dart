@@ -14,10 +14,10 @@ class _SavedState extends State<Saved> {
         child: Scaffold(
             appBar: AppBar(
                 elevation: .5,
-                title: Text(
+                title: const Text(
                   'Saved',
                   style: TextStyle(fontWeight: FontWeight.w400),
                 )),
-            body: Text('Saved')));
+            body: const Text('Saved')));
   }
 }

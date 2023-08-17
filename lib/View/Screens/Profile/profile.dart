@@ -1,6 +1,6 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class profile extends StatefulWidget {
   const profile({super.key});
@@ -22,6 +22,6 @@ class _profileState extends State<profile> {
               elevation: 0,
               backgroundColor: Colors.white,
             ),
-            body: Text('profile')));
+            body: const Text('profile')));
   }
 }
