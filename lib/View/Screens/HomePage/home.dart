@@ -1,11 +1,14 @@
 // ignore_for_file: avoid_print
 
-import 'dart:developer';
+import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
+import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Widgets/booklist.dart';
+import 'package:bookflix/View/Widgets/categoryheading.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -22,13 +25,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return SafeArea(
         child: Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'BookFlix',
-          style: TextStyle(color: Color.fromARGB(255, 230, 155, 243)),
+          style: AppFonts.titleText,
         ),
-        elevation: 0,
-        backgroundColor: Colors.white,
+        elevation: 1,
+        backgroundColor: AppColors.backgroundColor,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -44,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: MediaQuery.of(context).size.width / 1.2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: const Color.fromARGB(255, 237, 236, 236)),
+                      color: AppColors.accentColor),
                   child: const Row(
                     children: [
                       SizedBox(
@@ -63,117 +67,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Most Popular',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.arrow_right_alt,
-                      color: Color.fromARGB(255, 174, 40, 198),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            CategoryHeading(text: 'Most popular'),
             Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
               final popularBooks = homeBookFetch.popularBooks;
               return Booklist(bookimgs: popularBooks);
             }),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Manga',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.arrow_right_alt,
-                      color: Color.fromARGB(255, 174, 40, 198),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            CategoryHeading(text: 'Manga'),
             Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
               final mangaBooks = homeBookFetch.mangaBooks;
               return Booklist(bookimgs: mangaBooks);
             }),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Fiction',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.arrow_right_alt,
-                      color: Color.fromARGB(255, 174, 40, 198),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            CategoryHeading(text: 'Fiction'),
             Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
               final ficBooks = homeBookFetch.ficBooks;
               return Booklist(bookimgs: ficBooks);
             }),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Sci-fi & fantasy',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.arrow_right_alt,
-                      color: Color.fromARGB(255, 174, 40, 198),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            CategoryHeading(text: 'Sci-fi & fantasy'),
             Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
               final scifiBooks = homeBookFetch.scifiBooks;
               return Booklist(bookimgs: scifiBooks);
             }),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Non-fiction',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.arrow_right_alt,
-                      color: Color.fromARGB(255, 174, 40, 198),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            CategoryHeading(text: 'Non-fiction'),
             Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
               final nonficBooks = homeBookFetch.nonficBooks;
               return Booklist(bookimgs: nonficBooks);

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../Model/Books.dart';
@@ -24,19 +26,21 @@ class _BooklistState extends State<Booklist> {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  print('yamete kudsai');
+                  log('yamete kudsai');
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
+                    //   height: 700,
                     decoration: BoxDecoration(
-                        color: Colors.black,
+                        // color: Colors.black,
                         borderRadius: BorderRadius.circular(10)),
                     clipBehavior: Clip.antiAlias,
                     child: Image.network(
                       widget.bookimgs![index].volumeInfo.imageLinks!.thumbnail,
                       width: 180,
-                      fit: BoxFit.fitHeight,
+                      //      height: 500,
+                      fit: BoxFit.cover,
                       isAntiAlias: false,
                     ),
                   ),
