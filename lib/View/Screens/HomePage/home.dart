@@ -34,33 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Consumer<HomeBookFetch>(
-                    builder: (context, homeBookFetch, child) {
-                  final popularBooks = homeBookFetch.popularBooks;
-                  final scifiBooks = homeBookFetch.scifiBooks;
-                  final ficBooks = homeBookFetch.ficBooks;
-                  final nonficBooks = homeBookFetch.nonficBooks;
-                  final mangaBooks = homeBookFetch.mangaBooks;
-
-                  log(nonficBooks?.toString() ?? "NOTHING BITCHES");
-
-                  return Container(
-                    child: (nonficBooks ?? []).isEmpty
-                        ? const SizedBox(
-                            height: 25,
-                            width: 25,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                            ))
-                        : Image.network(
-                            nonficBooks![0].volumeInfo.imageLinks!.thumbnail,
-                            height: 100,
-                            width: 100,
-                          ),
-                  );
-                })),
-            Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(
                 onTap: () {

@@ -12,15 +12,6 @@ class Booklist extends StatefulWidget {
 }
 
 class _BooklistState extends State<Booklist> {
-  // List<String> bookimg = [
-  //   'assets/preview img.jpg',
-  //   'assets/preview img.jpg',
-  //   'assets/preview img.jpg',
-  //   'assets/preview img.jpg',
-  //   'assets/preview img.jpg',
-  //   'assets/preview img.jpg'
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
