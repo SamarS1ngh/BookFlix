@@ -1,14 +1,12 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
-import 'package:bookflix/Utils/constants.dart';
 import 'package:bookflix/View/Widgets/booklist.dart';
+import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import '../../../Model/Books.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,78 +16,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Item> popularBooks = [];
-  List<Item> mangaBooks = [];
-  List<Item> ficBooks = [];
-  List<Item> scifiBooks = [];
-  List<Item> nonficBooks = [];
-
-  // Future<void> fetchDataForTopics() async {
-  //   final List<Future<List<Item>>> futures = [
-  //     fetchBooks(popularUrl),
-  //     // fetchBooks(mangaUrl),
-  //     // fetchBooks(scifiUrl),
-  //     // fetchBooks(fictionUrl),
-  //     // fetchBooks(nonficUrl)
-  //   ];
-
-  //   final List<List<Item>> results = await Future.wait(futures);
-  //   setState(() {
-  //     popularBooks = results[0];
-  //     // mangaBooks = results[1];
-  //     // scifiBooks = results[2];
-  //     // ficBooks = results[3];
-  //     // nonficBooks = results[4];
-  //   });
-  // }
-
-  Future<void> fetchBooks(String url) async {
-    try {
-      print('Making api call');
-      final response = await http.get(Uri.parse(url));
-      if (response.body != null) {
-        if (response.statusCode == 200) {
-          print('Api call successful');
-
-          final Map<String, dynamic> jsonData = json.decode(response.body);
-          // print(response.body);
-          print(Bookfetch.fromJson(jsonData).items);
-          // print(jsonData);
-          // final Bookfetch bookfetch = Bookfetch.fromJson(jsonData);
-          if (jsonData.containsKey('items')) {
-            try {
-              setState(() {
-                popularBooks = Bookfetch.fromJson(jsonData).items;
-              });
-            } catch (e) {
-              print('error is :$e');
-            }
-          }
-
-          print(popularBooks);
-          // return bookfetch.items;
-        } else {
-          print('call failed with status code ${response.statusCode}');
-          //   return [];
-        }
-      } else {
-        print('response body is null');
-        //   return [];
-      }
-    } catch (e) {
-      print('error is :$e');
-      //  return [];
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchBooks(popularUrl);
-  }
-
   @override
   Widget build(BuildContext context) {
+    Provider.of<HomeBookFetch>(context, listen: false).fetchCategories();
+
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -104,22 +34,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: popularBooks.isEmpty
-                    ? const SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                        ))
-                    : Image.network(
-                        popularBooks[0].volumeInfo.imageLinks.thumbnail,
-                        height: 100,
-                        width: 100,
-                      ),
-              ),
-            ),
+                padding: const EdgeInsets.all(8.0),
+                child: Consumer<HomeBookFetch>(
+                    builder: (context, homeBookFetch, child) {
+                  final popularBooks = homeBookFetch.popularBooks;
+                  final scifiBooks = homeBookFetch.scifiBooks;
+                  final ficBooks = homeBookFetch.ficBooks;
+                  final nonficBooks = homeBookFetch.nonficBooks;
+                  final mangaBooks = homeBookFetch.mangaBooks;
+
+                  log(nonficBooks?.toString() ?? "NOTHING BITCHES");
+
+                  return Container(
+                    child: (nonficBooks ?? []).isEmpty
+                        ? const SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ))
+                        : Image.network(
+                            nonficBooks![0].volumeInfo.imageLinks!.thumbnail,
+                            height: 100,
+                            width: 100,
+                          ),
+                  );
+                })),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(
@@ -169,7 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const Booklist(),
+            Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
+              final popularBooks = homeBookFetch.popularBooks;
+              return Booklist(bookimgs: popularBooks);
+            }),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
@@ -189,7 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const Booklist(),
+            Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
+              final mangaBooks = homeBookFetch.mangaBooks;
+              return Booklist(bookimgs: mangaBooks);
+            }),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
@@ -209,7 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const Booklist(),
+            Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
+              final ficBooks = homeBookFetch.ficBooks;
+              return Booklist(bookimgs: ficBooks);
+            }),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
@@ -229,7 +178,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const Booklist(),
+            Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
+              final scifiBooks = homeBookFetch.scifiBooks;
+              return Booklist(bookimgs: scifiBooks);
+            }),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
               child: Row(
@@ -249,7 +201,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const Booklist()
+            Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
+              final nonficBooks = homeBookFetch.nonficBooks;
+              return Booklist(bookimgs: nonficBooks);
+            }),
           ],
         ),
       ),

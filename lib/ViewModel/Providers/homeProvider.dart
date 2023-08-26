@@ -1,33 +1,39 @@
 // ignore_for_file: file_names
 
-import 'package:bookflix/Utils/constants.dart';
+import 'dart:developer';
+
+import 'package:bookflix/Model/Books.dart';
 import 'package:bookflix/Service/apiservice.dart';
+import 'package:bookflix/Utils/constants.dart';
 import 'package:flutter/material.dart';
-import '../../Model/Books.dart';
 
-class HomeNotifer extends ChangeNotifier {
-  List<Item>? mangaBook;
-  ApiService api = ApiService();
-  Future<List<Item>> _fetchBook(
-    String type,
-    String printType,
-    String order,
-  ) async {
-    String url = "";
-    url = "${baseUrl}q=$type&printType=$printType&orderBy=$order&key=$key";
-    return await api.fetchBooks(url);
+class HomeBookFetch extends ChangeNotifier {
+  final ApiService apiService = ApiService();
+
+  List<Item>? popularBooks;
+  List<Item>? mangaBooks;
+  List<Item>? scifiBooks;
+  List<Item>? ficBooks;
+  List<Item>? nonficBooks;
+
+  String url1 = '';
+  String url2 = '';
+  Future<List<Item>> _fetchHomeBooks(String subject) async {
+    url1 =
+        "${baseUrl}q=subject:$subject&printType=books&orderBy=relevance&key=$key";
+    return await apiService.fetchBooks(url1);
   }
 
-  fetchManga() async {
-    mangaBook = await _fetchBook('manga', 'book', 'relevance');
+  Future<void> fetchCategories() async {
+    log("api called");
+    popularBooks = await apiService.fetchBooks(popularUrl);
+
+    scifiBooks = await _fetchHomeBooks('science+fiction');
+    ficBooks = await _fetchHomeBooks('fiction');
+    nonficBooks = await _fetchHomeBooks('nonfiction');
+    mangaBooks = await _fetchHomeBooks('manga');
+    log("notifying");
     notifyListeners();
-  }
-
-  fetchfiction() {
-    _fetchBook('fiction', 'book', 'relevance');
-  }
-
-  fetchNonfiction() {
-    _fetchBook('nonfiction', 'book', 'relevance');
+    log("notified");
   }
 }

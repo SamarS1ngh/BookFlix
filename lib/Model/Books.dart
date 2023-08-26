@@ -40,9 +40,9 @@ class Item {
   String etag;
   String selfLink;
   VolumeInfo volumeInfo;
-  SaleInfo saleInfo;
+  // SaleInfo saleInfo;
   AccessInfo accessInfo;
-  SearchInfo searchInfo;
+  SearchInfo? searchInfo;
 
   Item({
     required this.kind,
@@ -50,7 +50,7 @@ class Item {
     required this.etag,
     required this.selfLink,
     required this.volumeInfo,
-    required this.saleInfo,
+    // required this.saleInfo,
     required this.accessInfo,
     required this.searchInfo,
   });
@@ -61,9 +61,9 @@ class Item {
         etag: json["etag"],
         selfLink: json["selfLink"],
         volumeInfo: VolumeInfo.fromJson(json["volumeInfo"]),
-        saleInfo: SaleInfo.fromJson(json["saleInfo"]),
+        //  saleInfo: SaleInfo.fromJson(json["saleInfo"]),
         accessInfo: AccessInfo.fromJson(json["accessInfo"]),
-        searchInfo: SearchInfo.fromJson(json["searchInfo"]),
+        searchInfo: SearchInfo?.fromJson(json["searchInfo"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -72,9 +72,9 @@ class Item {
         "etag": etag,
         "selfLink": selfLink,
         "volumeInfo": volumeInfo.toJson(),
-        "saleInfo": saleInfo.toJson(),
+        //   "saleInfo": saleInfo.toJson(),
         "accessInfo": accessInfo.toJson(),
-        "searchInfo": searchInfo.toJson(),
+        "searchInfo": searchInfo?.toJson(),
       };
 }
 
@@ -86,7 +86,7 @@ class AccessInfo {
   TextToSpeechPermission? textToSpeechPermission;
   Epub epub;
   Epub pdf;
-  String webReaderLink;
+  String? webReaderLink;
   AccessViewStatus? accessViewStatus;
   bool quoteSharingAllowed;
 
@@ -296,14 +296,14 @@ final saleabilityValues = EnumValues({
 });
 
 class SearchInfo {
-  String textSnippet;
+  String? textSnippet;
 
   SearchInfo({
     required this.textSnippet,
   });
 
-  factory SearchInfo.fromJson(Map<String, dynamic> json) => SearchInfo(
-        textSnippet: json["textSnippet"],
+  factory SearchInfo.fromJson(Map<String, dynamic>? json) => SearchInfo(
+        textSnippet: json?["textSnippet"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -314,25 +314,25 @@ class SearchInfo {
 class VolumeInfo {
   String title;
   List<String> authors;
-  String publisher;
+  String? publisher;
   // DateTime publishedDate;
   String description;
-  List<IndustryIdentifier> industryIdentifiers;
+  //List<IndustryIdentifier> industryIdentifiers;
   ReadingModes readingModes;
   int pageCount;
-  PrintType printType;
+  PrintType? printType;
   List<String>? categories;
-  MaturityRating maturityRating;
+  MaturityRating? maturityRating;
   bool allowAnonLogging;
   String contentVersion;
-  PanelizationSummary panelizationSummary;
-  ImageLinks imageLinks;
-  Language language;
+  PanelizationSummary? panelizationSummary;
+  ImageLinks? imageLinks;
+  Language? language;
   String previewLink;
   String infoLink;
   String canonicalVolumeLink;
-  int? averageRating;
-  int? ratingsCount;
+  double? averageRating;
+  double? ratingsCount;
   bool? comicsContent;
   SeriesInfo? seriesInfo;
   String? subtitle;
@@ -343,7 +343,7 @@ class VolumeInfo {
     required this.publisher,
     //  required this.publishedDate,
     required this.description,
-    required this.industryIdentifiers,
+    // required this.industryIdentifiers,
     required this.readingModes,
     required this.pageCount,
     required this.printType,
@@ -370,27 +370,27 @@ class VolumeInfo {
         publisher: json["publisher"],
         //    publishedDate: DateTime.parse(json["publishedDate"]),
         description: json["description"],
-        industryIdentifiers: List<IndustryIdentifier>.from(
-            json["industryIdentifiers"]
-                .map((x) => IndustryIdentifier.fromJson(x))),
+        //  industryIdentifiers: List<IndustryIdentifier>.from(
+        //   json["industryIdentifiers"]
+        //    .map((x) => IndustryIdentifier.fromJson(x))),
         readingModes: ReadingModes.fromJson(json["readingModes"]),
         pageCount: json["pageCount"],
-        printType: printTypeValues.map[json["printType"]]!,
+        printType: printTypeValues.map[json["printType"]],
         categories: json["categories"] == null
             ? []
             : List<String>.from(json["categories"]!.map((x) => x)),
-        maturityRating: maturityRatingValues.map[json["maturityRating"]]!,
+        maturityRating: maturityRatingValues.map[json["maturityRating"]],
         allowAnonLogging: json["allowAnonLogging"],
         contentVersion: json["contentVersion"],
         panelizationSummary:
             PanelizationSummary.fromJson(json["panelizationSummary"]),
         imageLinks: ImageLinks.fromJson(json["imageLinks"]),
-        language: languageValues.map[json["language"]]!,
+        language: languageValues.map[json["language"]],
         previewLink: json["previewLink"],
         infoLink: json["infoLink"],
         canonicalVolumeLink: json["canonicalVolumeLink"],
-        averageRating: json["averageRating"],
-        ratingsCount: json["ratingsCount"],
+        averageRating: json["averageRating"]?.toDouble(),
+        ratingsCount: json["ratingsCount"]?.toDouble(),
         comicsContent: json["comicsContent"],
         seriesInfo: json["seriesInfo"] == null
             ? null
@@ -404,8 +404,8 @@ class VolumeInfo {
         "publisher": publisher,
         //      "publishedDate":       "${publishedDate.year.toString().padLeft(4, '0')}-${publishedDate.month.toString().padLeft(2, '0')}-${publishedDate.day.toString().padLeft(2, '0')}",
         "description": description,
-        "industryIdentifiers":
-            List<dynamic>.from(industryIdentifiers.map((x) => x.toJson())),
+        // "industryIdentifiers":
+        //     List<dynamic>.from(industryIdentifiers.map((x) => x.toJson())),
         "readingModes": readingModes.toJson(),
         "pageCount": pageCount,
         "printType": printTypeValues.reverse[printType],
@@ -415,8 +415,8 @@ class VolumeInfo {
         "maturityRating": maturityRatingValues.reverse[maturityRating],
         "allowAnonLogging": allowAnonLogging,
         "contentVersion": contentVersion,
-        "panelizationSummary": panelizationSummary.toJson(),
-        "imageLinks": imageLinks.toJson(),
+        "panelizationSummary": panelizationSummary?.toJson(),
+        "imageLinks": imageLinks?.toJson(),
         "language": languageValues.reverse[language],
         "previewLink": previewLink,
         "infoLink": infoLink,
@@ -438,9 +438,9 @@ class ImageLinks {
     required this.thumbnail,
   });
 
-  factory ImageLinks.fromJson(Map<String, dynamic> json) => ImageLinks(
-        smallThumbnail: json["smallThumbnail"],
-        thumbnail: json["thumbnail"],
+  factory ImageLinks.fromJson(Map<String, dynamic>? json) => ImageLinks(
+        smallThumbnail: json?["smallThumbnail"] ?? "",
+        thumbnail: json?["thumbnail"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -450,8 +450,8 @@ class ImageLinks {
 }
 
 class IndustryIdentifier {
-  Type type;
-  String identifier;
+  Type? type;
+  String? identifier;
 
   IndustryIdentifier({
     required this.type,
@@ -460,7 +460,7 @@ class IndustryIdentifier {
 
   factory IndustryIdentifier.fromJson(Map<String, dynamic> json) =>
       IndustryIdentifier(
-        type: typeValues.map[json["type"]]!,
+        type: json["type"] != null ? typeValues.map[json["type"]] : null,
         identifier: json["identifier"],
       );
 
@@ -485,8 +485,8 @@ final maturityRatingValues =
     EnumValues({"NOT_MATURE": MaturityRating.NOT_MATURE});
 
 class PanelizationSummary {
-  bool containsEpubBubbles;
-  bool containsImageBubbles;
+  bool? containsEpubBubbles;
+  bool? containsImageBubbles;
   String? imageBubbleVersion;
   String? epubBubbleVersion;
 
@@ -497,12 +497,12 @@ class PanelizationSummary {
     this.epubBubbleVersion,
   });
 
-  factory PanelizationSummary.fromJson(Map<String, dynamic> json) =>
+  factory PanelizationSummary.fromJson(Map<String, dynamic>? json) =>
       PanelizationSummary(
-        containsEpubBubbles: json["containsEpubBubbles"],
-        containsImageBubbles: json["containsImageBubbles"],
-        imageBubbleVersion: json["imageBubbleVersion"],
-        epubBubbleVersion: json["epubBubbleVersion"],
+        containsEpubBubbles: json?["containsEpubBubbles"],
+        containsImageBubbles: json?["containsImageBubbles"],
+        imageBubbleVersion: json?["imageBubbleVersion"],
+        epubBubbleVersion: json?["epubBubbleVersion"],
       );
 
   Map<String, dynamic> toJson() => {

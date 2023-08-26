@@ -2,17 +2,24 @@ import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/View/Screens/Profile/profile.dart';
 import 'package:bookflix/View/Screens/Saved/saved.dart';
 import 'package:bookflix/View/Screens/Search/search.dart';
+import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'View/Screens/HomePage/home.dart';
-import 'View/Widgets/homepagewithbottomnavbar.dart';
+import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(MyApp());
+
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => HomeBookFetch())
+    ], child: MyApp()),
+  );
 }
 
 // ignore: must_be_immutable
@@ -29,8 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routeInformationParser: AppRouter().router.routeInformationParser,
-      routerDelegate: AppRouter().router.routerDelegate,
+      routerConfig: AppRouter().router,
       debugShowCheckedModeBanner: false,
       title: 'BookFlix',
       theme: ThemeData(

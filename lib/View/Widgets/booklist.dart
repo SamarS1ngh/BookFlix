@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../../Model/Books.dart';
+
+// ignore: must_be_immutable
 class Booklist extends StatefulWidget {
-  const Booklist({super.key});
+  List<Item>? bookimgs;
+  Booklist({super.key, required this.bookimgs});
 
   @override
   State<Booklist> createState() => _BooklistState();
 }
 
 class _BooklistState extends State<Booklist> {
-  List<String> bookimg = [
-    'assets/preview img.jpg',
-    'assets/preview img.jpg',
-    'assets/preview img.jpg',
-    'assets/preview img.jpg',
-    'assets/preview img.jpg',
-    'assets/preview img.jpg'
-  ];
+  // List<String> bookimg = [
+  //   'assets/preview img.jpg',
+  //   'assets/preview img.jpg',
+  //   'assets/preview img.jpg',
+  //   'assets/preview img.jpg',
+  //   'assets/preview img.jpg',
+  //   'assets/preview img.jpg'
+  // ];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,7 +29,7 @@ class _BooklistState extends State<Booklist> {
             // padding: EdgeInsets.fromLTRB(10, 0, 10, 010),
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemCount: bookimg.length,
+            itemCount: widget.bookimgs?.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
@@ -37,8 +42,8 @@ class _BooklistState extends State<Booklist> {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(10)),
                     clipBehavior: Clip.antiAlias,
-                    child: Image.asset(
-                      bookimg[index],
+                    child: Image.network(
+                      widget.bookimgs![index].volumeInfo.imageLinks!.thumbnail,
                       width: 180,
                       fit: BoxFit.fitHeight,
                       isAntiAlias: false,
