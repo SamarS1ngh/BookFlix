@@ -17,5 +17,5 @@ class AppFonts {
   static TextStyle subTitles = GoogleFonts.montserrat(
       fontWeight: FontWeight.w400,
       color: AppColors.textSecondary,
-      fontSize: 26);
+      fontSize: 12);
 }

@@ -54,7 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         width: 10,
                       ),
-                      Icon(Icons.search),
+                      Icon(
+                        Icons.search,
+                        color: AppColors.textSecondary,
+                      ),
                       SizedBox(
                         width: 10,
                       ),
