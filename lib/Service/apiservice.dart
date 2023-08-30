@@ -14,8 +14,6 @@ class ApiService {
         log('Api call successful');
 
         final Map<String, dynamic> jsonData = json.decode(response.body);
-        //print(response.body);
-        // print(Bookfetch.fromJson(jsonData).items);
 
         final Bookfetch bookfetch = Bookfetch.fromJson(jsonData);
 
@@ -29,9 +27,5 @@ class ApiService {
       log('response body is null');
       return [];
     }
-    // } catch (e) {
-    //   print('error is :${e}');
-    //   return [];
-    // }
   }
 }

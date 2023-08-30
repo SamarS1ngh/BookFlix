@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bookflix/Utils/Colors.dart';
-import 'package:bookflix/Utils/Text.dart';
+import 'package:bookflix/Utils/Routes/app_router_const.dart';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../Model/Books.dart';
@@ -22,6 +25,7 @@ class _BooklistState extends State<Booklist> {
     return SizedBox(
         height: 230,
         child: ListView.builder(
+
             // padding: EdgeInsets.fromLTRB(10, 0, 10, 010),
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -29,7 +33,9 @@ class _BooklistState extends State<Booklist> {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  log('yamete kudsai');
+                  final selectedbook = widget.bookimgs![index];
+                  context.pushNamed(AppRouteConst.onlyBookPage,
+                      pathParameters: {'bookInfo': jsonEncode(selectedbook)});
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -69,12 +75,14 @@ class _BooklistState extends State<Booklist> {
                             child: Container(
                               width: 180,
                               height: 35,
-                              color: AppColors.accentColor,
+                              color: const Color(0xFF171717),
                               child: Center(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 8.0, top: 2, right: 1, bottom: 1),
                                   child: Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
                                     widget.bookimgs![index].volumeInfo.title
                                         .toString(),
                                     style: GoogleFonts.montserrat(

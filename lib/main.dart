@@ -3,6 +3,7 @@ import 'package:bookflix/View/Screens/Profile/profile.dart';
 import 'package:bookflix/View/Screens/Saved/saved.dart';
 import 'package:bookflix/View/Screens/Search/search.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
+import 'package:bookflix/ViewModel/books_by_author.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'View/Screens/HomePage/home.dart';
@@ -17,7 +18,8 @@ void main() {
 
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => HomeBookFetch())
+      ChangeNotifierProvider(create: (context) => HomeBookFetch()),
+      ChangeNotifierProvider(create: (context) => BooksbyAuthor())
     ], child: MyApp()),
   );
 }
