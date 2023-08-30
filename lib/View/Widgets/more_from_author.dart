@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
+import 'dart:convert';
+
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
 import 'package:bookflix/Utils/Text.dart';
@@ -41,7 +43,8 @@ class _AuthorListState extends State<AuthorList> {
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
-                  context.pushNamed(AppRouteConst.onlyBookPage);
+                  context.pushNamed(AppRouteConst.onlyBookPage,
+                      pathParameters: {'bookInfo': jsonEncode(list[index])});
                 },
                 child: Card(
                   color: AppColors.accentColor,
