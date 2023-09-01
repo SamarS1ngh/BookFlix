@@ -5,13 +5,11 @@ import 'dart:convert';
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
 import 'package:bookflix/Utils/Text.dart';
-import 'package:bookflix/ViewModel/books_by_author.dart';
+import 'package:bookflix/ViewModel/Providers/books_by_author.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import '../../Model/Books.dart';
 
 class AuthorList extends StatefulWidget {
   final String author;

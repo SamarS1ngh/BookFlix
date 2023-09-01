@@ -3,11 +3,13 @@ import 'package:bookflix/View/Screens/Profile/profile.dart';
 import 'package:bookflix/View/Screens/Saved/saved.dart';
 import 'package:bookflix/View/Screens/Search/search.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
-import 'package:bookflix/ViewModel/books_by_author.dart';
+import 'package:bookflix/ViewModel/Providers/books_by_author.dart';
+import 'package:bookflix/ViewModel/Providers/searchProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'View/Screens/HomePage/home.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +21,8 @@ void main() {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => HomeBookFetch()),
-      ChangeNotifierProvider(create: (context) => BooksbyAuthor())
+      ChangeNotifierProvider(create: (context) => BooksbyAuthor()),
+      ChangeNotifierProvider(create: (context) => SearchProvider())
     ], child: MyApp()),
   );
 }
@@ -37,13 +40,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter().router,
-      debugShowCheckedModeBanner: false,
-      title: 'BookFlix',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      designSize: Size(width, height),
+      builder: (context, child) {
+        return MaterialApp.router(
+          routerConfig: AppRouter().router,
+          debugShowCheckedModeBanner: false,
+          title: 'BookFlix',
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+        );
+      },
     );
   }
 }

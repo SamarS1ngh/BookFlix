@@ -7,6 +7,7 @@ import 'package:bookflix/View/Widgets/booklist.dart';
 import 'package:bookflix/View/Widgets/categoryheading.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:provider/provider.dart';
@@ -44,8 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   context.pushNamed(AppRouteConst.search);
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 20,
-                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: 0.047.sh,
+                  width: 0.85.sw,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: AppColors.accentColor),

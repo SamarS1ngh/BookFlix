@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -10,4 +12,15 @@ class AppColors {
   static const Color textSecondary = Colors.grey;
   static const Color errorColor = Color(0xFFD63C3C);
   static const Color correctColor = Color(0xFF3FE333);
+
+  final Random random = Random();
+
+  Color randomcolor() {
+    return Color.fromARGB(
+      255,
+      random.nextInt(255),
+      random.nextInt(255),
+      random.nextInt(255),
+    );
+  }
 }

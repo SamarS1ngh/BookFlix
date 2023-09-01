@@ -8,7 +8,7 @@ import 'package:bookflix/View/Screens/homepagewithbottomnavbar.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
-  final GoRouter router = GoRouter(initialLocation: '/', routes: [
+  final GoRouter router = GoRouter(initialLocation: '/search', routes: [
     GoRoute(
       name: AppRouteConst.home,
       path: '/',
