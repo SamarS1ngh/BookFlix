@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
+import 'package:bookflix/View/Screens/BooksByTags/books_by_tags.dart';
 import 'package:bookflix/View/Screens/OnlyBooks/onlybook.dart';
 
 import 'package:bookflix/View/Screens/Search/search.dart';
@@ -8,7 +9,7 @@ import 'package:bookflix/View/Screens/homepagewithbottomnavbar.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
-  final GoRouter router = GoRouter(initialLocation: '/search', routes: [
+  static final GoRouter router = GoRouter(initialLocation: '/', routes: [
     GoRoute(
       name: AppRouteConst.home,
       path: '/',
@@ -32,6 +33,14 @@ class AppRouter {
           return OnlyBook(
             selectedBook: selectedBook,
           );
-        })
+        }),
+    GoRoute(
+      name: AppRouteConst.booksByTags,
+      path: '/search/booksByTags/:tagName',
+      builder: (context, state) {
+        final tagname = state.pathParameters['tagName'];
+        return BooksByTags(tagName: tagname!);
+      },
+    )
   ]);
 }

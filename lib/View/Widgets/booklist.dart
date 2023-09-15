@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
@@ -25,8 +24,6 @@ class _BooklistState extends State<Booklist> {
     return SizedBox(
         height: 230,
         child: ListView.builder(
-
-            // padding: EdgeInsets.fromLTRB(10, 0, 10, 010),
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: widget.bookimgs?.length,
@@ -54,9 +51,7 @@ class _BooklistState extends State<Booklist> {
                         )
                       : Stack(children: [
                           Container(
-                            //  height: 500,
                             decoration: const BoxDecoration(
-                                // color: Colors.black,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(8),
                                     topRight: Radius.circular(8))),
@@ -65,7 +60,6 @@ class _BooklistState extends State<Booklist> {
                               widget.bookimgs![index].volumeInfo.imageLinks!
                                   .thumbnail,
                               width: 180,
-                              //      height: 500,
                               fit: BoxFit.cover,
                               isAntiAlias: false,
                             ),

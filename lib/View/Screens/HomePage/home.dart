@@ -12,28 +12,21 @@ import 'package:go_router/go_router.dart';
 
 import 'package:provider/provider.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Provider.of<HomeBookFetch>(context, listen: false).fetchCategories();
 
     return SafeArea(
         child: Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: Text(
           'BookFlix',
           style: AppFonts.titleText,
         ),
         elevation: 1,
-        backgroundColor: AppColors.backgroundColor,
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,9 +1,8 @@
-import 'dart:developer';
-
-import 'package:bookflix/Utils/Colors.dart';
+import 'package:bookflix/Utils/Routes/app_router_const.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class Tags extends StatefulWidget {
   const Tags({super.key});
@@ -22,13 +21,13 @@ class _TagsState extends State<Tags> {
     'Biography': 'assets/biography.jpg',
     'Self-Help': 'assets/self help.jpg',
     'Historical Fiction': 'assets/history.png',
-    'Non-Fiction': 'assets/nonfic.jpg',
+    'History': 'assets/nonfic.jpg',
     'Science': 'assets/science.jpg',
     'Horror': 'assets/horror.jpg',
     'Poetry': 'assets/poetry.jpg',
     'Travel': 'assets/travel.jpg',
     'CookBooks': 'assets/cookbook.jpg',
-    'Young Adults': 'assets/youngadults.jpg',
+    'Erotic': 'assets/youngadults.jpg',
     'Graphic Novel': 'assets/graphicNovels.jpg',
     'Philosophy': 'assets/philosophy.jpg',
     'Business': 'assets/business.jpg',
@@ -45,7 +44,9 @@ class _TagsState extends State<Tags> {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            log('yamette');
+            // log('yamette');
+            context.pushNamed(AppRouteConst.booksByTags,
+                pathParameters: {'tagName': tag[index]});
           },
           child: Container(
               clipBehavior: Clip.antiAlias,
@@ -67,7 +68,7 @@ class _TagsState extends State<Tags> {
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       tag[index],
-                      style: AppFonts.headingText,
+                      style: AppFonts.bodyText,
                     ),
                   ),
                 )

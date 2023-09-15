@@ -6,7 +6,8 @@ import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Widgets/more_from_author.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class OnlyBook extends StatefulWidget {
@@ -19,14 +20,16 @@ class OnlyBook extends StatefulWidget {
 
 class _OnlyBookState extends State<OnlyBook> {
   @override
+  void initState() {
+    super.initState();
+    log('page rebuilt');
+  }
+
+  @override
   Widget build(BuildContext context) {
     final selectedBook = widget.selectedBook;
+    bool saved = false;
 
-    final categories = selectedBook!['volumeInfo']['categories'];
-    for (var category in categories) {
-      log(category);
-    }
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -34,24 +37,29 @@ class _OnlyBookState extends State<OnlyBook> {
           appBar: AppBar(
             actions: [
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.bookmark_outline_outlined,
-                    color: Colors.white,
-                    size: 27,
-                  ))
+                  onPressed: () {
+                    setState(() {
+                      saved = !saved;
+                    });
+                    log(saved.toString());
+                  },
+                  icon: saved == true
+                      ? const Icon(
+                          Icons.bookmark,
+                          color: Colors.white,
+                          size: 27,
+                        )
+                      : const Icon(
+                          Icons.bookmark_border,
+                          color: Colors.white,
+                          size: 27,
+                        ))
             ],
-            leading: IconButton(
-                onPressed: () => context.pop(),
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: AppColors.primaryColor,
-                )),
             backgroundColor: AppColors.accentColor,
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 25, 20, 50),
+              padding: EdgeInsets.fromLTRB(.06.sw, 25, .06.sw, 50),
               child: Column(
                 children: [
                   Row(
@@ -60,20 +68,22 @@ class _OnlyBookState extends State<OnlyBook> {
                       Container(
                         color: Colors.red,
                         child: Image.network(
-                          selectedBook['volumeInfo']['imageLinks']['thumbnail'],
+                          selectedBook!['volumeInfo']['imageLinks']
+                              ['thumbnail'],
                           fit: BoxFit.cover,
-                          height: height / 3.5,
-                          width: width / 2.5,
+                          height: .3.sh,
+                          width: .42.sw,
                         ),
                       ),
-                      const SizedBox(
-                        width: 15,
+                      SizedBox(
+                        width: .04.sw,
                       ),
                       Expanded(
                         child: SizedBox(
-                          height: height / 3.3,
+                          height: .3.sh,
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               const SizedBox(
                                 height: 10,
@@ -84,17 +94,14 @@ class _OnlyBookState extends State<OnlyBook> {
                                 maxLines: 2,
                                 style: AppFonts.titleText,
                               ),
-                              // const SizedBox(
-                              //   height: 10,
-                              // ),
                               Text(
                                 selectedBook['volumeInfo']['authors'][0]
                                     .toString(),
                                 style: AppFonts.subTitles,
                               ),
-                              // const SizedBox(
-                              //   height: 10,
-                              // ),
+                              const SizedBox(
+                                height: 10,
+                              ),
                               Wrap(
                                 runSpacing: 10,
                                 spacing: 8,
@@ -120,18 +127,21 @@ class _OnlyBookState extends State<OnlyBook> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              InkWell(
-                                onTap: () => log('yamete kudasai'),
-                                borderRadius: BorderRadius.circular(15),
-                                child: Container(
-                                  width: width / 1.2,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: AppColors.primaryColor),
-                                  child: Text(
-                                    'Preview',
-                                    textAlign: TextAlign.center,
-                                    style: AppFonts.headingText,
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: InkWell(
+                                  onTap: () => log('yamete kudasai'),
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Container(
+                                    width: width / 1.2,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: AppColors.primaryColor),
+                                    child: Text(
+                                      'Preview',
+                                      textAlign: TextAlign.center,
+                                      style: AppFonts.headingText,
+                                    ),
                                   ),
                                 ),
                               )
@@ -146,13 +156,11 @@ class _OnlyBookState extends State<OnlyBook> {
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Description',
-                      style: GoogleFonts.poppins(
-                          color: AppColors.primaryColor,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    child: Text('Description',
+                        style: AppFonts.highlightedText.copyWith(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: AppFonts.highlightedText.fontFamily)),
                   ),
                   const Divider(
                     color: Color(0xFF646464),

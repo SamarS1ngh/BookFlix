@@ -19,4 +19,8 @@ class BooksbyAuthor extends ChangeNotifier {
     booksByAuthor = await _callingBooksByAuthorName(name);
     notifyListeners();
   }
+
+  clearBooks() {
+    booksByAuthor = null;
+  }
 }

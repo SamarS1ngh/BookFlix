@@ -12,7 +12,7 @@ class AppFonts {
   static TextStyle headingText = GoogleFonts.ubuntu(
       color: AppColors.textPrimary, fontWeight: FontWeight.w500, fontSize: 17);
 
-  static TextStyle highlightedText = GoogleFonts.ubuntu(
+  static TextStyle highlightedText = GoogleFonts.poppins(
       color: AppColors.primaryColor, fontWeight: FontWeight.w500, fontSize: 12);
   static TextStyle bodyText = GoogleFonts.poppins(
       fontWeight: FontWeight.w400, color: AppColors.textPrimary, fontSize: 15);

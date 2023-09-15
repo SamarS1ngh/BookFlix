@@ -313,13 +313,13 @@ class SearchInfo {
 
 class VolumeInfo {
   String title;
-  List<String> authors;
+  List<String>? authors;
   String? publisher;
   // DateTime publishedDate;
-  String description;
+  String? description;
   //List<IndustryIdentifier> industryIdentifiers;
   ReadingModes readingModes;
-  int pageCount;
+  int? pageCount;
   PrintType? printType;
   List<String>? categories;
   MaturityRating? maturityRating;
@@ -339,13 +339,13 @@ class VolumeInfo {
 
   VolumeInfo({
     required this.title,
-    required this.authors,
+    this.authors,
     required this.publisher,
     //  required this.publishedDate,
-    required this.description,
+    this.description,
     // required this.industryIdentifiers,
     required this.readingModes,
-    required this.pageCount,
+    this.pageCount,
     required this.printType,
     this.categories,
     required this.maturityRating,
@@ -366,7 +366,7 @@ class VolumeInfo {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
         title: json["title"],
-        authors: List<String>.from(json["authors"].map((x) => x)),
+        authors: List<String>.from((json["authors"] ?? []).map((x) => x)),
         publisher: json["publisher"],
         //    publishedDate: DateTime.parse(json["publishedDate"]),
         description: json["description"],
@@ -400,7 +400,7 @@ class VolumeInfo {
 
   Map<String, dynamic> toJson() => {
         "title": title,
-        "authors": List<dynamic>.from(authors.map((x) => x)),
+        "authors": List<dynamic>.from((authors ?? []).map((x) => x)),
         "publisher": publisher,
         //      "publishedDate":       "${publishedDate.year.toString().padLeft(4, '0')}-${publishedDate.month.toString().padLeft(2, '0')}-${publishedDate.day.toString().padLeft(2, '0')}",
         "description": description,
