@@ -10,12 +10,15 @@ import 'package:bookflix/ViewModel/Providers/searchProvider.dart';
 import 'package:bookflix/ViewModel/Providers/tag_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'View/Screens/HomePage/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: "lib/.env");
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

@@ -6,6 +6,7 @@ import 'package:bookflix/Model/Books.dart';
 import 'package:bookflix/Service/apiservice.dart';
 import 'package:bookflix/Utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HomeBookFetch extends ChangeNotifier {
   final ApiService apiService = ApiService();
@@ -20,7 +21,7 @@ class HomeBookFetch extends ChangeNotifier {
   String url2 = '';
   Future<List<Item>> _fetchHomeBooks(String subject) async {
     url1 =
-        "${baseUrl}q=subject:$subject&printType=books&orderBy=relevance&key=$key";
+        "${baseUrl}q=subject:$subject&printType=books&orderBy=relevance&key=${dotenv.env["key"]}";
     return await apiService.fetchBooks(url1);
   }
 

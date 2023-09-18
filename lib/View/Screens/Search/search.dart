@@ -1,6 +1,6 @@
 import 'package:bookflix/Utils/Colors.dart';
 
-import 'package:bookflix/View/Widgets/tags_grid.dart';
+import 'package:bookflix/View/Screens/BooksByTags/tags_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

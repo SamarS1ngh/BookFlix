@@ -4,7 +4,7 @@ import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_const.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Widgets/booklist.dart';
-import 'package:bookflix/View/Widgets/categoryheading.dart';
+import 'package:bookflix/View/Screens/HomePage/categoryheading.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

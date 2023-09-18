@@ -8,8 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../Utils/Routes/app_router_const.dart';
-import '../../ViewModel/Providers/tag_provider.dart';
+import '../../../Utils/Routes/app_router_const.dart';
+import '../../../ViewModel/Providers/tag_provider.dart';
 
 class TagBooks extends StatelessWidget {
   const TagBooks({super.key});
