@@ -1,23 +1,25 @@
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/Utils/Text.dart';
-import 'package:bookflix/View/Screens/Profile/profile.dart';
-import 'package:bookflix/View/Screens/Saved/saved.dart';
-import 'package:bookflix/View/Screens/Search/search.dart';
+import 'package:bookflix/View/Screens/App/Profile/profile.dart';
+import 'package:bookflix/View/Screens/App/Saved/saved.dart';
+import 'package:bookflix/View/Screens/App/Search/search.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:bookflix/ViewModel/Providers/books_by_author.dart';
 import 'package:bookflix/ViewModel/Providers/searchProvider.dart';
 import 'package:bookflix/ViewModel/Providers/tag_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'View/Screens/HomePage/home.dart';
+import 'View/Screens/App/HomePage/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() async {
-  await dotenv.load(fileName: "lib/.env");
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

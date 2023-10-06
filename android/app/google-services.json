@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "623087164589",
+    "project_id": "bookflix-391312",
+    "storage_bucket": "bookflix-391312.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623087164589:android:0a2426c251b41a0785ba24",
+        "android_client_info": {
+          "package_name": "com.example.bookflix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKby0SD0tAumbRzHZFJ3KZ51S59AWMfH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
