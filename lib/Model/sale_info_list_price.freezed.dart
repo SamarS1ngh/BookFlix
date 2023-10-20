@@ -20,10 +20,8 @@ SaleInfoListPrice _$SaleInfoListPriceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SaleInfoListPrice {
-  @JsonKey(name: "amount")
   double get amount => throw _privateConstructorUsedError;
-  @JsonKey(name: "currencyCode")
-  CurrencyCode? get currencyCode => throw _privateConstructorUsedError;
+  String get currencyCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +35,7 @@ abstract class $SaleInfoListPriceCopyWith<$Res> {
           SaleInfoListPrice value, $Res Function(SaleInfoListPrice) then) =
       _$SaleInfoListPriceCopyWithImpl<$Res, SaleInfoListPrice>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "amount") double amount,
-      @JsonKey(name: "currencyCode") CurrencyCode? currencyCode});
+  $Res call({double amount, String currencyCode});
 }
 
 /// @nodoc
@@ -56,17 +52,17 @@ class _$SaleInfoListPriceCopyWithImpl<$Res, $Val extends SaleInfoListPrice>
   @override
   $Res call({
     Object? amount = null,
-    Object? currencyCode = freezed,
+    Object? currencyCode = null,
   }) {
     return _then(_value.copyWith(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      currencyCode: freezed == currencyCode
+      currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
+              as String,
     ) as $Val);
   }
 }
@@ -79,9 +75,7 @@ abstract class _$$SaleInfoListPriceImplCopyWith<$Res>
       __$$SaleInfoListPriceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "amount") double amount,
-      @JsonKey(name: "currencyCode") CurrencyCode? currencyCode});
+  $Res call({double amount, String currencyCode});
 }
 
 /// @nodoc
@@ -96,17 +90,17 @@ class __$$SaleInfoListPriceImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? amount = null,
-    Object? currencyCode = freezed,
+    Object? currencyCode = null,
   }) {
     return _then(_$SaleInfoListPriceImpl(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      currencyCode: freezed == currencyCode
+      currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
+              as String,
     ));
   }
 }
@@ -115,18 +109,15 @@ class __$$SaleInfoListPriceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SaleInfoListPriceImpl implements _SaleInfoListPrice {
   const _$SaleInfoListPriceImpl(
-      {@JsonKey(name: "amount") required this.amount,
-      @JsonKey(name: "currencyCode") this.currencyCode});
+      {required this.amount, required this.currencyCode});
 
   factory _$SaleInfoListPriceImpl.fromJson(Map<String, dynamic> json) =>
       _$$SaleInfoListPriceImplFromJson(json);
 
   @override
-  @JsonKey(name: "amount")
   final double amount;
   @override
-  @JsonKey(name: "currencyCode")
-  final CurrencyCode? currencyCode;
+  final String currencyCode;
 
   @override
   String toString() {
@@ -164,19 +155,16 @@ class _$SaleInfoListPriceImpl implements _SaleInfoListPrice {
 
 abstract class _SaleInfoListPrice implements SaleInfoListPrice {
   const factory _SaleInfoListPrice(
-          {@JsonKey(name: "amount") required final double amount,
-          @JsonKey(name: "currencyCode") final CurrencyCode? currencyCode}) =
-      _$SaleInfoListPriceImpl;
+      {required final double amount,
+      required final String currencyCode}) = _$SaleInfoListPriceImpl;
 
   factory _SaleInfoListPrice.fromJson(Map<String, dynamic> json) =
       _$SaleInfoListPriceImpl.fromJson;
 
   @override
-  @JsonKey(name: "amount")
   double get amount;
   @override
-  @JsonKey(name: "currencyCode")
-  CurrencyCode? get currencyCode;
+  String get currencyCode;
   @override
   @JsonKey(ignore: true)
   _$$SaleInfoListPriceImplCopyWith<_$SaleInfoListPriceImpl> get copyWith =>

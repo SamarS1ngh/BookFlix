@@ -7,7 +7,7 @@ part of 'item.dart';
 // **************************************************************************
 
 _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
-      kind: $enumDecode(_$KindEnumMap, json['kind']),
+      kind: json['kind'] as String,
       id: json['id'] as String,
       etag: json['etag'] as String,
       selfLink: json['selfLink'] as String,
@@ -16,19 +16,19 @@ _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
       saleInfo: SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
       accessInfo:
           AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
+      searchInfo: json['searchInfo'] == null
+          ? null
+          : SearchInfo.fromJson(json['searchInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ItemImplToJson(_$ItemImpl instance) =>
     <String, dynamic>{
-      'kind': _$KindEnumMap[instance.kind]!,
+      'kind': instance.kind,
       'id': instance.id,
       'etag': instance.etag,
       'selfLink': instance.selfLink,
       'volumeInfo': instance.volumeInfo,
       'saleInfo': instance.saleInfo,
       'accessInfo': instance.accessInfo,
+      'searchInfo': instance.searchInfo,
     };
-
-const _$KindEnumMap = {
-  Kind.BOOKS_VOLUME: 'books#volume',
-};

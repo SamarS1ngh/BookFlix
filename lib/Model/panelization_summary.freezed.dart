@@ -20,12 +20,8 @@ PanelizationSummary _$PanelizationSummaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PanelizationSummary {
-  @JsonKey(name: "containsEpubBubbles")
-  bool? get containsEpubBubbles => throw _privateConstructorUsedError;
-  @JsonKey(name: "containsImageBubbles")
-  bool? get containsImageBubbles => throw _privateConstructorUsedError;
-  @JsonKey(name: "imageBubbleVersion")
-  String? get imageBubbleVersion => throw _privateConstructorUsedError;
+  bool get containsEpubBubbles => throw _privateConstructorUsedError;
+  bool get containsImageBubbles => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,10 +35,7 @@ abstract class $PanelizationSummaryCopyWith<$Res> {
           PanelizationSummary value, $Res Function(PanelizationSummary) then) =
       _$PanelizationSummaryCopyWithImpl<$Res, PanelizationSummary>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "containsEpubBubbles") bool? containsEpubBubbles,
-      @JsonKey(name: "containsImageBubbles") bool? containsImageBubbles,
-      @JsonKey(name: "imageBubbleVersion") String? imageBubbleVersion});
+  $Res call({bool containsEpubBubbles, bool containsImageBubbles});
 }
 
 /// @nodoc
@@ -58,23 +51,18 @@ class _$PanelizationSummaryCopyWithImpl<$Res, $Val extends PanelizationSummary>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? containsEpubBubbles = freezed,
-    Object? containsImageBubbles = freezed,
-    Object? imageBubbleVersion = freezed,
+    Object? containsEpubBubbles = null,
+    Object? containsImageBubbles = null,
   }) {
     return _then(_value.copyWith(
-      containsEpubBubbles: freezed == containsEpubBubbles
+      containsEpubBubbles: null == containsEpubBubbles
           ? _value.containsEpubBubbles
           : containsEpubBubbles // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      containsImageBubbles: freezed == containsImageBubbles
+              as bool,
+      containsImageBubbles: null == containsImageBubbles
           ? _value.containsImageBubbles
           : containsImageBubbles // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imageBubbleVersion: freezed == imageBubbleVersion
-          ? _value.imageBubbleVersion
-          : imageBubbleVersion // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool,
     ) as $Val);
   }
 }
@@ -87,10 +75,7 @@ abstract class _$$PanelizationSummaryImplCopyWith<$Res>
       __$$PanelizationSummaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "containsEpubBubbles") bool? containsEpubBubbles,
-      @JsonKey(name: "containsImageBubbles") bool? containsImageBubbles,
-      @JsonKey(name: "imageBubbleVersion") String? imageBubbleVersion});
+  $Res call({bool containsEpubBubbles, bool containsImageBubbles});
 }
 
 /// @nodoc
@@ -104,23 +89,18 @@ class __$$PanelizationSummaryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? containsEpubBubbles = freezed,
-    Object? containsImageBubbles = freezed,
-    Object? imageBubbleVersion = freezed,
+    Object? containsEpubBubbles = null,
+    Object? containsImageBubbles = null,
   }) {
     return _then(_$PanelizationSummaryImpl(
-      containsEpubBubbles: freezed == containsEpubBubbles
+      containsEpubBubbles: null == containsEpubBubbles
           ? _value.containsEpubBubbles
           : containsEpubBubbles // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      containsImageBubbles: freezed == containsImageBubbles
+              as bool,
+      containsImageBubbles: null == containsImageBubbles
           ? _value.containsImageBubbles
           : containsImageBubbles // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imageBubbleVersion: freezed == imageBubbleVersion
-          ? _value.imageBubbleVersion
-          : imageBubbleVersion // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool,
     ));
   }
 }
@@ -129,26 +109,19 @@ class __$$PanelizationSummaryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PanelizationSummaryImpl implements _PanelizationSummary {
   const _$PanelizationSummaryImpl(
-      {@JsonKey(name: "containsEpubBubbles") this.containsEpubBubbles,
-      @JsonKey(name: "containsImageBubbles") this.containsImageBubbles,
-      @JsonKey(name: "imageBubbleVersion") this.imageBubbleVersion});
+      {required this.containsEpubBubbles, required this.containsImageBubbles});
 
   factory _$PanelizationSummaryImpl.fromJson(Map<String, dynamic> json) =>
       _$$PanelizationSummaryImplFromJson(json);
 
   @override
-  @JsonKey(name: "containsEpubBubbles")
-  final bool? containsEpubBubbles;
+  final bool containsEpubBubbles;
   @override
-  @JsonKey(name: "containsImageBubbles")
-  final bool? containsImageBubbles;
-  @override
-  @JsonKey(name: "imageBubbleVersion")
-  final String? imageBubbleVersion;
+  final bool containsImageBubbles;
 
   @override
   String toString() {
-    return 'PanelizationSummary(containsEpubBubbles: $containsEpubBubbles, containsImageBubbles: $containsImageBubbles, imageBubbleVersion: $imageBubbleVersion)';
+    return 'PanelizationSummary(containsEpubBubbles: $containsEpubBubbles, containsImageBubbles: $containsImageBubbles)';
   }
 
   @override
@@ -159,15 +132,13 @@ class _$PanelizationSummaryImpl implements _PanelizationSummary {
             (identical(other.containsEpubBubbles, containsEpubBubbles) ||
                 other.containsEpubBubbles == containsEpubBubbles) &&
             (identical(other.containsImageBubbles, containsImageBubbles) ||
-                other.containsImageBubbles == containsImageBubbles) &&
-            (identical(other.imageBubbleVersion, imageBubbleVersion) ||
-                other.imageBubbleVersion == imageBubbleVersion));
+                other.containsImageBubbles == containsImageBubbles));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, containsEpubBubbles,
-      containsImageBubbles, imageBubbleVersion);
+  int get hashCode =>
+      Object.hash(runtimeType, containsEpubBubbles, containsImageBubbles);
 
   @JsonKey(ignore: true)
   @override
@@ -186,23 +157,16 @@ class _$PanelizationSummaryImpl implements _PanelizationSummary {
 
 abstract class _PanelizationSummary implements PanelizationSummary {
   const factory _PanelizationSummary(
-      {@JsonKey(name: "containsEpubBubbles") final bool? containsEpubBubbles,
-      @JsonKey(name: "containsImageBubbles") final bool? containsImageBubbles,
-      @JsonKey(name: "imageBubbleVersion")
-      final String? imageBubbleVersion}) = _$PanelizationSummaryImpl;
+      {required final bool containsEpubBubbles,
+      required final bool containsImageBubbles}) = _$PanelizationSummaryImpl;
 
   factory _PanelizationSummary.fromJson(Map<String, dynamic> json) =
       _$PanelizationSummaryImpl.fromJson;
 
   @override
-  @JsonKey(name: "containsEpubBubbles")
-  bool? get containsEpubBubbles;
+  bool get containsEpubBubbles;
   @override
-  @JsonKey(name: "containsImageBubbles")
-  bool? get containsImageBubbles;
-  @override
-  @JsonKey(name: "imageBubbleVersion")
-  String? get imageBubbleVersion;
+  bool get containsImageBubbles;
   @override
   @JsonKey(ignore: true)
   _$$PanelizationSummaryImplCopyWith<_$PanelizationSummaryImpl> get copyWith =>

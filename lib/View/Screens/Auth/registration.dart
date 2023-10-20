@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Register extends StatelessWidget {
-  const Register({super.key});
-
+  Register({super.key});
+  TextEditingController _name = TextEditingController();
+  TextEditingController _pswd = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController _name = TextEditingController();
-    TextEditingController _pswd = TextEditingController();
     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(

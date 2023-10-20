@@ -20,27 +20,16 @@ AccessInfo _$AccessInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccessInfo {
-  @JsonKey(name: "country")
-  Country? get country => throw _privateConstructorUsedError;
-  @JsonKey(name: "viewability")
-  Viewability? get viewability => throw _privateConstructorUsedError;
-  @JsonKey(name: "embeddable")
-  bool? get embeddable => throw _privateConstructorUsedError;
-  @JsonKey(name: "publicDomain")
-  bool? get publicDomain => throw _privateConstructorUsedError;
-  @JsonKey(name: "textToSpeechPermission")
-  TextToSpeechPermission? get textToSpeechPermission =>
-      throw _privateConstructorUsedError;
-  @JsonKey(name: "epub")
-  Epub? get epub => throw _privateConstructorUsedError;
-  @JsonKey(name: "pdf")
-  Pdf? get pdf => throw _privateConstructorUsedError;
-  @JsonKey(name: "webReaderLink")
-  String? get webReaderLink => throw _privateConstructorUsedError;
-  @JsonKey(name: "accessViewStatus")
-  AccessViewStatus? get accessViewStatus => throw _privateConstructorUsedError;
-  @JsonKey(name: "quoteSharingAllowed")
-  bool? get quoteSharingAllowed => throw _privateConstructorUsedError;
+  String get country => throw _privateConstructorUsedError;
+  String get viewability => throw _privateConstructorUsedError;
+  bool get embeddable => throw _privateConstructorUsedError;
+  bool get publicDomain => throw _privateConstructorUsedError;
+  String get textToSpeechPermission => throw _privateConstructorUsedError;
+  Epub get epub => throw _privateConstructorUsedError;
+  Epub get pdf => throw _privateConstructorUsedError;
+  String get webReaderLink => throw _privateConstructorUsedError;
+  String get accessViewStatus => throw _privateConstructorUsedError;
+  bool get quoteSharingAllowed => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,20 +44,19 @@ abstract class $AccessInfoCopyWith<$Res> {
       _$AccessInfoCopyWithImpl<$Res, AccessInfo>;
   @useResult
   $Res call(
-      {@JsonKey(name: "country") Country? country,
-      @JsonKey(name: "viewability") Viewability? viewability,
-      @JsonKey(name: "embeddable") bool? embeddable,
-      @JsonKey(name: "publicDomain") bool? publicDomain,
-      @JsonKey(name: "textToSpeechPermission")
-      TextToSpeechPermission? textToSpeechPermission,
-      @JsonKey(name: "epub") Epub? epub,
-      @JsonKey(name: "pdf") Pdf? pdf,
-      @JsonKey(name: "webReaderLink") String? webReaderLink,
-      @JsonKey(name: "accessViewStatus") AccessViewStatus? accessViewStatus,
-      @JsonKey(name: "quoteSharingAllowed") bool? quoteSharingAllowed});
+      {String country,
+      String viewability,
+      bool embeddable,
+      bool publicDomain,
+      String textToSpeechPermission,
+      Epub epub,
+      Epub pdf,
+      String webReaderLink,
+      String accessViewStatus,
+      bool quoteSharingAllowed});
 
-  $EpubCopyWith<$Res>? get epub;
-  $PdfCopyWith<$Res>? get pdf;
+  $EpubCopyWith<$Res> get epub;
+  $EpubCopyWith<$Res> get pdf;
 }
 
 /// @nodoc
@@ -84,81 +72,73 @@ class _$AccessInfoCopyWithImpl<$Res, $Val extends AccessInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? country = freezed,
-    Object? viewability = freezed,
-    Object? embeddable = freezed,
-    Object? publicDomain = freezed,
-    Object? textToSpeechPermission = freezed,
-    Object? epub = freezed,
-    Object? pdf = freezed,
-    Object? webReaderLink = freezed,
-    Object? accessViewStatus = freezed,
-    Object? quoteSharingAllowed = freezed,
+    Object? country = null,
+    Object? viewability = null,
+    Object? embeddable = null,
+    Object? publicDomain = null,
+    Object? textToSpeechPermission = null,
+    Object? epub = null,
+    Object? pdf = null,
+    Object? webReaderLink = null,
+    Object? accessViewStatus = null,
+    Object? quoteSharingAllowed = null,
   }) {
     return _then(_value.copyWith(
-      country: freezed == country
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as Country?,
-      viewability: freezed == viewability
+              as String,
+      viewability: null == viewability
           ? _value.viewability
           : viewability // ignore: cast_nullable_to_non_nullable
-              as Viewability?,
-      embeddable: freezed == embeddable
+              as String,
+      embeddable: null == embeddable
           ? _value.embeddable
           : embeddable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      publicDomain: freezed == publicDomain
+              as bool,
+      publicDomain: null == publicDomain
           ? _value.publicDomain
           : publicDomain // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      textToSpeechPermission: freezed == textToSpeechPermission
+              as bool,
+      textToSpeechPermission: null == textToSpeechPermission
           ? _value.textToSpeechPermission
           : textToSpeechPermission // ignore: cast_nullable_to_non_nullable
-              as TextToSpeechPermission?,
-      epub: freezed == epub
+              as String,
+      epub: null == epub
           ? _value.epub
           : epub // ignore: cast_nullable_to_non_nullable
-              as Epub?,
-      pdf: freezed == pdf
+              as Epub,
+      pdf: null == pdf
           ? _value.pdf
           : pdf // ignore: cast_nullable_to_non_nullable
-              as Pdf?,
-      webReaderLink: freezed == webReaderLink
+              as Epub,
+      webReaderLink: null == webReaderLink
           ? _value.webReaderLink
           : webReaderLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      accessViewStatus: freezed == accessViewStatus
+              as String,
+      accessViewStatus: null == accessViewStatus
           ? _value.accessViewStatus
           : accessViewStatus // ignore: cast_nullable_to_non_nullable
-              as AccessViewStatus?,
-      quoteSharingAllowed: freezed == quoteSharingAllowed
+              as String,
+      quoteSharingAllowed: null == quoteSharingAllowed
           ? _value.quoteSharingAllowed
           : quoteSharingAllowed // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $EpubCopyWith<$Res>? get epub {
-    if (_value.epub == null) {
-      return null;
-    }
-
-    return $EpubCopyWith<$Res>(_value.epub!, (value) {
+  $EpubCopyWith<$Res> get epub {
+    return $EpubCopyWith<$Res>(_value.epub, (value) {
       return _then(_value.copyWith(epub: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PdfCopyWith<$Res>? get pdf {
-    if (_value.pdf == null) {
-      return null;
-    }
-
-    return $PdfCopyWith<$Res>(_value.pdf!, (value) {
+  $EpubCopyWith<$Res> get pdf {
+    return $EpubCopyWith<$Res>(_value.pdf, (value) {
       return _then(_value.copyWith(pdf: value) as $Val);
     });
   }
@@ -173,22 +153,21 @@ abstract class _$$AccessInfoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "country") Country? country,
-      @JsonKey(name: "viewability") Viewability? viewability,
-      @JsonKey(name: "embeddable") bool? embeddable,
-      @JsonKey(name: "publicDomain") bool? publicDomain,
-      @JsonKey(name: "textToSpeechPermission")
-      TextToSpeechPermission? textToSpeechPermission,
-      @JsonKey(name: "epub") Epub? epub,
-      @JsonKey(name: "pdf") Pdf? pdf,
-      @JsonKey(name: "webReaderLink") String? webReaderLink,
-      @JsonKey(name: "accessViewStatus") AccessViewStatus? accessViewStatus,
-      @JsonKey(name: "quoteSharingAllowed") bool? quoteSharingAllowed});
+      {String country,
+      String viewability,
+      bool embeddable,
+      bool publicDomain,
+      String textToSpeechPermission,
+      Epub epub,
+      Epub pdf,
+      String webReaderLink,
+      String accessViewStatus,
+      bool quoteSharingAllowed});
 
   @override
-  $EpubCopyWith<$Res>? get epub;
+  $EpubCopyWith<$Res> get epub;
   @override
-  $PdfCopyWith<$Res>? get pdf;
+  $EpubCopyWith<$Res> get pdf;
 }
 
 /// @nodoc
@@ -202,58 +181,58 @@ class __$$AccessInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? country = freezed,
-    Object? viewability = freezed,
-    Object? embeddable = freezed,
-    Object? publicDomain = freezed,
-    Object? textToSpeechPermission = freezed,
-    Object? epub = freezed,
-    Object? pdf = freezed,
-    Object? webReaderLink = freezed,
-    Object? accessViewStatus = freezed,
-    Object? quoteSharingAllowed = freezed,
+    Object? country = null,
+    Object? viewability = null,
+    Object? embeddable = null,
+    Object? publicDomain = null,
+    Object? textToSpeechPermission = null,
+    Object? epub = null,
+    Object? pdf = null,
+    Object? webReaderLink = null,
+    Object? accessViewStatus = null,
+    Object? quoteSharingAllowed = null,
   }) {
     return _then(_$AccessInfoImpl(
-      country: freezed == country
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as Country?,
-      viewability: freezed == viewability
+              as String,
+      viewability: null == viewability
           ? _value.viewability
           : viewability // ignore: cast_nullable_to_non_nullable
-              as Viewability?,
-      embeddable: freezed == embeddable
+              as String,
+      embeddable: null == embeddable
           ? _value.embeddable
           : embeddable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      publicDomain: freezed == publicDomain
+              as bool,
+      publicDomain: null == publicDomain
           ? _value.publicDomain
           : publicDomain // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      textToSpeechPermission: freezed == textToSpeechPermission
+              as bool,
+      textToSpeechPermission: null == textToSpeechPermission
           ? _value.textToSpeechPermission
           : textToSpeechPermission // ignore: cast_nullable_to_non_nullable
-              as TextToSpeechPermission?,
-      epub: freezed == epub
+              as String,
+      epub: null == epub
           ? _value.epub
           : epub // ignore: cast_nullable_to_non_nullable
-              as Epub?,
-      pdf: freezed == pdf
+              as Epub,
+      pdf: null == pdf
           ? _value.pdf
           : pdf // ignore: cast_nullable_to_non_nullable
-              as Pdf?,
-      webReaderLink: freezed == webReaderLink
+              as Epub,
+      webReaderLink: null == webReaderLink
           ? _value.webReaderLink
           : webReaderLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      accessViewStatus: freezed == accessViewStatus
+              as String,
+      accessViewStatus: null == accessViewStatus
           ? _value.accessViewStatus
           : accessViewStatus // ignore: cast_nullable_to_non_nullable
-              as AccessViewStatus?,
-      quoteSharingAllowed: freezed == quoteSharingAllowed
+              as String,
+      quoteSharingAllowed: null == quoteSharingAllowed
           ? _value.quoteSharingAllowed
           : quoteSharingAllowed // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -262,50 +241,40 @@ class __$$AccessInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AccessInfoImpl implements _AccessInfo {
   const _$AccessInfoImpl(
-      {@JsonKey(name: "country") this.country,
-      @JsonKey(name: "viewability") this.viewability,
-      @JsonKey(name: "embeddable") this.embeddable,
-      @JsonKey(name: "publicDomain") this.publicDomain,
-      @JsonKey(name: "textToSpeechPermission") this.textToSpeechPermission,
-      @JsonKey(name: "epub") this.epub,
-      @JsonKey(name: "pdf") this.pdf,
-      @JsonKey(name: "webReaderLink") this.webReaderLink,
-      @JsonKey(name: "accessViewStatus") this.accessViewStatus,
-      @JsonKey(name: "quoteSharingAllowed") this.quoteSharingAllowed});
+      {required this.country,
+      required this.viewability,
+      required this.embeddable,
+      required this.publicDomain,
+      required this.textToSpeechPermission,
+      required this.epub,
+      required this.pdf,
+      required this.webReaderLink,
+      required this.accessViewStatus,
+      required this.quoteSharingAllowed});
 
   factory _$AccessInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccessInfoImplFromJson(json);
 
   @override
-  @JsonKey(name: "country")
-  final Country? country;
+  final String country;
   @override
-  @JsonKey(name: "viewability")
-  final Viewability? viewability;
+  final String viewability;
   @override
-  @JsonKey(name: "embeddable")
-  final bool? embeddable;
+  final bool embeddable;
   @override
-  @JsonKey(name: "publicDomain")
-  final bool? publicDomain;
+  final bool publicDomain;
   @override
-  @JsonKey(name: "textToSpeechPermission")
-  final TextToSpeechPermission? textToSpeechPermission;
+  final String textToSpeechPermission;
   @override
-  @JsonKey(name: "epub")
-  final Epub? epub;
+  final Epub epub;
   @override
-  @JsonKey(name: "pdf")
-  final Pdf? pdf;
+  final Epub pdf;
   @override
-  @JsonKey(name: "webReaderLink")
-  final String? webReaderLink;
+  final String webReaderLink;
   @override
-  @JsonKey(name: "accessViewStatus")
-  final AccessViewStatus? accessViewStatus;
+  final String accessViewStatus;
   @override
-  @JsonKey(name: "quoteSharingAllowed")
-  final bool? quoteSharingAllowed;
+  final bool quoteSharingAllowed;
 
   @override
   String toString() {
@@ -367,53 +336,40 @@ class _$AccessInfoImpl implements _AccessInfo {
 
 abstract class _AccessInfo implements AccessInfo {
   const factory _AccessInfo(
-      {@JsonKey(name: "country") final Country? country,
-      @JsonKey(name: "viewability") final Viewability? viewability,
-      @JsonKey(name: "embeddable") final bool? embeddable,
-      @JsonKey(name: "publicDomain") final bool? publicDomain,
-      @JsonKey(name: "textToSpeechPermission")
-      final TextToSpeechPermission? textToSpeechPermission,
-      @JsonKey(name: "epub") final Epub? epub,
-      @JsonKey(name: "pdf") final Pdf? pdf,
-      @JsonKey(name: "webReaderLink") final String? webReaderLink,
-      @JsonKey(name: "accessViewStatus")
-      final AccessViewStatus? accessViewStatus,
-      @JsonKey(name: "quoteSharingAllowed")
-      final bool? quoteSharingAllowed}) = _$AccessInfoImpl;
+      {required final String country,
+      required final String viewability,
+      required final bool embeddable,
+      required final bool publicDomain,
+      required final String textToSpeechPermission,
+      required final Epub epub,
+      required final Epub pdf,
+      required final String webReaderLink,
+      required final String accessViewStatus,
+      required final bool quoteSharingAllowed}) = _$AccessInfoImpl;
 
   factory _AccessInfo.fromJson(Map<String, dynamic> json) =
       _$AccessInfoImpl.fromJson;
 
   @override
-  @JsonKey(name: "country")
-  Country? get country;
+  String get country;
   @override
-  @JsonKey(name: "viewability")
-  Viewability? get viewability;
+  String get viewability;
   @override
-  @JsonKey(name: "embeddable")
-  bool? get embeddable;
+  bool get embeddable;
   @override
-  @JsonKey(name: "publicDomain")
-  bool? get publicDomain;
+  bool get publicDomain;
   @override
-  @JsonKey(name: "textToSpeechPermission")
-  TextToSpeechPermission? get textToSpeechPermission;
+  String get textToSpeechPermission;
   @override
-  @JsonKey(name: "epub")
-  Epub? get epub;
+  Epub get epub;
   @override
-  @JsonKey(name: "pdf")
-  Pdf? get pdf;
+  Epub get pdf;
   @override
-  @JsonKey(name: "webReaderLink")
-  String? get webReaderLink;
+  String get webReaderLink;
   @override
-  @JsonKey(name: "accessViewStatus")
-  AccessViewStatus? get accessViewStatus;
+  String get accessViewStatus;
   @override
-  @JsonKey(name: "quoteSharingAllowed")
-  bool? get quoteSharingAllowed;
+  bool get quoteSharingAllowed;
   @override
   @JsonKey(ignore: true)
   _$$AccessInfoImplCopyWith<_$AccessInfoImpl> get copyWith =>

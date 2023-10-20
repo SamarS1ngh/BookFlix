@@ -8,18 +8,13 @@ part of 'offer_list_price.dart';
 
 _$OfferListPriceImpl _$$OfferListPriceImplFromJson(Map<String, dynamic> json) =>
     _$OfferListPriceImpl(
-      amountInMicros: json['amountInMicros'] as int?,
-      currencyCode:
-          $enumDecodeNullable(_$CurrencyCodeEnumMap, json['currencyCode']),
+      amountInMicros: json['amountInMicros'] as int,
+      currencyCode: json['currencyCode'] as String,
     );
 
 Map<String, dynamic> _$$OfferListPriceImplToJson(
         _$OfferListPriceImpl instance) =>
     <String, dynamic>{
       'amountInMicros': instance.amountInMicros,
-      'currencyCode': _$CurrencyCodeEnumMap[instance.currencyCode],
+      'currencyCode': instance.currencyCode,
     };
-
-const _$CurrencyCodeEnumMap = {
-  CurrencyCode.INR: 'INR',
-};

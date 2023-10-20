@@ -20,10 +20,8 @@ ImageLinks _$ImageLinksFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ImageLinks {
-  @JsonKey(name: "smallThumbnail")
-  String? get smallThumbnail => throw _privateConstructorUsedError;
-  @JsonKey(name: "thumbnail")
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String get smallThumbnail => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +35,7 @@ abstract class $ImageLinksCopyWith<$Res> {
           ImageLinks value, $Res Function(ImageLinks) then) =
       _$ImageLinksCopyWithImpl<$Res, ImageLinks>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "smallThumbnail") String? smallThumbnail,
-      @JsonKey(name: "thumbnail") String? thumbnail});
+  $Res call({String smallThumbnail, String thumbnail});
 }
 
 /// @nodoc
@@ -55,18 +51,18 @@ class _$ImageLinksCopyWithImpl<$Res, $Val extends ImageLinks>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? smallThumbnail = freezed,
-    Object? thumbnail = freezed,
+    Object? smallThumbnail = null,
+    Object? thumbnail = null,
   }) {
     return _then(_value.copyWith(
-      smallThumbnail: freezed == smallThumbnail
+      smallThumbnail: null == smallThumbnail
           ? _value.smallThumbnail
           : smallThumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnail: freezed == thumbnail
+              as String,
+      thumbnail: null == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -79,9 +75,7 @@ abstract class _$$ImageLinksImplCopyWith<$Res>
       __$$ImageLinksImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "smallThumbnail") String? smallThumbnail,
-      @JsonKey(name: "thumbnail") String? thumbnail});
+  $Res call({String smallThumbnail, String thumbnail});
 }
 
 /// @nodoc
@@ -95,18 +89,18 @@ class __$$ImageLinksImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? smallThumbnail = freezed,
-    Object? thumbnail = freezed,
+    Object? smallThumbnail = null,
+    Object? thumbnail = null,
   }) {
     return _then(_$ImageLinksImpl(
-      smallThumbnail: freezed == smallThumbnail
+      smallThumbnail: null == smallThumbnail
           ? _value.smallThumbnail
           : smallThumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnail: freezed == thumbnail
+              as String,
+      thumbnail: null == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -115,18 +109,15 @@ class __$$ImageLinksImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImageLinksImpl implements _ImageLinks {
   const _$ImageLinksImpl(
-      {@JsonKey(name: "smallThumbnail") this.smallThumbnail,
-      @JsonKey(name: "thumbnail") this.thumbnail});
+      {required this.smallThumbnail, required this.thumbnail});
 
   factory _$ImageLinksImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImageLinksImplFromJson(json);
 
   @override
-  @JsonKey(name: "smallThumbnail")
-  final String? smallThumbnail;
+  final String smallThumbnail;
   @override
-  @JsonKey(name: "thumbnail")
-  final String? thumbnail;
+  final String thumbnail;
 
   @override
   String toString() {
@@ -164,18 +155,16 @@ class _$ImageLinksImpl implements _ImageLinks {
 
 abstract class _ImageLinks implements ImageLinks {
   const factory _ImageLinks(
-      {@JsonKey(name: "smallThumbnail") final String? smallThumbnail,
-      @JsonKey(name: "thumbnail") final String? thumbnail}) = _$ImageLinksImpl;
+      {required final String smallThumbnail,
+      required final String thumbnail}) = _$ImageLinksImpl;
 
   factory _ImageLinks.fromJson(Map<String, dynamic> json) =
       _$ImageLinksImpl.fromJson;
 
   @override
-  @JsonKey(name: "smallThumbnail")
-  String? get smallThumbnail;
+  String get smallThumbnail;
   @override
-  @JsonKey(name: "thumbnail")
-  String? get thumbnail;
+  String get thumbnail;
   @override
   @JsonKey(ignore: true)
   _$$ImageLinksImplCopyWith<_$ImageLinksImpl> get copyWith =>

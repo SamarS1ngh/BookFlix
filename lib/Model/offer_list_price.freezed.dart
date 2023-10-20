@@ -20,10 +20,8 @@ OfferListPrice _$OfferListPriceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OfferListPrice {
-  @JsonKey(name: "amountInMicros")
-  int? get amountInMicros => throw _privateConstructorUsedError;
-  @JsonKey(name: "currencyCode")
-  CurrencyCode? get currencyCode => throw _privateConstructorUsedError;
+  int get amountInMicros => throw _privateConstructorUsedError;
+  String get currencyCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +35,7 @@ abstract class $OfferListPriceCopyWith<$Res> {
           OfferListPrice value, $Res Function(OfferListPrice) then) =
       _$OfferListPriceCopyWithImpl<$Res, OfferListPrice>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "amountInMicros") int? amountInMicros,
-      @JsonKey(name: "currencyCode") CurrencyCode? currencyCode});
+  $Res call({int amountInMicros, String currencyCode});
 }
 
 /// @nodoc
@@ -55,18 +51,18 @@ class _$OfferListPriceCopyWithImpl<$Res, $Val extends OfferListPrice>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amountInMicros = freezed,
-    Object? currencyCode = freezed,
+    Object? amountInMicros = null,
+    Object? currencyCode = null,
   }) {
     return _then(_value.copyWith(
-      amountInMicros: freezed == amountInMicros
+      amountInMicros: null == amountInMicros
           ? _value.amountInMicros
           : amountInMicros // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currencyCode: freezed == currencyCode
+              as int,
+      currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
+              as String,
     ) as $Val);
   }
 }
@@ -79,9 +75,7 @@ abstract class _$$OfferListPriceImplCopyWith<$Res>
       __$$OfferListPriceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "amountInMicros") int? amountInMicros,
-      @JsonKey(name: "currencyCode") CurrencyCode? currencyCode});
+  $Res call({int amountInMicros, String currencyCode});
 }
 
 /// @nodoc
@@ -95,18 +89,18 @@ class __$$OfferListPriceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amountInMicros = freezed,
-    Object? currencyCode = freezed,
+    Object? amountInMicros = null,
+    Object? currencyCode = null,
   }) {
     return _then(_$OfferListPriceImpl(
-      amountInMicros: freezed == amountInMicros
+      amountInMicros: null == amountInMicros
           ? _value.amountInMicros
           : amountInMicros // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currencyCode: freezed == currencyCode
+              as int,
+      currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
-              as CurrencyCode?,
+              as String,
     ));
   }
 }
@@ -115,18 +109,15 @@ class __$$OfferListPriceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OfferListPriceImpl implements _OfferListPrice {
   const _$OfferListPriceImpl(
-      {@JsonKey(name: "amountInMicros") this.amountInMicros,
-      @JsonKey(name: "currencyCode") this.currencyCode});
+      {required this.amountInMicros, required this.currencyCode});
 
   factory _$OfferListPriceImpl.fromJson(Map<String, dynamic> json) =>
       _$$OfferListPriceImplFromJson(json);
 
   @override
-  @JsonKey(name: "amountInMicros")
-  final int? amountInMicros;
+  final int amountInMicros;
   @override
-  @JsonKey(name: "currencyCode")
-  final CurrencyCode? currencyCode;
+  final String currencyCode;
 
   @override
   String toString() {
@@ -165,19 +156,16 @@ class _$OfferListPriceImpl implements _OfferListPrice {
 
 abstract class _OfferListPrice implements OfferListPrice {
   const factory _OfferListPrice(
-          {@JsonKey(name: "amountInMicros") final int? amountInMicros,
-          @JsonKey(name: "currencyCode") final CurrencyCode? currencyCode}) =
-      _$OfferListPriceImpl;
+      {required final int amountInMicros,
+      required final String currencyCode}) = _$OfferListPriceImpl;
 
   factory _OfferListPrice.fromJson(Map<String, dynamic> json) =
       _$OfferListPriceImpl.fromJson;
 
   @override
-  @JsonKey(name: "amountInMicros")
-  int? get amountInMicros;
+  int get amountInMicros;
   @override
-  @JsonKey(name: "currencyCode")
-  CurrencyCode? get currencyCode;
+  String get currencyCode;
   @override
   @JsonKey(ignore: true)
   _$$OfferListPriceImplCopyWith<_$OfferListPriceImpl> get copyWith =>

@@ -9,9 +9,8 @@ part of 'panelization_summary.dart';
 _$PanelizationSummaryImpl _$$PanelizationSummaryImplFromJson(
         Map<String, dynamic> json) =>
     _$PanelizationSummaryImpl(
-      containsEpubBubbles: json['containsEpubBubbles'] as bool?,
-      containsImageBubbles: json['containsImageBubbles'] as bool?,
-      imageBubbleVersion: json['imageBubbleVersion'] as String?,
+      containsEpubBubbles: json['containsEpubBubbles'] as bool,
+      containsImageBubbles: json['containsImageBubbles'] as bool,
     );
 
 Map<String, dynamic> _$$PanelizationSummaryImplToJson(
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$PanelizationSummaryImplToJson(
     <String, dynamic>{
       'containsEpubBubbles': instance.containsEpubBubbles,
       'containsImageBubbles': instance.containsImageBubbles,
-      'imageBubbleVersion': instance.imageBubbleVersion,
     };

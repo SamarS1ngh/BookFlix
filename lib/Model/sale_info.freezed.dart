@@ -20,19 +20,12 @@ SaleInfo _$SaleInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SaleInfo {
-  @JsonKey(name: "country")
-  Country? get country => throw _privateConstructorUsedError;
-  @JsonKey(name: "saleability")
-  Saleability? get saleability => throw _privateConstructorUsedError;
-  @JsonKey(name: "isEbook")
-  bool? get isEbook => throw _privateConstructorUsedError;
-  @JsonKey(name: "listPrice")
+  String get country => throw _privateConstructorUsedError;
+  String get saleability => throw _privateConstructorUsedError;
+  bool get isEbook => throw _privateConstructorUsedError;
   SaleInfoListPrice? get listPrice => throw _privateConstructorUsedError;
-  @JsonKey(name: "retailPrice")
   SaleInfoListPrice? get retailPrice => throw _privateConstructorUsedError;
-  @JsonKey(name: "buyLink")
   String? get buyLink => throw _privateConstructorUsedError;
-  @JsonKey(name: "offers")
   List<Offer>? get offers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,13 +40,13 @@ abstract class $SaleInfoCopyWith<$Res> {
       _$SaleInfoCopyWithImpl<$Res, SaleInfo>;
   @useResult
   $Res call(
-      {@JsonKey(name: "country") Country? country,
-      @JsonKey(name: "saleability") Saleability? saleability,
-      @JsonKey(name: "isEbook") bool? isEbook,
-      @JsonKey(name: "listPrice") SaleInfoListPrice? listPrice,
-      @JsonKey(name: "retailPrice") SaleInfoListPrice? retailPrice,
-      @JsonKey(name: "buyLink") String? buyLink,
-      @JsonKey(name: "offers") List<Offer>? offers});
+      {String country,
+      String saleability,
+      bool isEbook,
+      SaleInfoListPrice? listPrice,
+      SaleInfoListPrice? retailPrice,
+      String? buyLink,
+      List<Offer>? offers});
 
   $SaleInfoListPriceCopyWith<$Res>? get listPrice;
   $SaleInfoListPriceCopyWith<$Res>? get retailPrice;
@@ -72,27 +65,27 @@ class _$SaleInfoCopyWithImpl<$Res, $Val extends SaleInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? country = freezed,
-    Object? saleability = freezed,
-    Object? isEbook = freezed,
+    Object? country = null,
+    Object? saleability = null,
+    Object? isEbook = null,
     Object? listPrice = freezed,
     Object? retailPrice = freezed,
     Object? buyLink = freezed,
     Object? offers = freezed,
   }) {
     return _then(_value.copyWith(
-      country: freezed == country
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as Country?,
-      saleability: freezed == saleability
+              as String,
+      saleability: null == saleability
           ? _value.saleability
           : saleability // ignore: cast_nullable_to_non_nullable
-              as Saleability?,
-      isEbook: freezed == isEbook
+              as String,
+      isEbook: null == isEbook
           ? _value.isEbook
           : isEbook // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       listPrice: freezed == listPrice
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
@@ -146,13 +139,13 @@ abstract class _$$SaleInfoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "country") Country? country,
-      @JsonKey(name: "saleability") Saleability? saleability,
-      @JsonKey(name: "isEbook") bool? isEbook,
-      @JsonKey(name: "listPrice") SaleInfoListPrice? listPrice,
-      @JsonKey(name: "retailPrice") SaleInfoListPrice? retailPrice,
-      @JsonKey(name: "buyLink") String? buyLink,
-      @JsonKey(name: "offers") List<Offer>? offers});
+      {String country,
+      String saleability,
+      bool isEbook,
+      SaleInfoListPrice? listPrice,
+      SaleInfoListPrice? retailPrice,
+      String? buyLink,
+      List<Offer>? offers});
 
   @override
   $SaleInfoListPriceCopyWith<$Res>? get listPrice;
@@ -171,27 +164,27 @@ class __$$SaleInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? country = freezed,
-    Object? saleability = freezed,
-    Object? isEbook = freezed,
+    Object? country = null,
+    Object? saleability = null,
+    Object? isEbook = null,
     Object? listPrice = freezed,
     Object? retailPrice = freezed,
     Object? buyLink = freezed,
     Object? offers = freezed,
   }) {
     return _then(_$SaleInfoImpl(
-      country: freezed == country
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as Country?,
-      saleability: freezed == saleability
+              as String,
+      saleability: null == saleability
           ? _value.saleability
           : saleability // ignore: cast_nullable_to_non_nullable
-              as Saleability?,
-      isEbook: freezed == isEbook
+              as String,
+      isEbook: null == isEbook
           ? _value.isEbook
           : isEbook // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       listPrice: freezed == listPrice
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
@@ -216,39 +209,32 @@ class __$$SaleInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SaleInfoImpl implements _SaleInfo {
   const _$SaleInfoImpl(
-      {@JsonKey(name: "country") this.country,
-      @JsonKey(name: "saleability") this.saleability,
-      @JsonKey(name: "isEbook") this.isEbook,
-      @JsonKey(name: "listPrice") this.listPrice,
-      @JsonKey(name: "retailPrice") this.retailPrice,
-      @JsonKey(name: "buyLink") this.buyLink,
-      @JsonKey(name: "offers") final List<Offer>? offers})
+      {required this.country,
+      required this.saleability,
+      required this.isEbook,
+      this.listPrice,
+      this.retailPrice,
+      this.buyLink,
+      final List<Offer>? offers})
       : _offers = offers;
 
   factory _$SaleInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SaleInfoImplFromJson(json);
 
   @override
-  @JsonKey(name: "country")
-  final Country? country;
+  final String country;
   @override
-  @JsonKey(name: "saleability")
-  final Saleability? saleability;
+  final String saleability;
   @override
-  @JsonKey(name: "isEbook")
-  final bool? isEbook;
+  final bool isEbook;
   @override
-  @JsonKey(name: "listPrice")
   final SaleInfoListPrice? listPrice;
   @override
-  @JsonKey(name: "retailPrice")
   final SaleInfoListPrice? retailPrice;
   @override
-  @JsonKey(name: "buyLink")
   final String? buyLink;
   final List<Offer>? _offers;
   @override
-  @JsonKey(name: "offers")
   List<Offer>? get offers {
     final value = _offers;
     if (value == null) return null;
@@ -307,37 +293,30 @@ class _$SaleInfoImpl implements _SaleInfo {
 
 abstract class _SaleInfo implements SaleInfo {
   const factory _SaleInfo(
-      {@JsonKey(name: "country") final Country? country,
-      @JsonKey(name: "saleability") final Saleability? saleability,
-      @JsonKey(name: "isEbook") final bool? isEbook,
-      @JsonKey(name: "listPrice") final SaleInfoListPrice? listPrice,
-      @JsonKey(name: "retailPrice") final SaleInfoListPrice? retailPrice,
-      @JsonKey(name: "buyLink") final String? buyLink,
-      @JsonKey(name: "offers") final List<Offer>? offers}) = _$SaleInfoImpl;
+      {required final String country,
+      required final String saleability,
+      required final bool isEbook,
+      final SaleInfoListPrice? listPrice,
+      final SaleInfoListPrice? retailPrice,
+      final String? buyLink,
+      final List<Offer>? offers}) = _$SaleInfoImpl;
 
   factory _SaleInfo.fromJson(Map<String, dynamic> json) =
       _$SaleInfoImpl.fromJson;
 
   @override
-  @JsonKey(name: "country")
-  Country? get country;
+  String get country;
   @override
-  @JsonKey(name: "saleability")
-  Saleability? get saleability;
+  String get saleability;
   @override
-  @JsonKey(name: "isEbook")
-  bool? get isEbook;
+  bool get isEbook;
   @override
-  @JsonKey(name: "listPrice")
   SaleInfoListPrice? get listPrice;
   @override
-  @JsonKey(name: "retailPrice")
   SaleInfoListPrice? get retailPrice;
   @override
-  @JsonKey(name: "buyLink")
   String? get buyLink;
   @override
-  @JsonKey(name: "offers")
   List<Offer>? get offers;
   @override
   @JsonKey(ignore: true)

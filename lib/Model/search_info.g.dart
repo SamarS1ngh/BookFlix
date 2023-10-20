@@ -8,7 +8,7 @@ part of 'search_info.dart';
 
 _$SearchInfoImpl _$$SearchInfoImplFromJson(Map<String, dynamic> json) =>
     _$SearchInfoImpl(
-      textSnippet: json['textSnippet'] as String?,
+      textSnippet: json['textSnippet'] as String,
     );
 
 Map<String, dynamic> _$$SearchInfoImplToJson(_$SearchInfoImpl instance) =>

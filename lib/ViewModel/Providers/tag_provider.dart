@@ -15,7 +15,7 @@ class TagProvider extends ChangeNotifier {
     url =
         "${baseUrl}q=subject:$tag&printType=books&orderBy=relevance&key=${dotenv.env['key']}";
 
-    return await apiService.fetchBooks(url);
+    return apiService.fetchBooks(url);
   }
 
   Future<void> fetchtags(String tag) async {

@@ -20,12 +20,9 @@ Offer _$OfferFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Offer {
-  @JsonKey(name: "finskyOfferType")
-  int? get finskyOfferType => throw _privateConstructorUsedError;
-  @JsonKey(name: "listPrice")
-  OfferListPrice? get listPrice => throw _privateConstructorUsedError;
-  @JsonKey(name: "retailPrice")
-  OfferListPrice? get retailPrice => throw _privateConstructorUsedError;
+  int get finskyOfferType => throw _privateConstructorUsedError;
+  OfferListPrice get listPrice => throw _privateConstructorUsedError;
+  OfferListPrice get retailPrice => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +35,12 @@ abstract class $OfferCopyWith<$Res> {
       _$OfferCopyWithImpl<$Res, Offer>;
   @useResult
   $Res call(
-      {@JsonKey(name: "finskyOfferType") int? finskyOfferType,
-      @JsonKey(name: "listPrice") OfferListPrice? listPrice,
-      @JsonKey(name: "retailPrice") OfferListPrice? retailPrice});
+      {int finskyOfferType,
+      OfferListPrice listPrice,
+      OfferListPrice retailPrice});
 
-  $OfferListPriceCopyWith<$Res>? get listPrice;
-  $OfferListPriceCopyWith<$Res>? get retailPrice;
+  $OfferListPriceCopyWith<$Res> get listPrice;
+  $OfferListPriceCopyWith<$Res> get retailPrice;
 }
 
 /// @nodoc
@@ -59,46 +56,38 @@ class _$OfferCopyWithImpl<$Res, $Val extends Offer>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? finskyOfferType = freezed,
-    Object? listPrice = freezed,
-    Object? retailPrice = freezed,
+    Object? finskyOfferType = null,
+    Object? listPrice = null,
+    Object? retailPrice = null,
   }) {
     return _then(_value.copyWith(
-      finskyOfferType: freezed == finskyOfferType
+      finskyOfferType: null == finskyOfferType
           ? _value.finskyOfferType
           : finskyOfferType // ignore: cast_nullable_to_non_nullable
-              as int?,
-      listPrice: freezed == listPrice
+              as int,
+      listPrice: null == listPrice
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
-              as OfferListPrice?,
-      retailPrice: freezed == retailPrice
+              as OfferListPrice,
+      retailPrice: null == retailPrice
           ? _value.retailPrice
           : retailPrice // ignore: cast_nullable_to_non_nullable
-              as OfferListPrice?,
+              as OfferListPrice,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OfferListPriceCopyWith<$Res>? get listPrice {
-    if (_value.listPrice == null) {
-      return null;
-    }
-
-    return $OfferListPriceCopyWith<$Res>(_value.listPrice!, (value) {
+  $OfferListPriceCopyWith<$Res> get listPrice {
+    return $OfferListPriceCopyWith<$Res>(_value.listPrice, (value) {
       return _then(_value.copyWith(listPrice: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OfferListPriceCopyWith<$Res>? get retailPrice {
-    if (_value.retailPrice == null) {
-      return null;
-    }
-
-    return $OfferListPriceCopyWith<$Res>(_value.retailPrice!, (value) {
+  $OfferListPriceCopyWith<$Res> get retailPrice {
+    return $OfferListPriceCopyWith<$Res>(_value.retailPrice, (value) {
       return _then(_value.copyWith(retailPrice: value) as $Val);
     });
   }
@@ -112,14 +101,14 @@ abstract class _$$OfferImplCopyWith<$Res> implements $OfferCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "finskyOfferType") int? finskyOfferType,
-      @JsonKey(name: "listPrice") OfferListPrice? listPrice,
-      @JsonKey(name: "retailPrice") OfferListPrice? retailPrice});
+      {int finskyOfferType,
+      OfferListPrice listPrice,
+      OfferListPrice retailPrice});
 
   @override
-  $OfferListPriceCopyWith<$Res>? get listPrice;
+  $OfferListPriceCopyWith<$Res> get listPrice;
   @override
-  $OfferListPriceCopyWith<$Res>? get retailPrice;
+  $OfferListPriceCopyWith<$Res> get retailPrice;
 }
 
 /// @nodoc
@@ -133,23 +122,23 @@ class __$$OfferImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? finskyOfferType = freezed,
-    Object? listPrice = freezed,
-    Object? retailPrice = freezed,
+    Object? finskyOfferType = null,
+    Object? listPrice = null,
+    Object? retailPrice = null,
   }) {
     return _then(_$OfferImpl(
-      finskyOfferType: freezed == finskyOfferType
+      finskyOfferType: null == finskyOfferType
           ? _value.finskyOfferType
           : finskyOfferType // ignore: cast_nullable_to_non_nullable
-              as int?,
-      listPrice: freezed == listPrice
+              as int,
+      listPrice: null == listPrice
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
-              as OfferListPrice?,
-      retailPrice: freezed == retailPrice
+              as OfferListPrice,
+      retailPrice: null == retailPrice
           ? _value.retailPrice
           : retailPrice // ignore: cast_nullable_to_non_nullable
-              as OfferListPrice?,
+              as OfferListPrice,
     ));
   }
 }
@@ -158,22 +147,19 @@ class __$$OfferImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OfferImpl implements _Offer {
   const _$OfferImpl(
-      {@JsonKey(name: "finskyOfferType") this.finskyOfferType,
-      @JsonKey(name: "listPrice") this.listPrice,
-      @JsonKey(name: "retailPrice") this.retailPrice});
+      {required this.finskyOfferType,
+      required this.listPrice,
+      required this.retailPrice});
 
   factory _$OfferImpl.fromJson(Map<String, dynamic> json) =>
       _$$OfferImplFromJson(json);
 
   @override
-  @JsonKey(name: "finskyOfferType")
-  final int? finskyOfferType;
+  final int finskyOfferType;
   @override
-  @JsonKey(name: "listPrice")
-  final OfferListPrice? listPrice;
+  final OfferListPrice listPrice;
   @override
-  @JsonKey(name: "retailPrice")
-  final OfferListPrice? retailPrice;
+  final OfferListPrice retailPrice;
 
   @override
   String toString() {
@@ -214,22 +200,18 @@ class _$OfferImpl implements _Offer {
 
 abstract class _Offer implements Offer {
   const factory _Offer(
-          {@JsonKey(name: "finskyOfferType") final int? finskyOfferType,
-          @JsonKey(name: "listPrice") final OfferListPrice? listPrice,
-          @JsonKey(name: "retailPrice") final OfferListPrice? retailPrice}) =
-      _$OfferImpl;
+      {required final int finskyOfferType,
+      required final OfferListPrice listPrice,
+      required final OfferListPrice retailPrice}) = _$OfferImpl;
 
   factory _Offer.fromJson(Map<String, dynamic> json) = _$OfferImpl.fromJson;
 
   @override
-  @JsonKey(name: "finskyOfferType")
-  int? get finskyOfferType;
+  int get finskyOfferType;
   @override
-  @JsonKey(name: "listPrice")
-  OfferListPrice? get listPrice;
+  OfferListPrice get listPrice;
   @override
-  @JsonKey(name: "retailPrice")
-  OfferListPrice? get retailPrice;
+  OfferListPrice get retailPrice;
   @override
   @JsonKey(ignore: true)
   _$$OfferImplCopyWith<_$OfferImpl> get copyWith =>

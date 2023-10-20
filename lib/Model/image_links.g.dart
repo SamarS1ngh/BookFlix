@@ -8,8 +8,8 @@ part of 'image_links.dart';
 
 _$ImageLinksImpl _$$ImageLinksImplFromJson(Map<String, dynamic> json) =>
     _$ImageLinksImpl(
-      smallThumbnail: json['smallThumbnail'] as String?,
-      thumbnail: json['thumbnail'] as String?,
+      smallThumbnail: json['smallThumbnail'] as String,
+      thumbnail: json['thumbnail'] as String,
     );
 
 Map<String, dynamic> _$$ImageLinksImplToJson(_$ImageLinksImpl instance) =>

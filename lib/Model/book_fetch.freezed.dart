@@ -20,11 +20,8 @@ BookFetch _$BookFetchFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookFetch {
-  @JsonKey(name: "kind")
   String get kind => throw _privateConstructorUsedError;
-  @JsonKey(name: "totalItems")
   int get totalItems => throw _privateConstructorUsedError;
-  @JsonKey(name: "items")
   List<Item> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +35,7 @@ abstract class $BookFetchCopyWith<$Res> {
   factory $BookFetchCopyWith(BookFetch value, $Res Function(BookFetch) then) =
       _$BookFetchCopyWithImpl<$Res, BookFetch>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "kind") String kind,
-      @JsonKey(name: "totalItems") int totalItems,
-      @JsonKey(name: "items") List<Item> items});
+  $Res call({String kind, int totalItems, List<Item> items});
 }
 
 /// @nodoc
@@ -86,10 +80,7 @@ abstract class _$$BookFetchImplCopyWith<$Res>
       __$$BookFetchImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "kind") String kind,
-      @JsonKey(name: "totalItems") int totalItems,
-      @JsonKey(name: "items") List<Item> items});
+  $Res call({String kind, int totalItems, List<Item> items});
 }
 
 /// @nodoc
@@ -128,23 +119,20 @@ class __$$BookFetchImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BookFetchImpl implements _BookFetch {
   const _$BookFetchImpl(
-      {@JsonKey(name: "kind") required this.kind,
-      @JsonKey(name: "totalItems") required this.totalItems,
-      @JsonKey(name: "items") required final List<Item> items})
+      {required this.kind,
+      required this.totalItems,
+      required final List<Item> items})
       : _items = items;
 
   factory _$BookFetchImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookFetchImplFromJson(json);
 
   @override
-  @JsonKey(name: "kind")
   final String kind;
   @override
-  @JsonKey(name: "totalItems")
   final int totalItems;
   final List<Item> _items;
   @override
-  @JsonKey(name: "items")
   List<Item> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
@@ -188,22 +176,18 @@ class _$BookFetchImpl implements _BookFetch {
 
 abstract class _BookFetch implements BookFetch {
   const factory _BookFetch(
-          {@JsonKey(name: "kind") required final String kind,
-          @JsonKey(name: "totalItems") required final int totalItems,
-          @JsonKey(name: "items") required final List<Item> items}) =
-      _$BookFetchImpl;
+      {required final String kind,
+      required final int totalItems,
+      required final List<Item> items}) = _$BookFetchImpl;
 
   factory _BookFetch.fromJson(Map<String, dynamic> json) =
       _$BookFetchImpl.fromJson;
 
   @override
-  @JsonKey(name: "kind")
   String get kind;
   @override
-  @JsonKey(name: "totalItems")
   int get totalItems;
   @override
-  @JsonKey(name: "items")
   List<Item> get items;
   @override
   @JsonKey(ignore: true)

@@ -42,12 +42,12 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   // ignore: non_constant_identifier_names
-  List<Widget> Screenslist = [
-    const MyHomePage(),
-    const Saved(),
-    const Search(),
-    const profile()
-  ];
+  // List<Widget> Screenslist = [
+  //   const MyHomePage(),
+  //   const Saved(),
+  //   const Search(),
+  //   const profile()
+  // ];
 
   @override
   Widget build(BuildContext context) {

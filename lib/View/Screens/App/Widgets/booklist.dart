@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:bookflix/Utils/Colors.dart';
+import 'package:bookflix/View/Screens/App/OnlyBooks/onlybook.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -30,10 +32,13 @@ class _BooklistState extends State<Booklist> {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  final selectedbook = widget.bookimgs![index];
-                  context.push(
-                    '/onlyBook/${jsonEncode(selectedbook)}',
-                  );
+                  final selectedbook = widget.bookimgs?[index];
+                  // final convert = jsonEncode(selectedbook);
+                  // log(selectedbook!.toString());
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return OnlyBook(selectedBook: selectedbook);
+                  }));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -43,7 +48,6 @@ class _BooklistState extends State<Booklist> {
                           decoration: BoxDecoration(
                               color: AppColors.accentColor,
                               borderRadius: BorderRadius.circular(10)),
-                          //  height: 20,
                           child: const Center(
                             child: CircularProgressIndicator(
                               color: Color.fromARGB(255, 65, 64, 64),
@@ -58,8 +62,9 @@ class _BooklistState extends State<Booklist> {
                                     topRight: Radius.circular(8))),
                             clipBehavior: Clip.antiAlias,
                             child: Image.network(
-                              widget.bookimgs![index].volumeInfo.imageLinks!
-                                  .thumbnail!,
+                              widget.bookimgs?[index].volumeInfo.imageLinks
+                                      ?.thumbnail ??
+                                  '',
                               width: 180,
                               fit: BoxFit.cover,
                               isAntiAlias: false,

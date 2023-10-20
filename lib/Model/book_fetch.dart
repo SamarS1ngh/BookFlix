@@ -7,15 +7,19 @@ import 'item.dart';
 part 'book_fetch.freezed.dart';
 part 'book_fetch.g.dart';
 
+BookFetch bookFetchFromJson(String str) => BookFetch.fromJson(json.decode(str));
+
+String bookFetchToJson(BookFetch data) => json.encode(data.toJson());
+
+@freezed
 @freezed
 class BookFetch with _$BookFetch {
   const factory BookFetch({
-    @JsonKey(name: "kind") required String kind,
-    @JsonKey(name: "totalItems") required int totalItems,
-    @JsonKey(name: "items") required List<Item> items,
+    required String kind,
+    required int totalItems,
+    required List<Item> items,
   }) = _BookFetch;
 
   factory BookFetch.fromJson(Map<String, dynamic> json) =>
       _$BookFetchFromJson(json);
-  //Map<String, dynamic> toJson() => _$BookFetchToJson(this);
 }

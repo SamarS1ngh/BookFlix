@@ -7,14 +7,11 @@ part of 'offer.dart';
 // **************************************************************************
 
 _$OfferImpl _$$OfferImplFromJson(Map<String, dynamic> json) => _$OfferImpl(
-      finskyOfferType: json['finskyOfferType'] as int?,
-      listPrice: json['listPrice'] == null
-          ? null
-          : OfferListPrice.fromJson(json['listPrice'] as Map<String, dynamic>),
-      retailPrice: json['retailPrice'] == null
-          ? null
-          : OfferListPrice.fromJson(
-              json['retailPrice'] as Map<String, dynamic>),
+      finskyOfferType: json['finskyOfferType'] as int,
+      listPrice:
+          OfferListPrice.fromJson(json['listPrice'] as Map<String, dynamic>),
+      retailPrice:
+          OfferListPrice.fromJson(json['retailPrice'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OfferImplToJson(_$OfferImpl instance) =>

@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Screens/App/Widgets/booklist.dart';
@@ -66,6 +68,7 @@ class MyHomePage extends StatelessWidget {
             CategoryHeading(text: 'Most popular'),
             Consumer<HomeBookFetch>(builder: (context, homeBookFetch, child) {
               final popularBooks = homeBookFetch.popularBooks;
+              //    log(popularBooks.toString());
               return Booklist(bookimgs: popularBooks);
             }),
             CategoryHeading(text: 'Manga'),

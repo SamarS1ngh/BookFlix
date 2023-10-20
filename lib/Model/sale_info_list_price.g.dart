@@ -10,17 +10,12 @@ _$SaleInfoListPriceImpl _$$SaleInfoListPriceImplFromJson(
         Map<String, dynamic> json) =>
     _$SaleInfoListPriceImpl(
       amount: (json['amount'] as num).toDouble(),
-      currencyCode:
-          $enumDecodeNullable(_$CurrencyCodeEnumMap, json['currencyCode']),
+      currencyCode: json['currencyCode'] as String,
     );
 
 Map<String, dynamic> _$$SaleInfoListPriceImplToJson(
         _$SaleInfoListPriceImpl instance) =>
     <String, dynamic>{
       'amount': instance.amount,
-      'currencyCode': _$CurrencyCodeEnumMap[instance.currencyCode],
+      'currencyCode': instance.currencyCode,
     };
-
-const _$CurrencyCodeEnumMap = {
-  CurrencyCode.INR: 'INR',
-};

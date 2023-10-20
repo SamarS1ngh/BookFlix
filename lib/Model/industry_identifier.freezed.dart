@@ -20,11 +20,8 @@ IndustryIdentifier _$IndustryIdentifierFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IndustryIdentifier {
-  @TypeConverter()
-  @JsonKey(name: "type")
-  Type? get type => throw _privateConstructorUsedError;
-  @JsonKey(name: "identifier")
-  String? get identifier => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  String get identifier => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +35,7 @@ abstract class $IndustryIdentifierCopyWith<$Res> {
           IndustryIdentifier value, $Res Function(IndustryIdentifier) then) =
       _$IndustryIdentifierCopyWithImpl<$Res, IndustryIdentifier>;
   @useResult
-  $Res call(
-      {@TypeConverter() @JsonKey(name: "type") Type? type,
-      @JsonKey(name: "identifier") String? identifier});
+  $Res call({String type, String identifier});
 }
 
 /// @nodoc
@@ -56,18 +51,18 @@ class _$IndustryIdentifierCopyWithImpl<$Res, $Val extends IndustryIdentifier>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? identifier = freezed,
+    Object? type = null,
+    Object? identifier = null,
   }) {
     return _then(_value.copyWith(
-      type: freezed == type
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as Type?,
-      identifier: freezed == identifier
+              as String,
+      identifier: null == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -80,9 +75,7 @@ abstract class _$$IndustryIdentifierImplCopyWith<$Res>
       __$$IndustryIdentifierImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@TypeConverter() @JsonKey(name: "type") Type? type,
-      @JsonKey(name: "identifier") String? identifier});
+  $Res call({String type, String identifier});
 }
 
 /// @nodoc
@@ -96,18 +89,18 @@ class __$$IndustryIdentifierImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? identifier = freezed,
+    Object? type = null,
+    Object? identifier = null,
   }) {
     return _then(_$IndustryIdentifierImpl(
-      type: freezed == type
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as Type?,
-      identifier: freezed == identifier
+              as String,
+      identifier: null == identifier
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -116,19 +109,15 @@ class __$$IndustryIdentifierImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$IndustryIdentifierImpl implements _IndustryIdentifier {
   const _$IndustryIdentifierImpl(
-      {@TypeConverter() @JsonKey(name: "type") this.type,
-      @JsonKey(name: "identifier") this.identifier});
+      {required this.type, required this.identifier});
 
   factory _$IndustryIdentifierImpl.fromJson(Map<String, dynamic> json) =>
       _$$IndustryIdentifierImplFromJson(json);
 
   @override
-  @TypeConverter()
-  @JsonKey(name: "type")
-  final Type? type;
+  final String type;
   @override
-  @JsonKey(name: "identifier")
-  final String? identifier;
+  final String identifier;
 
   @override
   String toString() {
@@ -166,20 +155,16 @@ class _$IndustryIdentifierImpl implements _IndustryIdentifier {
 
 abstract class _IndustryIdentifier implements IndustryIdentifier {
   const factory _IndustryIdentifier(
-          {@TypeConverter() @JsonKey(name: "type") final Type? type,
-          @JsonKey(name: "identifier") final String? identifier}) =
-      _$IndustryIdentifierImpl;
+      {required final String type,
+      required final String identifier}) = _$IndustryIdentifierImpl;
 
   factory _IndustryIdentifier.fromJson(Map<String, dynamic> json) =
       _$IndustryIdentifierImpl.fromJson;
 
   @override
-  @TypeConverter()
-  @JsonKey(name: "type")
-  Type? get type;
+  String get type;
   @override
-  @JsonKey(name: "identifier")
-  String? get identifier;
+  String get identifier;
   @override
   @JsonKey(ignore: true)
   _$$IndustryIdentifierImplCopyWith<_$IndustryIdentifierImpl> get copyWith =>

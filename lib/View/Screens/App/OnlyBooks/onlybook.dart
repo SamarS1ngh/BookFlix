@@ -9,10 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnlyBook extends StatefulWidget {
-  Map<String, dynamic>? selectedBook;
+  final selectedBook;
   OnlyBook({super.key, required this.selectedBook});
 
   @override
@@ -27,20 +26,11 @@ class _OnlyBookState extends State<OnlyBook> {
   }
 
   bool saved = false;
-  // Future getPref() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.setStringList('savedBook', [widget.selectedBook.toString()]);
-  // }
-
-  // Future removePref() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.remove('savedBook');
-  // }
 
   @override
   Widget build(BuildContext context) {
     final selectedBook = widget.selectedBook;
-
+    // print(selectedBook);
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -52,10 +42,9 @@ class _OnlyBookState extends State<OnlyBook> {
                     setState(() {
                       saved = !saved;
                       if (saved) {
-                        //   getPref();
                       } else {}
                     });
-                    log(saved.toString());
+                    //  log(saved.toString());
                   },
                   icon: saved == true
                       ? const Icon(
@@ -82,8 +71,7 @@ class _OnlyBookState extends State<OnlyBook> {
                       Container(
                         color: Colors.red,
                         child: Image.network(
-                          selectedBook!['volumeInfo']['imageLinks']
-                              ['thumbnail'],
+                          selectedBook.volumeInfo.imageLinks.thumbnail,
                           fit: BoxFit.cover,
                           height: .3.sh,
                           width: .42.sw,
@@ -103,14 +91,13 @@ class _OnlyBookState extends State<OnlyBook> {
                                 height: 10,
                               ),
                               Text(
-                                selectedBook['volumeInfo']['title'],
+                                selectedBook.volumeInfo.title,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                                 style: AppFonts.titleText,
                               ),
                               Text(
-                                selectedBook['volumeInfo']['authors'][0]
-                                    .toString(),
+                                selectedBook.volumeInfo.authors[0].toString(),
                                 style: AppFonts.subTitles,
                               ),
                               const SizedBox(
@@ -119,8 +106,7 @@ class _OnlyBookState extends State<OnlyBook> {
                               Wrap(
                                 runSpacing: 10,
                                 spacing: 8,
-                                children: (selectedBook['volumeInfo']
-                                            ['categories'] ??
+                                children: (selectedBook.volumeInfo.categories ??
                                         [])
                                     .map<Widget>((category) => Container(
                                           padding: const EdgeInsets.symmetric(
@@ -181,7 +167,7 @@ class _OnlyBookState extends State<OnlyBook> {
                     color: Color(0xFF646464),
                   ),
                   Text(
-                    selectedBook['volumeInfo']['description'],
+                    selectedBook.volumeInfo.description,
                     style: AppFonts.bodyText,
                   ),
                   const SizedBox(
@@ -201,7 +187,7 @@ class _OnlyBookState extends State<OnlyBook> {
                     color: Color(0xFF646464),
                   ),
                   AuthorList(
-                    author: selectedBook['volumeInfo']['authors'][0],
+                    author: selectedBook.volumeInfo.authors[0],
                   )
                 ],
               ),

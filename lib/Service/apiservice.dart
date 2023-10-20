@@ -16,13 +16,9 @@ class ApiService {
         log('Api call successful');
 
         final Map<String, dynamic> jsonData = json.decode(response.body);
-        // for (var i in jsonData['items']) {
-        //   print(i['volumeInfo']['industryIdentifiers']);
-        // }
-        //  log(jsonData['items'].toString());
+
         final BookFetch bookfetch = BookFetch.fromJson(jsonData);
-        // log('bookfetch ${bookfetch.toString()}');
-        // log(bookfetch.items[0].volumeInfo.imageLinks!.thumbnail!);
+
         return bookfetch.items;
       } else {
         log('call failed with status code ${response.statusCode}');

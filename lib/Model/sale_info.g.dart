@@ -8,10 +8,9 @@ part of 'sale_info.dart';
 
 _$SaleInfoImpl _$$SaleInfoImplFromJson(Map<String, dynamic> json) =>
     _$SaleInfoImpl(
-      country: $enumDecodeNullable(_$CountryEnumMap, json['country']),
-      saleability:
-          $enumDecodeNullable(_$SaleabilityEnumMap, json['saleability']),
-      isEbook: json['isEbook'] as bool?,
+      country: json['country'] as String,
+      saleability: json['saleability'] as String,
+      isEbook: json['isEbook'] as bool,
       listPrice: json['listPrice'] == null
           ? null
           : SaleInfoListPrice.fromJson(
@@ -28,20 +27,11 @@ _$SaleInfoImpl _$$SaleInfoImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$SaleInfoImplToJson(_$SaleInfoImpl instance) =>
     <String, dynamic>{
-      'country': _$CountryEnumMap[instance.country],
-      'saleability': _$SaleabilityEnumMap[instance.saleability],
+      'country': instance.country,
+      'saleability': instance.saleability,
       'isEbook': instance.isEbook,
       'listPrice': instance.listPrice,
       'retailPrice': instance.retailPrice,
       'buyLink': instance.buyLink,
       'offers': instance.offers,
     };
-
-const _$CountryEnumMap = {
-  Country.IN: 'IN',
-};
-
-const _$SaleabilityEnumMap = {
-  Saleability.FOR_SALE: 'FOR_SALE',
-  Saleability.NOT_FOR_SALE: 'NOT_FOR_SALE',
-};

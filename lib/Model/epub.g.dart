@@ -7,7 +7,7 @@ part of 'epub.dart';
 // **************************************************************************
 
 _$EpubImpl _$$EpubImplFromJson(Map<String, dynamic> json) => _$EpubImpl(
-      isAvailable: json['isAvailable'] as bool?,
+      isAvailable: json['isAvailable'] as bool,
       acsTokenLink: json['acsTokenLink'] as String?,
     );
 

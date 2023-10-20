@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../ViewModel/Providers/tag_provider.dart';
+import '../OnlyBooks/onlybook.dart';
 
 class TagBooks extends StatelessWidget {
   const TagBooks({super.key});
@@ -17,8 +18,8 @@ class TagBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TagProvider>(
       builder: (context, tagProvider, child) {
-        var list = tagProvider.tagBooks;
-        log(list.toString());
+        final list = tagProvider.tagBooks;
+        log('haha bhai list ${list.toString()}');
         return list!.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : GridView.builder(
@@ -32,12 +33,10 @@ class TagBooks extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       final selectedbook = list[index];
-                      context.push(
-                        '/onlyBook/${jsonEncode(selectedbook)}',
-                        // pathParameters: {
-                        //   'bookInfo': jsonEncode(selectedbook)
-                        // },
-                      );
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return OnlyBook(selectedBook: selectedbook);
+                      }));
                     },
                     child: Stack(children: [
                       Container(

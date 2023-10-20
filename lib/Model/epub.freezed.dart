@@ -20,9 +20,7 @@ Epub _$EpubFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Epub {
-  @JsonKey(name: "isAvailable")
-  bool? get isAvailable => throw _privateConstructorUsedError;
-  @JsonKey(name: "acsTokenLink")
+  bool get isAvailable => throw _privateConstructorUsedError;
   String? get acsTokenLink => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,9 +33,7 @@ abstract class $EpubCopyWith<$Res> {
   factory $EpubCopyWith(Epub value, $Res Function(Epub) then) =
       _$EpubCopyWithImpl<$Res, Epub>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "isAvailable") bool? isAvailable,
-      @JsonKey(name: "acsTokenLink") String? acsTokenLink});
+  $Res call({bool isAvailable, String? acsTokenLink});
 }
 
 /// @nodoc
@@ -53,14 +49,14 @@ class _$EpubCopyWithImpl<$Res, $Val extends Epub>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isAvailable = freezed,
+    Object? isAvailable = null,
     Object? acsTokenLink = freezed,
   }) {
     return _then(_value.copyWith(
-      isAvailable: freezed == isAvailable
+      isAvailable: null == isAvailable
           ? _value.isAvailable
           : isAvailable // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       acsTokenLink: freezed == acsTokenLink
           ? _value.acsTokenLink
           : acsTokenLink // ignore: cast_nullable_to_non_nullable
@@ -76,9 +72,7 @@ abstract class _$$EpubImplCopyWith<$Res> implements $EpubCopyWith<$Res> {
       __$$EpubImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "isAvailable") bool? isAvailable,
-      @JsonKey(name: "acsTokenLink") String? acsTokenLink});
+  $Res call({bool isAvailable, String? acsTokenLink});
 }
 
 /// @nodoc
@@ -91,14 +85,14 @@ class __$$EpubImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isAvailable = freezed,
+    Object? isAvailable = null,
     Object? acsTokenLink = freezed,
   }) {
     return _then(_$EpubImpl(
-      isAvailable: freezed == isAvailable
+      isAvailable: null == isAvailable
           ? _value.isAvailable
           : isAvailable // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       acsTokenLink: freezed == acsTokenLink
           ? _value.acsTokenLink
           : acsTokenLink // ignore: cast_nullable_to_non_nullable
@@ -110,18 +104,14 @@ class __$$EpubImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EpubImpl implements _Epub {
-  const _$EpubImpl(
-      {@JsonKey(name: "isAvailable") this.isAvailable,
-      @JsonKey(name: "acsTokenLink") this.acsTokenLink});
+  const _$EpubImpl({required this.isAvailable, this.acsTokenLink});
 
   factory _$EpubImpl.fromJson(Map<String, dynamic> json) =>
       _$$EpubImplFromJson(json);
 
   @override
-  @JsonKey(name: "isAvailable")
-  final bool? isAvailable;
+  final bool isAvailable;
   @override
-  @JsonKey(name: "acsTokenLink")
   final String? acsTokenLink;
 
   @override
@@ -160,16 +150,14 @@ class _$EpubImpl implements _Epub {
 
 abstract class _Epub implements Epub {
   const factory _Epub(
-      {@JsonKey(name: "isAvailable") final bool? isAvailable,
-      @JsonKey(name: "acsTokenLink") final String? acsTokenLink}) = _$EpubImpl;
+      {required final bool isAvailable,
+      final String? acsTokenLink}) = _$EpubImpl;
 
   factory _Epub.fromJson(Map<String, dynamic> json) = _$EpubImpl.fromJson;
 
   @override
-  @JsonKey(name: "isAvailable")
-  bool? get isAvailable;
+  bool get isAvailable;
   @override
-  @JsonKey(name: "acsTokenLink")
   String? get acsTokenLink;
   @override
   @JsonKey(ignore: true)

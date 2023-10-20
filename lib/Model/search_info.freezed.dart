@@ -20,8 +20,7 @@ SearchInfo _$SearchInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchInfo {
-  @JsonKey(name: "textSnippet")
-  String? get textSnippet => throw _privateConstructorUsedError;
+  String get textSnippet => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $SearchInfoCopyWith<$Res> {
           SearchInfo value, $Res Function(SearchInfo) then) =
       _$SearchInfoCopyWithImpl<$Res, SearchInfo>;
   @useResult
-  $Res call({@JsonKey(name: "textSnippet") String? textSnippet});
+  $Res call({String textSnippet});
 }
 
 /// @nodoc
@@ -51,13 +50,13 @@ class _$SearchInfoCopyWithImpl<$Res, $Val extends SearchInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textSnippet = freezed,
+    Object? textSnippet = null,
   }) {
     return _then(_value.copyWith(
-      textSnippet: freezed == textSnippet
+      textSnippet: null == textSnippet
           ? _value.textSnippet
           : textSnippet // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -70,7 +69,7 @@ abstract class _$$SearchInfoImplCopyWith<$Res>
       __$$SearchInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "textSnippet") String? textSnippet});
+  $Res call({String textSnippet});
 }
 
 /// @nodoc
@@ -84,13 +83,13 @@ class __$$SearchInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textSnippet = freezed,
+    Object? textSnippet = null,
   }) {
     return _then(_$SearchInfoImpl(
-      textSnippet: freezed == textSnippet
+      textSnippet: null == textSnippet
           ? _value.textSnippet
           : textSnippet // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -98,14 +97,13 @@ class __$$SearchInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SearchInfoImpl implements _SearchInfo {
-  const _$SearchInfoImpl({@JsonKey(name: "textSnippet") this.textSnippet});
+  const _$SearchInfoImpl({required this.textSnippet});
 
   factory _$SearchInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchInfoImplFromJson(json);
 
   @override
-  @JsonKey(name: "textSnippet")
-  final String? textSnippet;
+  final String textSnippet;
 
   @override
   String toString() {
@@ -140,16 +138,14 @@ class _$SearchInfoImpl implements _SearchInfo {
 }
 
 abstract class _SearchInfo implements SearchInfo {
-  const factory _SearchInfo(
-          {@JsonKey(name: "textSnippet") final String? textSnippet}) =
+  const factory _SearchInfo({required final String textSnippet}) =
       _$SearchInfoImpl;
 
   factory _SearchInfo.fromJson(Map<String, dynamic> json) =
       _$SearchInfoImpl.fromJson;
 
   @override
-  @JsonKey(name: "textSnippet")
-  String? get textSnippet;
+  String get textSnippet;
   @override
   @JsonKey(ignore: true)
   _$$SearchInfoImplCopyWith<_$SearchInfoImpl> get copyWith =>

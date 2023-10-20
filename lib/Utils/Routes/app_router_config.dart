@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:bookflix/View/Screens/App/BooksByTags/books_by_tags.dart';
 import 'package:bookflix/View/Screens/App/OnlyBooks/onlybook.dart';
-
+import 'package:bookflix/View/Screens/Auth/login.dart';
 import 'package:bookflix/View/Screens/App/Search/search.dart';
 import 'package:bookflix/View/Screens/App/homepagewithbottomnavbar.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +12,8 @@ class AppRouter {
     GoRoute(
       path: '/',
       builder: (context, state) {
-        return const homepagewithbottomnavbar();
+        return Login();
+        // return homepagewithbottomnavbar();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -34,9 +35,10 @@ class AppRouter {
             path: 'onlyBook/:bookInfo',
             builder: (context, state) {
               final selectedBookJSON = state.pathParameters['bookInfo'];
+
               final selectedBook = jsonDecode(selectedBookJSON!);
               return OnlyBook(
-                selectedBook: selectedBook ?? '',
+                selectedBook: selectedBook,
               );
             }),
       ],

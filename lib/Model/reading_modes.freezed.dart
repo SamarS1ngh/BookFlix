@@ -20,10 +20,8 @@ ReadingModes _$ReadingModesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReadingModes {
-  @JsonKey(name: "text")
-  bool? get text => throw _privateConstructorUsedError;
-  @JsonKey(name: "image")
-  bool? get image => throw _privateConstructorUsedError;
+  bool get text => throw _privateConstructorUsedError;
+  bool get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,8 +35,7 @@ abstract class $ReadingModesCopyWith<$Res> {
           ReadingModes value, $Res Function(ReadingModes) then) =
       _$ReadingModesCopyWithImpl<$Res, ReadingModes>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "text") bool? text, @JsonKey(name: "image") bool? image});
+  $Res call({bool text, bool image});
 }
 
 /// @nodoc
@@ -54,18 +51,18 @@ class _$ReadingModesCopyWithImpl<$Res, $Val extends ReadingModes>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = freezed,
-    Object? image = freezed,
+    Object? text = null,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
-      text: freezed == text
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      image: freezed == image
+              as bool,
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ) as $Val);
   }
 }
@@ -78,8 +75,7 @@ abstract class _$$ReadingModesImplCopyWith<$Res>
       __$$ReadingModesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "text") bool? text, @JsonKey(name: "image") bool? image});
+  $Res call({bool text, bool image});
 }
 
 /// @nodoc
@@ -93,18 +89,18 @@ class __$$ReadingModesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = freezed,
-    Object? image = freezed,
+    Object? text = null,
+    Object? image = null,
   }) {
     return _then(_$ReadingModesImpl(
-      text: freezed == text
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      image: freezed == image
+              as bool,
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -112,18 +108,15 @@ class __$$ReadingModesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReadingModesImpl implements _ReadingModes {
-  const _$ReadingModesImpl(
-      {@JsonKey(name: "text") this.text, @JsonKey(name: "image") this.image});
+  const _$ReadingModesImpl({required this.text, required this.image});
 
   factory _$ReadingModesImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReadingModesImplFromJson(json);
 
   @override
-  @JsonKey(name: "text")
-  final bool? text;
+  final bool text;
   @override
-  @JsonKey(name: "image")
-  final bool? image;
+  final bool image;
 
   @override
   String toString() {
@@ -159,18 +152,16 @@ class _$ReadingModesImpl implements _ReadingModes {
 
 abstract class _ReadingModes implements ReadingModes {
   const factory _ReadingModes(
-      {@JsonKey(name: "text") final bool? text,
-      @JsonKey(name: "image") final bool? image}) = _$ReadingModesImpl;
+      {required final bool text,
+      required final bool image}) = _$ReadingModesImpl;
 
   factory _ReadingModes.fromJson(Map<String, dynamic> json) =
       _$ReadingModesImpl.fromJson;
 
   @override
-  @JsonKey(name: "text")
-  bool? get text;
+  bool get text;
   @override
-  @JsonKey(name: "image")
-  bool? get image;
+  bool get image;
   @override
   @JsonKey(ignore: true)
   _$$ReadingModesImplCopyWith<_$ReadingModesImpl> get copyWith =>

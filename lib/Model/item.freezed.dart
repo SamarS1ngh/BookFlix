@@ -20,20 +20,14 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Item {
-  @JsonKey(name: "kind")
-  Kind get kind => throw _privateConstructorUsedError;
-  @JsonKey(name: "id")
+  String get kind => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "etag")
   String get etag => throw _privateConstructorUsedError;
-  @JsonKey(name: "selfLink")
   String get selfLink => throw _privateConstructorUsedError;
-  @JsonKey(name: "volumeInfo")
   VolumeInfo get volumeInfo => throw _privateConstructorUsedError;
-  @JsonKey(name: "saleInfo")
   SaleInfo get saleInfo => throw _privateConstructorUsedError;
-  @JsonKey(name: "accessInfo")
   AccessInfo get accessInfo => throw _privateConstructorUsedError;
+  SearchInfo? get searchInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,17 +40,19 @@ abstract class $ItemCopyWith<$Res> {
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
   $Res call(
-      {@JsonKey(name: "kind") Kind kind,
-      @JsonKey(name: "id") String id,
-      @JsonKey(name: "etag") String etag,
-      @JsonKey(name: "selfLink") String selfLink,
-      @JsonKey(name: "volumeInfo") VolumeInfo volumeInfo,
-      @JsonKey(name: "saleInfo") SaleInfo saleInfo,
-      @JsonKey(name: "accessInfo") AccessInfo accessInfo});
+      {String kind,
+      String id,
+      String etag,
+      String selfLink,
+      VolumeInfo volumeInfo,
+      SaleInfo saleInfo,
+      AccessInfo accessInfo,
+      SearchInfo? searchInfo});
 
   $VolumeInfoCopyWith<$Res> get volumeInfo;
   $SaleInfoCopyWith<$Res> get saleInfo;
   $AccessInfoCopyWith<$Res> get accessInfo;
+  $SearchInfoCopyWith<$Res>? get searchInfo;
 }
 
 /// @nodoc
@@ -79,12 +75,13 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? volumeInfo = null,
     Object? saleInfo = null,
     Object? accessInfo = null,
+    Object? searchInfo = freezed,
   }) {
     return _then(_value.copyWith(
       kind: null == kind
           ? _value.kind
           : kind // ignore: cast_nullable_to_non_nullable
-              as Kind,
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -109,6 +106,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.accessInfo
           : accessInfo // ignore: cast_nullable_to_non_nullable
               as AccessInfo,
+      searchInfo: freezed == searchInfo
+          ? _value.searchInfo
+          : searchInfo // ignore: cast_nullable_to_non_nullable
+              as SearchInfo?,
     ) as $Val);
   }
 
@@ -135,6 +136,18 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
       return _then(_value.copyWith(accessInfo: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchInfoCopyWith<$Res>? get searchInfo {
+    if (_value.searchInfo == null) {
+      return null;
+    }
+
+    return $SearchInfoCopyWith<$Res>(_value.searchInfo!, (value) {
+      return _then(_value.copyWith(searchInfo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -145,13 +158,14 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "kind") Kind kind,
-      @JsonKey(name: "id") String id,
-      @JsonKey(name: "etag") String etag,
-      @JsonKey(name: "selfLink") String selfLink,
-      @JsonKey(name: "volumeInfo") VolumeInfo volumeInfo,
-      @JsonKey(name: "saleInfo") SaleInfo saleInfo,
-      @JsonKey(name: "accessInfo") AccessInfo accessInfo});
+      {String kind,
+      String id,
+      String etag,
+      String selfLink,
+      VolumeInfo volumeInfo,
+      SaleInfo saleInfo,
+      AccessInfo accessInfo,
+      SearchInfo? searchInfo});
 
   @override
   $VolumeInfoCopyWith<$Res> get volumeInfo;
@@ -159,6 +173,8 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
   $SaleInfoCopyWith<$Res> get saleInfo;
   @override
   $AccessInfoCopyWith<$Res> get accessInfo;
+  @override
+  $SearchInfoCopyWith<$Res>? get searchInfo;
 }
 
 /// @nodoc
@@ -178,12 +194,13 @@ class __$$ItemImplCopyWithImpl<$Res>
     Object? volumeInfo = null,
     Object? saleInfo = null,
     Object? accessInfo = null,
+    Object? searchInfo = freezed,
   }) {
     return _then(_$ItemImpl(
       kind: null == kind
           ? _value.kind
           : kind // ignore: cast_nullable_to_non_nullable
-              as Kind,
+              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -208,6 +225,10 @@ class __$$ItemImplCopyWithImpl<$Res>
           ? _value.accessInfo
           : accessInfo // ignore: cast_nullable_to_non_nullable
               as AccessInfo,
+      searchInfo: freezed == searchInfo
+          ? _value.searchInfo
+          : searchInfo // ignore: cast_nullable_to_non_nullable
+              as SearchInfo?,
     ));
   }
 }
@@ -216,42 +237,38 @@ class __$$ItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ItemImpl implements _Item {
   const _$ItemImpl(
-      {@JsonKey(name: "kind") required this.kind,
-      @JsonKey(name: "id") required this.id,
-      @JsonKey(name: "etag") required this.etag,
-      @JsonKey(name: "selfLink") required this.selfLink,
-      @JsonKey(name: "volumeInfo") required this.volumeInfo,
-      @JsonKey(name: "saleInfo") required this.saleInfo,
-      @JsonKey(name: "accessInfo") required this.accessInfo});
+      {required this.kind,
+      required this.id,
+      required this.etag,
+      required this.selfLink,
+      required this.volumeInfo,
+      required this.saleInfo,
+      required this.accessInfo,
+      this.searchInfo});
 
   factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItemImplFromJson(json);
 
   @override
-  @JsonKey(name: "kind")
-  final Kind kind;
+  final String kind;
   @override
-  @JsonKey(name: "id")
   final String id;
   @override
-  @JsonKey(name: "etag")
   final String etag;
   @override
-  @JsonKey(name: "selfLink")
   final String selfLink;
   @override
-  @JsonKey(name: "volumeInfo")
   final VolumeInfo volumeInfo;
   @override
-  @JsonKey(name: "saleInfo")
   final SaleInfo saleInfo;
   @override
-  @JsonKey(name: "accessInfo")
   final AccessInfo accessInfo;
+  @override
+  final SearchInfo? searchInfo;
 
   @override
   String toString() {
-    return 'Item(kind: $kind, id: $id, etag: $etag, selfLink: $selfLink, volumeInfo: $volumeInfo, saleInfo: $saleInfo, accessInfo: $accessInfo)';
+    return 'Item(kind: $kind, id: $id, etag: $etag, selfLink: $selfLink, volumeInfo: $volumeInfo, saleInfo: $saleInfo, accessInfo: $accessInfo, searchInfo: $searchInfo)';
   }
 
   @override
@@ -269,13 +286,15 @@ class _$ItemImpl implements _Item {
             (identical(other.saleInfo, saleInfo) ||
                 other.saleInfo == saleInfo) &&
             (identical(other.accessInfo, accessInfo) ||
-                other.accessInfo == accessInfo));
+                other.accessInfo == accessInfo) &&
+            (identical(other.searchInfo, searchInfo) ||
+                other.searchInfo == searchInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, kind, id, etag, selfLink, volumeInfo, saleInfo, accessInfo);
+  int get hashCode => Object.hash(runtimeType, kind, id, etag, selfLink,
+      volumeInfo, saleInfo, accessInfo, searchInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -293,38 +312,33 @@ class _$ItemImpl implements _Item {
 
 abstract class _Item implements Item {
   const factory _Item(
-          {@JsonKey(name: "kind") required final Kind kind,
-          @JsonKey(name: "id") required final String id,
-          @JsonKey(name: "etag") required final String etag,
-          @JsonKey(name: "selfLink") required final String selfLink,
-          @JsonKey(name: "volumeInfo") required final VolumeInfo volumeInfo,
-          @JsonKey(name: "saleInfo") required final SaleInfo saleInfo,
-          @JsonKey(name: "accessInfo") required final AccessInfo accessInfo}) =
-      _$ItemImpl;
+      {required final String kind,
+      required final String id,
+      required final String etag,
+      required final String selfLink,
+      required final VolumeInfo volumeInfo,
+      required final SaleInfo saleInfo,
+      required final AccessInfo accessInfo,
+      final SearchInfo? searchInfo}) = _$ItemImpl;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
 
   @override
-  @JsonKey(name: "kind")
-  Kind get kind;
+  String get kind;
   @override
-  @JsonKey(name: "id")
   String get id;
   @override
-  @JsonKey(name: "etag")
   String get etag;
   @override
-  @JsonKey(name: "selfLink")
   String get selfLink;
   @override
-  @JsonKey(name: "volumeInfo")
   VolumeInfo get volumeInfo;
   @override
-  @JsonKey(name: "saleInfo")
   SaleInfo get saleInfo;
   @override
-  @JsonKey(name: "accessInfo")
   AccessInfo get accessInfo;
+  @override
+  SearchInfo? get searchInfo;
   @override
   @JsonKey(ignore: true)
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>

@@ -8,11 +8,10 @@ part 'reading_modes.g.dart';
 @freezed
 class ReadingModes with _$ReadingModes {
   const factory ReadingModes({
-    @JsonKey(name: "text") bool? text,
-    @JsonKey(name: "image") bool? image,
+    required bool text,
+    required bool image,
   }) = _ReadingModes;
 
   factory ReadingModes.fromJson(Map<String, dynamic> json) =>
       _$ReadingModesFromJson(json);
-  // Map<String, dynamic> toJson() => _$ReadingModesToJson(this);
 }

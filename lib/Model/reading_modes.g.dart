@@ -8,8 +8,8 @@ part of 'reading_modes.dart';
 
 _$ReadingModesImpl _$$ReadingModesImplFromJson(Map<String, dynamic> json) =>
     _$ReadingModesImpl(
-      text: json['text'] as bool?,
-      image: json['image'] as bool?,
+      text: json['text'] as bool,
+      image: json['image'] as bool,
     );
 
 Map<String, dynamic> _$$ReadingModesImplToJson(_$ReadingModesImpl instance) =>
