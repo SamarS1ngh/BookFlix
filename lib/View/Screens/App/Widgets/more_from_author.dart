@@ -56,8 +56,8 @@ class _AuthorListState extends State<AuthorList> {
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
                       onTap: () {
-                        context.push(
-                          '/onlyBook/${jsonEncode(list[index])}',
+                        context.go(
+                          '/home/onlyBook/${jsonEncode(list[index])}',
                         );
                       },
                       child: Card(
@@ -73,7 +73,7 @@ class _AuthorListState extends State<AuthorList> {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.network(
-                                  volumeInfo.imageLinks!.thumbnail!,
+                                  volumeInfo.imageLinks!.thumbnail,
                                   height: height,
                                   width: width / 3.5,
                                   fit: BoxFit.fitHeight,
@@ -92,7 +92,7 @@ class _AuthorListState extends State<AuthorList> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          volumeInfo.title!,
+                                          volumeInfo.title,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: AppFonts.headingText,
@@ -101,7 +101,7 @@ class _AuthorListState extends State<AuthorList> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          volumeInfo.authors?[0] ?? "",
+                                          volumeInfo.authors[0],
                                           style: GoogleFonts.ubuntu(
                                               color: AppColors.primaryColor,
                                               fontWeight: FontWeight.w500,

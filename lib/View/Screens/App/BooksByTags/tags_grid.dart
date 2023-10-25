@@ -44,7 +44,7 @@ class _TagsState extends State<Tags> {
         return GestureDetector(
           onTap: () {
             // log('yamette');
-            context.push('/search/booksByTags/${tag[index]}');
+            context.push('home/search/booksByTags/${tag[index]}');
           },
           child: Container(
               clipBehavior: Clip.antiAlias,

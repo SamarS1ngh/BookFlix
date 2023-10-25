@@ -11,6 +11,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../Model/item.dart';
 
 class HomeBookFetch extends ChangeNotifier {
+  bool isLoggedIn = false;
+
   final ApiService apiService = ApiService();
 
   List<Item>? popularBooks;
@@ -25,14 +27,14 @@ class HomeBookFetch extends ChangeNotifier {
 
   Future<List<Item>> _fetchHomeBooks(String subject) async {
     url1 =
-        "${baseUrl}q=subject:$subject&printType=books&orderBy=relevance&key=$key";
+        "${AppConstants.baseUrl}q=subject:$subject&printType=books&orderBy=relevance&key=$key";
     log('this is the url $url1');
     return await apiService.fetchBooks(url1);
   }
 
   Future fetchCategories() async {
     log("api called");
-    popularBooks = await apiService.fetchBooks(popularUrl);
+    popularBooks = await apiService.fetchBooks(AppConstants.baseUrl);
     // print('api key $key');
 
     scifiBooks = await _fetchHomeBooks('science+fiction');

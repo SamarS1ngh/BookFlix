@@ -13,7 +13,7 @@ class TagProvider extends ChangeNotifier {
   String url = '';
   Future<List<Item>> _fetchTagBooks(String tag) async {
     url =
-        "${baseUrl}q=subject:$tag&printType=books&orderBy=relevance&key=${dotenv.env['key']}";
+        "${AppConstants.baseUrl}q=subject:$tag&printType=books&orderBy=relevance&key=${dotenv.env['key']}";
 
     return apiService.fetchBooks(url);
   }

@@ -13,7 +13,7 @@ class BooksbyAuthor extends ChangeNotifier {
   Future<List<Item>> _callingBooksByAuthorName(String authorName) async {
     String url = '';
     url =
-        "${baseUrl}q=inauthor:$authorName&printType=books&orderBy=relevance&key=${dotenv.env['key']}";
+        "${AppConstants.baseUrl}q=inauthor:$authorName&printType=books&orderBy=relevance&key=${dotenv.env['key']}";
     return await apiService.fetchBooks(url);
   }
 

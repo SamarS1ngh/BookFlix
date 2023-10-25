@@ -36,7 +36,9 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(
                 onTap: () {
-                  context.push('/search');
+                  log('home context $context ');
+                  context.go("/home/search");
+                  log('going to search');
                 },
                 child: Container(
                   height: 0.047.sh,

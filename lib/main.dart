@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bookflix/Service/firebase_auth.dart';
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/Utils/Text.dart';
@@ -8,6 +11,7 @@ import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:bookflix/ViewModel/Providers/books_by_author.dart';
 import 'package:bookflix/ViewModel/Providers/searchProvider.dart';
 import 'package:bookflix/ViewModel/Providers/tag_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +24,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
+  FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -41,49 +46,61 @@ Future<void> main() async {
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  // ignore: non_constant_identifier_names
-  // List<Widget> Screenslist = [
-  //   const MyHomePage(),
-  //   const Saved(),
-  //   const Search(),
-  //   const profile()
-  // ];
 
   @override
   Widget build(BuildContext context) {
+    //  final AppRouter ar = AppRouter(context: context);
+    FirebaseAuthService().FirebaseAuthfunction(context);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
       minTextAdapt: true,
       designSize: Size(width, height),
       builder: (context, child) {
-        return MaterialApp.router(
-          routerConfig: AppRouter.router,
-          debugShowCheckedModeBanner: false,
-          title: 'BookFlix',
-          theme: ThemeData(
-              colorScheme: const ColorScheme.dark(
-                background: AppColors.backgroundColor,
-                error: AppColors.errorColor,
-                primary: AppColors.primaryColor,
-                secondary: AppColors.accentColor,
-              ),
-              useMaterial3: true,
-              primaryColor: AppColors.primaryColor,
-              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                backgroundColor: AppColors.backgroundColor,
-                selectedItemColor: AppColors.primaryColor,
-                unselectedItemColor: AppColors.textSecondary,
-              ),
-              appBarTheme: AppBarTheme(
-                  titleTextStyle: AppFonts.titleText,
-                  backgroundColor: AppColors.backgroundColor,
-                  actionsIconTheme: const IconThemeData(
-                    color: Colors.white,
-                    size: 27,
+        return StreamBuilder<User?>(
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              User? user = snapshot.data;
+              final prov = Provider.of<HomeBookFetch>(context, listen: false);
+              if (user != null) {
+                prov.isLoggedIn = true;
+                prov.notifyListeners();
+                log(prov.isLoggedIn.toString());
+              } else {
+                prov.isLoggedIn = false;
+                prov.notifyListeners();
+                log(prov.isLoggedIn.toString());
+              }
+            }
+            return MaterialApp.router(
+              routerConfig: AppRouter.router,
+              debugShowCheckedModeBanner: false,
+              title: 'BookFlix',
+              theme: ThemeData(
+                  colorScheme: const ColorScheme.dark(
+                    background: AppColors.backgroundColor,
+                    error: AppColors.errorColor,
+                    primary: AppColors.primaryColor,
+                    secondary: AppColors.accentColor,
                   ),
-                  iconTheme:
-                      IconThemeData(color: AppColors.primaryColor, size: 27))),
+                  useMaterial3: true,
+                  primaryColor: AppColors.primaryColor,
+                  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                    backgroundColor: AppColors.backgroundColor,
+                    selectedItemColor: AppColors.primaryColor,
+                    unselectedItemColor: AppColors.textSecondary,
+                  ),
+                  appBarTheme: AppBarTheme(
+                      titleTextStyle: AppFonts.titleText,
+                      backgroundColor: AppColors.backgroundColor,
+                      actionsIconTheme: const IconThemeData(
+                        color: Colors.white,
+                        size: 27,
+                      ),
+                      iconTheme: const IconThemeData(
+                          color: AppColors.primaryColor, size: 27))),
+            );
+          },
         );
       },
     );

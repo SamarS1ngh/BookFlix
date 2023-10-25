@@ -47,7 +47,7 @@ class TagBooks extends StatelessWidget {
                                 topRight: Radius.circular(8))),
                         clipBehavior: Clip.antiAlias,
                         child: Image.network(
-                          list[index].volumeInfo.imageLinks!.thumbnail!,
+                          list[index].volumeInfo.imageLinks!.thumbnail,
                           fit: BoxFit.fill,
                           width: 1.sw,
                         ),

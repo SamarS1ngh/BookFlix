@@ -1,6 +1,13 @@
 // ignore_for_file: camel_case_types
 
+import 'package:bookflix/Service/firebase_auth.dart';
+import 'package:bookflix/Utils/Text.dart';
+import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class profile extends StatefulWidget {
   const profile({super.key});
@@ -12,16 +19,38 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<HomeBookFetch>(context, listen: false);
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
               title: const Text(
-                'BookFlix',
-                style: TextStyle(color: Color.fromARGB(255, 230, 155, 243)),
+                'Profile',
               ),
-              elevation: 0,
-              backgroundColor: Colors.white,
             ),
-            body: const Text('profile')));
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  children: [
+                    const Divider(),
+                    InkWell(
+                        onTap: () async {
+                          await FirebaseAuthService().logout();
+                          prov.isLoggedIn = false;
+                          prov.notifyListeners();
+                          context.go('/login');
+                        },
+                        child: Container(
+                          width: 1.sw,
+                          child: Text(
+                            'LogOut',
+                            style: AppFonts.headingText,
+                          ),
+                        )),
+                    const Divider()
+                  ],
+                ),
+              ),
+            )));
   }
 }
