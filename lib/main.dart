@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<HomeBookFetch>(context, listen: false);
     //  final AppRouter ar = AppRouter(context: context);
     FirebaseAuthService().FirebaseAuthfunction(context);
     var height = MediaQuery.of(context).size.height;
@@ -61,15 +62,15 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               User? user = snapshot.data;
-              final prov = Provider.of<HomeBookFetch>(context, listen: false);
+              log("rebuild");
               if (user != null) {
-                prov.isLoggedIn = true;
+                prov.isLogged = true;
                 prov.notifyListeners();
-                log(prov.isLoggedIn.toString());
+                log(prov.isLogged.toString());
               } else {
-                prov.isLoggedIn = false;
+                prov.isLogged = false;
                 prov.notifyListeners();
-                log(prov.isLoggedIn.toString());
+                log(prov.isLogged.toString());
               }
             }
             return MaterialApp.router(

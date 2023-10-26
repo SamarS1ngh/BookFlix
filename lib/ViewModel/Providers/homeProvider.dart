@@ -11,10 +11,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../Model/item.dart';
 
 class HomeBookFetch extends ChangeNotifier {
-  bool isLoggedIn = false;
-
   final ApiService apiService = ApiService();
-
+  bool isLogged = false;
   List<Item>? popularBooks;
   List<Item>? mangaBooks;
   List<Item>? scifiBooks;

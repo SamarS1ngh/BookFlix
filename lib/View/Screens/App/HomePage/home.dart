@@ -37,7 +37,7 @@ class MyHomePage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   log('home context $context ');
-                  context.go("/home/search");
+                  context.go("/search");
                   log('going to search');
                 },
                 child: Container(

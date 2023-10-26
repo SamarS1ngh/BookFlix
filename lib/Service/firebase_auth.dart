@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/Utils/snackbars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,9 @@ class FirebaseAuthService implements IFirebaseService {
     final prov = Provider.of<HomeBookFetch>(context, listen: false);
     authStateChanges.listen((User? user) {
       if (user != null) {
-        prov.isLoggedIn = true;
+        prov.isLogged = true;
       } else {
-        prov.isLoggedIn = false;
+        prov.isLogged = false;
       }
     });
   }
@@ -48,13 +49,13 @@ class FirebaseAuthService implements IFirebaseService {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: pswd);
       Message().message('Account created Successfully', context);
-      prov.isLoggedIn = true;
+      prov.isLogged = true;
 
-      log('signing up ${prov.isLoggedIn}');
+      log('signing up ${prov.isLogged}');
     } catch (e) {
       String errorMessage = 'An error occusred';
       if (e is FirebaseAuthException) {
-        log('signing up error ${prov.isLoggedIn}');
+        log('signing up error ${prov.isLogged}');
         // Check for specific Firebase authentication exceptions
         switch (e.code) {
           case 'user-not-found':
@@ -86,12 +87,12 @@ class FirebaseAuthService implements IFirebaseService {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: pswd);
       Message().message('Logged in Successfully', context);
-      prov.isLoggedIn = true;
+      prov.isLogged = true;
 
-      log('signing in ${prov.isLoggedIn}');
+      log('signing in ${prov.isLogged}');
     } catch (e) {
       String errorMessage = 'An error occusred';
-      log('signing in error ${prov.isLoggedIn}');
+      log('signing in error ${prov.isLogged}');
       if (e is FirebaseAuthException) {
         // Check for specific Firebase authentication exceptions
         switch (e.code) {

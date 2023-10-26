@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:bookflix/Model/book_fetch.dart';
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Text.dart';
+import 'package:bookflix/View/Screens/App/OnlyBooks/onlybook.dart';
 import 'package:bookflix/ViewModel/Providers/books_by_author.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -51,14 +52,15 @@ class _AuthorListState extends State<AuthorList> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: list.length,
                 itemBuilder: (context, index) {
-                  final volumeInfo = list[index].volumeInfo;
+                  final volumeInfo = list[index];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
                       onTap: () {
-                        context.go(
-                          '/home/onlyBook/${jsonEncode(list[index])}',
-                        );
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return OnlyBook(selectedBook: volumeInfo);
+                        }));
                       },
                       child: Card(
                         color: AppColors.accentColor,
@@ -73,7 +75,7 @@ class _AuthorListState extends State<AuthorList> {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.network(
-                                  volumeInfo.imageLinks!.thumbnail,
+                                  volumeInfo.volumeInfo.imageLinks!.thumbnail,
                                   height: height,
                                   width: width / 3.5,
                                   fit: BoxFit.fitHeight,
@@ -92,7 +94,7 @@ class _AuthorListState extends State<AuthorList> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          volumeInfo.title,
+                                          volumeInfo.volumeInfo.title,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: AppFonts.headingText,
@@ -101,7 +103,7 @@ class _AuthorListState extends State<AuthorList> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          volumeInfo.authors[0],
+                                          volumeInfo.volumeInfo.authors[0],
                                           style: GoogleFonts.ubuntu(
                                               color: AppColors.primaryColor,
                                               fontWeight: FontWeight.w500,
@@ -112,7 +114,7 @@ class _AuthorListState extends State<AuthorList> {
                                         //  textAlign: TextAlign.center,
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 3,
-                                        volumeInfo.description ?? "",
+                                        volumeInfo.volumeInfo.description ?? "",
                                         style: AppFonts.smolText,
                                       )
                                     ],

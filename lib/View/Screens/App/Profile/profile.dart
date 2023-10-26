@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:bookflix/Service/firebase_auth.dart';
+import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,9 +37,9 @@ class _profileState extends State<profile> {
                     InkWell(
                         onTap: () async {
                           await FirebaseAuthService().logout();
-                          prov.isLoggedIn = false;
+                          prov.isLogged = false;
                           prov.notifyListeners();
-                          context.go('/login');
+                          context.go('/');
                         },
                         child: Container(
                           width: 1.sw,

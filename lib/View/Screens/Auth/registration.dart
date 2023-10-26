@@ -1,4 +1,5 @@
 import 'package:bookflix/Utils/Colors.dart';
+import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Screens/Auth/login.dart';
 import 'package:flutter/material.dart';
@@ -146,8 +147,8 @@ class _RegisterState extends State<Register> {
                             email: _email.text,
                             pswd: _pswd.text,
                             context: context);
-                        if (prov.isLoggedIn) {
-                          context.go('/home');
+                        if (prov.isLogged) {
+                          context.go('/');
                         }
                       },
                       child: Text(
