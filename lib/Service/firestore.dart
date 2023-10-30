@@ -1,5 +1,7 @@
 import 'package:bookflix/Model/industry_identifier.dart';
 import 'package:bookflix/Model/item.dart';
+import 'package:bookflix/Model/reading_modes.dart';
+import 'package:bookflix/Model/volume_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -8,6 +10,7 @@ import 'dart:developer';
 abstract class IFirestoreService {
   Future<void> save({required Item saveBook});
   Future<void> unsave({required Item unsaveBook});
+  transformIndustryIdentifiers({required Item book});
 }
 
 class DatabaseService implements IFirestoreService {
@@ -17,6 +20,7 @@ class DatabaseService implements IFirestoreService {
     final userDoc =
         await _db.collection("SavedBooks").doc(auth.currentUser!.uid).get();
     final List savedBookList = (userDoc.data()?['Book']);
+
     Map<String, dynamic> word = {
       "saved": true,
       "id": saveBook.id,
@@ -26,7 +30,9 @@ class DatabaseService implements IFirestoreService {
       "author": saveBook.volumeInfo.authors[0],
       "categories": saveBook.volumeInfo.categories,
       "description": saveBook.volumeInfo.description,
-      "previewLink": saveBook.volumeInfo.previewLink
+      "previewLink": saveBook.volumeInfo.previewLink,
+      "volumeInfo": transformIndustryIdentifiers(book: saveBook),
+      //"industryIdentifier": iiList
     };
     savedBookList.add(word);
     await _db
@@ -48,7 +54,7 @@ class DatabaseService implements IFirestoreService {
       "author": unsaveBook.volumeInfo.authors[0],
       "categories": unsaveBook.volumeInfo.categories,
       "description": unsaveBook.volumeInfo.description,
-      "previewLink": unsaveBook.volumeInfo.previewLink
+      "previewLink": unsaveBook.volumeInfo.previewLink,
     };
 
     savedBookList.removeWhere((book) => book["id"] == unsaveBook.id);
@@ -56,5 +62,20 @@ class DatabaseService implements IFirestoreService {
         .collection('SavedBooks')
         .doc(auth.currentUser!.uid)
         .set({"Book": savedBookList}).then((value) => log('book saved'));
+  }
+
+  @override
+  transformIndustryIdentifiers({required Item book}) {
+    List<IndustryIdentifier> data = book.volumeInfo.industryIdentifiers!;
+    List<Map<String, dynamic>> iiList = [];
+    for (var i in data) {
+      Map<String, dynamic> m = i.toJson();
+      iiList.add(m);
+    }
+    final vi = book.volumeInfo.toJson();
+    vi['industryIdentifiers'] = iiList;
+    vi['readingModes'] = book.volumeInfo.readingModes.toJson();
+    vi['imageLinks'] = book.volumeInfo.imageLinks!.toJson();
+    return vi;
   }
 }

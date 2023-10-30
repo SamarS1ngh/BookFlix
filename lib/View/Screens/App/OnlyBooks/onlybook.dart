@@ -35,6 +35,7 @@ class _OnlyBookState extends State<OnlyBook> {
   @override
   Widget build(BuildContext context) {
     final selectedBook = widget.selectedBook;
+    //log(selectedBook.toString());
     DatabaseService db = DatabaseService();
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -43,50 +44,102 @@ class _OnlyBookState extends State<OnlyBook> {
           appBar: AppBar(
             actions: [
               StreamBuilder<DocumentSnapshot>(
-                stream: FirebaseFirestore.instance
-                .collection("SavedBooks")
-                .doc(FirebaseAuth.instance.currentUser!.uid)
-                .snapshots(),
-               builder: (context, snapshot){
-if(snapshot.connectionState == ConnectionState.waiting){
-return CircularProgressIndicator();
-}
-else if(snapshot.connectionState == ConnectionState.active)
-              {  Map<String,dynamic> data = snapshot.data?.data() as Map<String,dynamic>;
-         List<dynamic> books = data["Book"];
-         
-         for(var i in books){
-         if(i["id"]==selectedBook.id){
-        saved = true;
-         }
-         }
-                return   IconButton(
-                  onPressed: () async {
-                    setState(() {
-                      saved = !saved;
-                      if (saved) {
-                        db.save(saveBook: selectedBook);
-                        log('saving');
+                  stream: FirebaseFirestore.instance
+                      .collection("SavedBooks")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.active) {
+                      if (snapshot.data != null) {
+                        Map<String, dynamic> data =
+                            snapshot.data?.data() as Map<String, dynamic>;
+                        List<dynamic> books = data["Book"] ?? [];
+
+                        for (var i in books) {
+                          if (i["id"] == selectedBook.id) {
+                            saved = true;
+                          }
+                        }
+                        return IconButton(
+                            onPressed: () async {
+                              setState(() {
+                                saved = !saved;
+                                if (saved) {
+                                  db.save(saveBook: selectedBook);
+                                  log('saving');
+                                } else {
+                                  db.unsave(unsaveBook: selectedBook);
+                                }
+                              });
+                              //  log(saved.toString());
+                            },
+                            icon: saved == true
+                                ? const Icon(
+                                    Icons.bookmark,
+                                    color: Colors.white,
+                                    size: 27,
+                                  )
+                                : const Icon(
+                                    Icons.bookmark_border,
+                                    color: Colors.white,
+                                    size: 27,
+                                  ));
                       } else {
-                        db.unsave(unsaveBook: selectedBook);
+                        return IconButton(
+                            onPressed: () async {
+                              setState(() {
+                                saved = !saved;
+                                if (saved) {
+                                  db.save(saveBook: selectedBook);
+                                  log('saving');
+                                } else {
+                                  db.unsave(unsaveBook: selectedBook);
+                                }
+                              });
+                              //  log(saved.toString());
+                            },
+                            icon: saved == true
+                                ? const Icon(
+                                    Icons.bookmark,
+                                    color: Colors.white,
+                                    size: 27,
+                                  )
+                                : const Icon(
+                                    Icons.bookmark_border,
+                                    color: Colors.white,
+                                    size: 27,
+                                  ));
                       }
-                    });
-                    //  log(saved.toString());
-                  },
-                  icon: saved == true
-                      ? const Icon(
-                          Icons.bookmark,
-                          color: Colors.white,
-                          size: 27,
-                        )
-                      : const Icon(
-                          Icons.bookmark_border,
-                          color: Colors.white,
-                          size: 27,
-                        ));}
-                        return Container();
-               }),
-            
+                    }
+
+                    return IconButton(
+                        onPressed: () async {
+                          setState(() {
+                            saved = !saved;
+                            if (saved) {
+                              db.save(saveBook: selectedBook);
+                              log('saving');
+                            } else {
+                              db.unsave(unsaveBook: selectedBook);
+                            }
+                          });
+                          //  log(saved.toString());
+                        },
+                        icon: saved == true
+                            ? const Icon(
+                                Icons.bookmark,
+                                color: Colors.white,
+                                size: 27,
+                              )
+                            : const Icon(
+                                Icons.bookmark_border,
+                                color: Colors.white,
+                                size: 27,
+                              ));
+                  }),
             ],
             backgroundColor: AppColors.accentColor,
           ),
@@ -161,9 +214,12 @@ else if(snapshot.connectionState == ConnectionState.active)
                               Align(
                                 alignment: Alignment.bottomCenter,
                                 child: InkWell(
-                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                                  
-                                    return WebViewContainer(url: selectedBook.volumeInfo.previewLink);
+                                  onTap: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                    return WebViewContainer(
+                                        url: selectedBook
+                                            .volumeInfo.previewLink);
                                   })),
                                   borderRadius: BorderRadius.circular(15),
                                   child: Container(
