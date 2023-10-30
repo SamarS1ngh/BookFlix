@@ -5,11 +5,13 @@ import 'dart:developer';
 import 'package:bookflix/Service/firestore.dart';
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Text.dart';
+import 'package:bookflix/View/Screens/App/OnlyBooks/webview.dart';
 import 'package:bookflix/View/Screens/App/Widgets/more_from_author.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,7 +42,25 @@ class _OnlyBookState extends State<OnlyBook> {
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
             actions: [
-              IconButton(
+              StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance
+                .collection("SavedBooks")
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .snapshots(),
+               builder: (context, snapshot){
+if(snapshot.connectionState == ConnectionState.waiting){
+return CircularProgressIndicator();
+}
+else if(snapshot.connectionState == ConnectionState.active)
+              {  Map<String,dynamic> data = snapshot.data?.data() as Map<String,dynamic>;
+         List<dynamic> books = data["Book"];
+         
+         for(var i in books){
+         if(i["id"]==selectedBook.id){
+        saved = true;
+         }
+         }
+                return   IconButton(
                   onPressed: () async {
                     setState(() {
                       saved = !saved;
@@ -63,7 +83,10 @@ class _OnlyBookState extends State<OnlyBook> {
                           Icons.bookmark_border,
                           color: Colors.white,
                           size: 27,
-                        ))
+                        ));}
+                        return Container();
+               }),
+            
             ],
             backgroundColor: AppColors.accentColor,
           ),
@@ -138,7 +161,10 @@ class _OnlyBookState extends State<OnlyBook> {
                               Align(
                                 alignment: Alignment.bottomCenter,
                                 child: InkWell(
-                                  onTap: () => log('yamete kudasai'),
+                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                                    print(selectedBook.volumeInfo.previewLink);
+                                    return WebViewContainer(url: selectedBook.volumeInfo.previewLink);
+                                  })),
                                   borderRadius: BorderRadius.circular(15),
                                   child: Container(
                                     width: width / 1.2,

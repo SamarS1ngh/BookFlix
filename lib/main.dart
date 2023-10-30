@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(width, height),
       builder: (context, child) {
         return StreamBuilder<User?>(
+           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               User? user = snapshot.data;
@@ -103,7 +104,7 @@ class MyApp extends StatelessWidget {
                       iconTheme: const IconThemeData(
                           color: AppColors.primaryColor, size: 27))),
             );
-          },
+          }, 
         );
       },
     );

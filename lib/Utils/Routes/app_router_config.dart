@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bookflix/View/Screens/App/BooksByTags/books_by_tags.dart';
 import 'package:bookflix/View/Screens/App/OnlyBooks/onlybook.dart';
+import 'package:bookflix/View/Screens/App/OnlyBooks/webview.dart';
 import 'package:bookflix/View/Screens/Auth/login.dart';
 import 'package:bookflix/View/Screens/App/Search/search.dart';
 import 'package:bookflix/View/Screens/App/homepagewithbottomnavbar.dart';
@@ -18,7 +19,7 @@ class AppRouter {
         path: '/',
         builder: (context, state) {
           final isLoggedin = Provider.of<HomeBookFetch>(context).isLogged;
-          return isLoggedin ? homepagewithbottomnavbar() : Login();
+          return isLoggedin ? const homepagewithbottomnavbar() : const Login();
         },
         routes: [
           // GoRoute(
@@ -31,7 +32,7 @@ class AppRouter {
           GoRoute(
             path: 'search',
             builder: (context, state) {
-              return Search();
+              return const Search();
             },
             routes: [
               GoRoute(
@@ -52,12 +53,19 @@ class AppRouter {
                 return OnlyBook(
                   selectedBook: selectedBook,
                 );
-              }),
+              },
+              routes: [
+                GoRoute(path: 'webviewpage/:url',
+                builder: (context, state) {
+                  final url = state.pathParameters['url'];
+                  return WebViewContainer(url: url!);
+                },)
+              ]),
 
           GoRoute(
             path: 'signup',
             builder: (context, state) {
-              return Register();
+              return const Register();
             },
           ),
         ])
