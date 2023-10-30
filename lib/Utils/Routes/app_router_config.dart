@@ -18,7 +18,7 @@ class AppRouter {
         path: '/',
         builder: (context, state) {
           final isLoggedin = Provider.of<HomeBookFetch>(context).isLogged;
-          return isLoggedin ? homepagewithbottomnavbar() : Login();
+          return isLoggedin ? const homepagewithbottomnavbar() : const Login();
         },
         routes: [
           // GoRoute(
@@ -31,7 +31,7 @@ class AppRouter {
           GoRoute(
             path: 'search',
             builder: (context, state) {
-              return Search();
+              return const Search();
             },
             routes: [
               GoRoute(
@@ -57,7 +57,7 @@ class AppRouter {
           GoRoute(
             path: 'signup',
             builder: (context, state) {
-              return Register();
+              return const Register();
             },
           ),
         ])
