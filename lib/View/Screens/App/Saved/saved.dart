@@ -29,96 +29,101 @@ class _SavedState extends State<Saved> {
                   style: TextStyle(fontWeight: FontWeight.w400),
                 )),
             body: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection("SavedBooks").doc(FirebaseAuth.instance.currentUser!.uid).snapshots(), 
+              stream: FirebaseFirestore.instance
+                  .collection("SavedBooks")
+                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                  .snapshots(),
               builder: (context, snapshot) {
-                if(snapshot.connectionState==ConnectionState.waiting){
-                  return Center(child: CircularProgressIndicator(),);
-                }
-                else if(snapshot.connectionState == ConnectionState.active){
-                  if(snapshot.data != null)
-              {   Map<String,dynamic> data = snapshot.data?.data() as Map<String,dynamic>;
-                 final List savedList = data["Book"];
-                // print(savedList.toString());
-                    return GridView.builder(
-      itemCount: savedList.length,
-      itemBuilder: (context, index) {
-        print(savedList[index]['title']);
-        return GestureDetector(
-          onTap: () {
-            // log('yamette');
-            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-              return OnlyBook(selectedBook: savedList[index]);
-            }));
-          },
-          child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child:savedList == null
-                      ? Container(
-                        
-                          width: 180,
-                          decoration: BoxDecoration(
-                              color: AppColors.accentColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const Center(
-                            child: CircularProgressIndicator(
-                              color: Color.fromARGB(255, 65, 64, 64),
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.connectionState == ConnectionState.active) {
+                  if (snapshot.data != null) {
+                    Map<String, dynamic> data =
+                        snapshot.data?.data() as Map<String, dynamic>;
+                    final List savedList = data["Book"] ?? [];
+                    // print(savedList.toString());
+                    return savedList.isEmpty
+                        ? Center(
+                            child: Text(
+                              'Add books to your collection',
+                              style: AppFonts.bodyText,
                             ),
-                          ),
-                        )
-                      : Stack(children: [
-                          Container(
-                           
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(8),
-                                    topRight: Radius.circular(8))),
-                            clipBehavior: Clip.antiAlias,
-                            child: Image.network(
-                              savedList[index]['image'],
-                              width: 180,
-                              fit: BoxFit.cover,
-                              isAntiAlias: false,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              width: 180,
-                              height: 35,
-                              color: const Color(0xFF171717),
-                              child: Center(
+                          )
+                        : GridView.builder(
+                            itemCount: savedList.length,
+                            itemBuilder: (context, index) {
+                              print(savedList[index]['title']);
+                              return GestureDetector(
+                                onTap: () {
+                                  // log('yamette');
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return OnlyBook(
+                                        selectedBook: savedList[index] ?? []);
+                                  }));
+                                },
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, top: 2, right: 1, bottom: 1),
-                                  child: Text(
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    savedList[index]['title']
-                                        .toString(),
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.textPrimary,
-                                        fontSize: 12),
-                                  ),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Stack(children: [
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(8),
+                                              topRight: Radius.circular(8))),
+                                      clipBehavior: Clip.antiAlias,
+                                      child: Image.network(
+                                        savedList[index]['image'],
+                                        width: 180,
+                                        fit: BoxFit.cover,
+                                        isAntiAlias: false,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Container(
+                                        width: 180,
+                                        height: 35,
+                                        color: const Color(0xFF171717),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 8.0,
+                                                top: 2,
+                                                right: 1,
+                                                bottom: 1),
+                                            child: Text(
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              savedList[index]['title']
+                                                  .toString(),
+                                              style: GoogleFonts.montserrat(
+                                                  fontWeight: FontWeight.w400,
+                                                  color: AppColors.textPrimary,
+                                                  fontSize: 12),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ]),
                                 ),
-                              ),
+                              );
+                            },
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: 2,
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 0.02.sw,
+                              mainAxisSpacing: 0.05.sw,
                             ),
-                          ),
-                        ]),
-                ),
-        );
-      },
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 2,
-        crossAxisCount: 2,
-        crossAxisSpacing: 0.02.sw,
-        mainAxisSpacing: 0.05.sw,
-      ),
-    );
-               }
-              
+                          );
+                  }
                 }
-         return Container();      },)));
+                return Container();
+              },
+            )));
   }
 }

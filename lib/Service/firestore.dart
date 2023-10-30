@@ -10,7 +10,7 @@ import 'dart:developer';
 abstract class IFirestoreService {
   Future<void> save({required Item saveBook});
   Future<void> unsave({required Item unsaveBook});
-  transformIndustryIdentifiers({required Item book});
+  transform({required Item book});
 }
 
 class DatabaseService implements IFirestoreService {
@@ -19,7 +19,7 @@ class DatabaseService implements IFirestoreService {
   Future<void> save({required Item saveBook}) async {
     final userDoc =
         await _db.collection("SavedBooks").doc(auth.currentUser!.uid).get();
-    final List savedBookList = (userDoc.data()?['Book']);
+    final List savedBookList = (userDoc.data()?['Book'] ?? []);
 
     Map<String, dynamic> word = {
       "saved": true,
@@ -31,8 +31,7 @@ class DatabaseService implements IFirestoreService {
       "categories": saveBook.volumeInfo.categories,
       "description": saveBook.volumeInfo.description,
       "previewLink": saveBook.volumeInfo.previewLink,
-      "volumeInfo": transformIndustryIdentifiers(book: saveBook),
-      //"industryIdentifier": iiList
+      "volumeInfo": transform(book: saveBook),
     };
     savedBookList.add(word);
     await _db
@@ -55,6 +54,7 @@ class DatabaseService implements IFirestoreService {
       "categories": unsaveBook.volumeInfo.categories,
       "description": unsaveBook.volumeInfo.description,
       "previewLink": unsaveBook.volumeInfo.previewLink,
+      "volumeInfo": transform(book: unsaveBook),
     };
 
     savedBookList.removeWhere((book) => book["id"] == unsaveBook.id);
@@ -65,7 +65,7 @@ class DatabaseService implements IFirestoreService {
   }
 
   @override
-  transformIndustryIdentifiers({required Item book}) {
+  transform({required Item book}) {
     List<IndustryIdentifier> data = book.volumeInfo.industryIdentifiers!;
     List<Map<String, dynamic>> iiList = [];
     for (var i in data) {
