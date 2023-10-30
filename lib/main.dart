@@ -69,11 +69,11 @@ class MyApp extends StatelessWidget {
               if (user != null) {
                 prov.isLogged = true;
                 prov.notifyListeners();
-                log(prov.isLogged.toString());
+                
               } else {
                 prov.isLogged = false;
                 prov.notifyListeners();
-                log(prov.isLogged.toString());
+              
               }
             }
             return MaterialApp.router(

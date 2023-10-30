@@ -9,12 +9,17 @@ String url;
   Widget build(BuildContext context) {
     final controller = WebViewController()
 ..setJavaScriptMode(JavaScriptMode.unrestricted)
-..loadRequest(Uri.parse(url));
+..loadRequest(Uri.parse(url))
+..clearCache();
+
 print(url);
     return SafeArea(child: Scaffold(
     
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(),
+     
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData().copyWith(color: Colors.black),
+      ),
       body: WebViewWidget(controller: controller,),
     ));
   }
