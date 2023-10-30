@@ -45,7 +45,9 @@ class _OnlyBookState extends State<OnlyBook> {
                       if (saved) {
                         db.save(saveBook: selectedBook);
                         log('saving');
-                      } else {}
+                      } else {
+                        db.unsave(unsaveBook: selectedBook);
+                      }
                     });
                     //  log(saved.toString());
                   },
