@@ -75,7 +75,8 @@ class _AuthorListState extends State<AuthorList> {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.network(
-                                  volumeInfo.volumeInfo.imageLinks!.thumbnail,
+                                  volumeInfo.volumeInfo.imageLinks?.thumbnail ??
+                                      'https://www.google.com/search?q=code+geass+wallpaper&tbm=isch&chips=q:code+geass+wallpaper,g_1:minimalist:MGCWLS14Vbw%3D&hl=en&sa=X&ved=2ahUKEwiO4cGlr5uCAxUTb2wGHUWfAb4Q4lYoBHoECAEQNg&biw=1257&bih=571#imgrc=qhiT3YYCTrjwfM',
                                   height: height,
                                   width: width / 3.5,
                                   fit: BoxFit.fitHeight,

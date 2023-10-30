@@ -9,6 +9,7 @@ import 'package:bookflix/View/Screens/App/Saved/saved.dart';
 import 'package:bookflix/View/Screens/App/Search/search.dart';
 import 'package:bookflix/ViewModel/Providers/homeProvider.dart';
 import 'package:bookflix/ViewModel/Providers/books_by_author.dart';
+import 'package:bookflix/ViewModel/Providers/saved_provider.dart';
 import 'package:bookflix/ViewModel/Providers/searchProvider.dart';
 import 'package:bookflix/ViewModel/Providers/tag_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,6 +36,7 @@ Future<void> main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => HomeBookFetch()),
       ChangeNotifierProvider(create: (context) => BooksbyAuthor()),
+      ChangeNotifierProvider(create: (context) => SavedBooks()),
       ChangeNotifierProvider(
         create: (context) => SearchProvider(),
       ),

@@ -10,8 +10,9 @@ _$VolumeInfoImpl _$$VolumeInfoImplFromJson(Map<String, dynamic> json) =>
     _$VolumeInfoImpl(
       title: json['title'] as String,
       subtitle: json['subtitle'] as String?,
-      authors:
-          (json['authors'] as List<dynamic>).map((e) => e as String).toList(),
+      authors: ((json['authors'] ?? ['No Author Found']) as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       publisher: json['publisher'] as String?,
       publishedDate: json['publishedDate'] as String?,
       description: json['description'] as String?,
@@ -20,7 +21,7 @@ _$VolumeInfoImpl _$$VolumeInfoImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       readingModes:
           ReadingModes.fromJson(json['readingModes'] as Map<String, dynamic>),
-      pageCount: json['pageCount'] as int,
+      pageCount: json['pageCount'] ?? 0 as int,
       printType: json['printType'] as String,
       maturityRating: json['maturityRating'] as String,
       allowAnonLogging: json['allowAnonLogging'] as bool,

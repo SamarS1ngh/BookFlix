@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:bookflix/Service/firestore.dart';
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Screens/App/Widgets/more_from_author.dart';
@@ -30,7 +31,7 @@ class _OnlyBookState extends State<OnlyBook> {
   @override
   Widget build(BuildContext context) {
     final selectedBook = widget.selectedBook;
-    // print(selectedBook);
+    DatabaseService db = DatabaseService();
     final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -42,6 +43,8 @@ class _OnlyBookState extends State<OnlyBook> {
                     setState(() {
                       saved = !saved;
                       if (saved) {
+                        db.save(saveBook: selectedBook);
+                        log('saving');
                       } else {}
                     });
                     //  log(saved.toString());
