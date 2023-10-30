@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bookflix/View/Screens/App/BooksByTags/books_by_tags.dart';
 import 'package:bookflix/View/Screens/App/OnlyBooks/onlybook.dart';
+import 'package:bookflix/View/Screens/App/OnlyBooks/webview.dart';
 import 'package:bookflix/View/Screens/Auth/login.dart';
 import 'package:bookflix/View/Screens/App/Search/search.dart';
 import 'package:bookflix/View/Screens/App/homepagewithbottomnavbar.dart';
@@ -52,7 +53,14 @@ class AppRouter {
                 return OnlyBook(
                   selectedBook: selectedBook,
                 );
-              }),
+              },
+              routes: [
+                GoRoute(path: 'webviewpage/:url',
+                builder: (context, state) {
+                  final url = state.pathParameters['url'];
+                  return WebViewContainer(url: url!);
+                },)
+              ]),
 
           GoRoute(
             path: 'signup',
