@@ -54,13 +54,13 @@ class AppRouter {
                   selectedBook: selectedBook,
                 );
               },
-              routes: [
+          ),
                 GoRoute(path: 'webviewpage/:url',
                 builder: (context, state) {
                   final url = state.pathParameters['url'];
                   return WebViewContainer(url: url!);
                 },)
-              ]),
+              ,
 
           GoRoute(
             path: 'signup',

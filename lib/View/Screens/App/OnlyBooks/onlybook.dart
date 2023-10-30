@@ -162,7 +162,7 @@ else if(snapshot.connectionState == ConnectionState.active)
                                 alignment: Alignment.bottomCenter,
                                 child: InkWell(
                                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                                    print(selectedBook.volumeInfo.previewLink);
+                                  
                                     return WebViewContainer(url: selectedBook.volumeInfo.previewLink);
                                   })),
                                   borderRadius: BorderRadius.circular(15),
