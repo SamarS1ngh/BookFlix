@@ -6,6 +6,8 @@ import 'package:bookflix/Service/firestore.dart';
 import 'package:bookflix/Utils/Colors.dart';
 import 'package:bookflix/Utils/Text.dart';
 import 'package:bookflix/View/Screens/App/Widgets/more_from_author.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
