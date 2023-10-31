@@ -22,16 +22,7 @@ class DatabaseService implements IFirestoreService {
     final List savedBookList = (userDoc.data()?['Book'] ?? []);
 
     Map<String, dynamic> word = {
-      "saved": true,
-      "id": saveBook.id,
-      "image": saveBook.volumeInfo.imageLinks?.thumbnail ??
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reddit.com%2Fr%2FAnimePhoneWallpapers%2Fcomments%2F3bxa25%2F1080x1920_minimalist_code_geass_wallpaper%2F&psig=AOvVaw3g6mybEzaL8Fn6vDONGHzN&ust=1698690920468000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJiCx_nym4IDFQAAAAAdAAAAABAE',
-      "title": saveBook.volumeInfo.title,
-      "author": saveBook.volumeInfo.authors[0],
-      "categories": saveBook.volumeInfo.categories,
-      "description": saveBook.volumeInfo.description,
-      "previewLink": saveBook.volumeInfo.previewLink,
-      "volumeInfo": transform(book: saveBook),
+      "item": transform(book: saveBook),
     };
     savedBookList.add(word);
     await _db
@@ -44,20 +35,10 @@ class DatabaseService implements IFirestoreService {
     final userDoc =
         await _db.collection("SavedBooks").doc(auth.currentUser!.uid).get();
     final List savedBookList = (userDoc.data()?['Book']);
-    Map<String, dynamic> word = {
-      "saved": true,
-      "id": unsaveBook.id,
-      "image": unsaveBook.volumeInfo.imageLinks?.thumbnail ??
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reddit.com%2Fr%2FAnimePhoneWallpapers%2Fcomments%2F3bxa25%2F1080x1920_minimalist_code_geass_wallpaper%2F&psig=AOvVaw3g6mybEzaL8Fn6vDONGHzN&ust=1698690920468000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJiCx_nym4IDFQAAAAAdAAAAABAE',
-      "title": unsaveBook.volumeInfo.title,
-      "author": unsaveBook.volumeInfo.authors[0],
-      "categories": unsaveBook.volumeInfo.categories,
-      "description": unsaveBook.volumeInfo.description,
-      "previewLink": unsaveBook.volumeInfo.previewLink,
-      "volumeInfo": transform(book: unsaveBook),
-    };
-
-    savedBookList.removeWhere((book) => book["id"] == unsaveBook.id);
+    Map<String, dynamic> word = {"item": transform(book: unsaveBook)};
+    log('unsaveBook.id ${unsaveBook.id}');
+    log('firebase book id ${savedBookList[0]['item']['id']}');
+    savedBookList.removeWhere((book) => book["item"]["id"] == unsaveBook.id);
     await _db
         .collection('SavedBooks')
         .doc(auth.currentUser!.uid)
@@ -72,10 +53,15 @@ class DatabaseService implements IFirestoreService {
       Map<String, dynamic> m = i.toJson();
       iiList.add(m);
     }
-    final vi = book.volumeInfo.toJson();
-    vi['industryIdentifiers'] = iiList;
-    vi['readingModes'] = book.volumeInfo.readingModes.toJson();
-    vi['imageLinks'] = book.volumeInfo.imageLinks!.toJson();
-    return vi;
+    final item = book.toJson();
+    item['volumeInfo'] = book.volumeInfo.toJson();
+    item['volumeInfo']['industryIdentifiers'] = iiList;
+    item['volumeInfo']['readingModes'] = book.volumeInfo.readingModes.toJson();
+    item['volumeInfo']['imageLinks'] = book.volumeInfo.imageLinks!.toJson();
+    item['saleInfo'] = book.saleInfo.toJson();
+    item['accessInfo'] = book.accessInfo.toJson();
+    item['accessInfo']['epub'] = book.accessInfo.epub.toJson();
+    item['accessInfo']['pdf'] = book.accessInfo.pdf.toJson();
+    return item;
   }
 }

@@ -35,7 +35,7 @@ class _OnlyBookState extends State<OnlyBook> {
   @override
   Widget build(BuildContext context) {
     final selectedBook = widget.selectedBook;
-    //log(selectedBook.toString());
+    log(selectedBook.toString());
     DatabaseService db = DatabaseService();
     final width = MediaQuery.of(context).size.width;
     return SafeArea(

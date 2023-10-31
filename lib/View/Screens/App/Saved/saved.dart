@@ -54,14 +54,18 @@ class _SavedState extends State<Saved> {
                         : GridView.builder(
                             itemCount: savedList.length,
                             itemBuilder: (context, index) {
-                              print(savedList[index]['title']);
+                              //  print(savedList[index]['volumeInfo']['title']);
                               return GestureDetector(
                                 onTap: () {
                                   // log('yamette');
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (BuildContext context) {
+                                    // log(savedList[index]['volumeInfo']
+                                    //     .toString());
                                     return OnlyBook(
-                                        selectedBook: savedList[index] ?? []);
+                                        selectedBook: savedList[index]
+                                                ['volumeInfo'] ??
+                                            []);
                                   }));
                                 },
                                 child: Padding(
@@ -74,7 +78,8 @@ class _SavedState extends State<Saved> {
                                               topRight: Radius.circular(8))),
                                       clipBehavior: Clip.antiAlias,
                                       child: Image.network(
-                                        savedList[index]['image'],
+                                        savedList[index]['volumeInfo']
+                                            ['imageLinks']['thumbnail'],
                                         width: 180,
                                         fit: BoxFit.cover,
                                         isAntiAlias: false,
@@ -96,7 +101,8 @@ class _SavedState extends State<Saved> {
                                             child: Text(
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
-                                              savedList[index]['title']
+                                              savedList[index]['volumeInfo']
+                                                      ['title']
                                                   .toString(),
                                               style: GoogleFonts.montserrat(
                                                   fontWeight: FontWeight.w400,
