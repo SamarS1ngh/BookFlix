@@ -45,9 +45,12 @@ class _SavedState extends State<Saved> {
                     Map<String, dynamic> data =
                         snapshot.data?.data() as Map<String, dynamic>;
                     final List savedList = data["Book"] ?? [];
-            
+            final List reversed = [];
+            for(var i = savedList.length-1; i>=0;i--){
+              reversed.add(savedList[i]);
+            }
                     // print(savedList.toString());
-                    return savedList.isEmpty
+                    return reversed.isEmpty
                         ? Center(
                             child: Text(
                               'Add books to your collection',
@@ -55,11 +58,11 @@ class _SavedState extends State<Saved> {
                             ),
                           )
                         : GridView.builder(
-                            itemCount: savedList.length,
+                            itemCount: reversed.length,
                             itemBuilder: (context, index) {
                               //  print(savedList[index]['volumeInfo']['title']);
                               Item item =
-                                  Item.fromJson(savedList[index]['item']);
+                                  Item.fromJson(reversed[index]['item']);
                               return GestureDetector(
                                 onTap: () {
                                   // log('yamette');
@@ -79,9 +82,19 @@ class _SavedState extends State<Saved> {
                                               topLeft: Radius.circular(8),
                                               topRight: Radius.circular(8))),
                                       clipBehavior: Clip.antiAlias,
-                                      child: Image.network(
-                                        savedList[index]["item"]['volumeInfo']
+                                      child: reversed[index]["item"]['volumeInfo']
+                                            ['imageLinks'] != null?
+                                      
+                                       Image.network(
+                                        reversed[index]["item"]['volumeInfo']
                                             ['imageLinks']['thumbnail'],
+                                        width: 180,
+                                        fit: BoxFit.fill,
+                                        isAntiAlias: false,
+                                      ):
+                                       Image.network(
+                                       'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw',
+                  
                                         width: 180,
                                         fit: BoxFit.fill,
                                         isAntiAlias: false,
@@ -103,7 +116,7 @@ class _SavedState extends State<Saved> {
                                             child: Text(
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
-                                              savedList[index]['item']
+                                              reversed[index]['item']
                                                       ['volumeInfo']['title']
                                                   .toString(),
                                               style: GoogleFonts.montserrat(

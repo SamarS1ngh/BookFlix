@@ -1,10 +1,13 @@
+import 'package:bookflix/Model/item.dart';
 import 'package:bookflix/Utils/Colors.dart';
 
 import 'package:bookflix/View/Screens/App/BooksByTags/tags_grid.dart';
+import 'package:bookflix/ViewModel/Providers/searchProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -15,7 +18,8 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final TextEditingController _searchController = TextEditingController();
-  String? searched;
+  String searched='';
+  SearchProvider searchProvider = SearchProvider();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,7 +42,13 @@ class _SearchState extends State<Search> {
                     borderRadius: BorderRadius.circular(5)),
                 child: TextFormField(
                   onChanged: (value) {
-                    searched = _searchController.text;
+                    setState(() {
+                        searched = _searchController.text;
+                    });
+                  
+                    print(searched);
+                    searchProvider.search(searched);
+         
                   },
                   controller: _searchController,
                   style: const TextStyle(
@@ -50,8 +60,8 @@ class _SearchState extends State<Search> {
                         const OutlineInputBorder(borderSide: BorderSide.none),
                     focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(width: 1)),
-                    suffixIcon: _searchController.text.isNotEmpty
-                        ? IconButton(
+                    suffixIcon: searched.isNotEmpty?
+                         IconButton(
                             onPressed: () {
                               _searchController.clear();
                             },
@@ -59,8 +69,8 @@ class _SearchState extends State<Search> {
                               Icons.clear,
                               size: 20,
                               color: AppColors.textSecondary,
-                            ))
-                        : null,
+                            )):null
+                       ,
                     hintText: 'psychology, colleen hoover, comics...',
                     hintStyle: const TextStyle(
                         fontWeight: FontWeight.w400, color: Colors.grey),
@@ -76,7 +86,8 @@ class _SearchState extends State<Search> {
                 ),
               ),
             ),
-            Padding(
+            searched.isEmpty?
+           Padding(
               padding:
                   EdgeInsets.only(left: .03.sw, top: .03.sh, bottom: .02.sh),
               child: Align(
@@ -89,11 +100,19 @@ class _SearchState extends State<Search> {
                       fontSize: 18),
                 ),
               ),
-            ),
-            Padding(
+            )
+           :Container()
+            ,
+           searched.isEmpty?
+             Padding(
               padding: EdgeInsets.only(left: 0.015.sw, right: 0.015.sw),
               child: SizedBox(height: 1.4.sh, width: 1.sw, child: const Tags()),
             )
+            :Consumer<SearchProvider>(builder: (context, value, child) {
+              final book = value.searchedBooks;
+           //   print('book ${book[0].volumeInfo.title}');
+             return Text('.volumeInfo.title');
+            },)
           ],
         ),
       ),

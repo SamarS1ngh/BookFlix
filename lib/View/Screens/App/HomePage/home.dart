@@ -32,6 +32,7 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+          
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(

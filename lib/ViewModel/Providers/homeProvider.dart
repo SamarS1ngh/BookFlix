@@ -25,7 +25,7 @@ class HomeBookFetch extends ChangeNotifier {
 
   Future<List<Item>> _fetchHomeBooks(String subject) async {
     url1 =
-        "${AppConstants.baseUrl}q=subject:$subject&printType=books&orderBy=relevance&key=$key";
+        "${AppConstants.baseUrl}q=subject:$subject&printType=books&orderBy=relevance&maxResults=40&key=$key";
     log('this is the url $url1');
     return await apiService.fetchBooks(url1);
   }

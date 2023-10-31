@@ -153,8 +153,13 @@ class _OnlyBookState extends State<OnlyBook> {
                     children: [
                       Container(
                         color: Colors.red,
-                        child: Image.network(
+                        child:selectedBook.volumeInfo.imageLinks!=null? Image.network(
                           selectedBook.volumeInfo.imageLinks.thumbnail,
+                          fit: BoxFit.cover,
+                          height: .3.sh,
+                          width: .42.sw,
+                        ):Image.network(
+                          'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw',
                           fit: BoxFit.cover,
                           height: .3.sh,
                           width: .42.sw,

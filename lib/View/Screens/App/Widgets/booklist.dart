@@ -61,14 +61,23 @@ class _BooklistState extends State<Booklist> {
                                     topLeft: Radius.circular(8),
                                     topRight: Radius.circular(8))),
                             clipBehavior: Clip.antiAlias,
-                            child: Image.network(
+                            child:  widget.bookimgs?[index].volumeInfo.imageLinks != null &&  widget.bookimgs?[index].volumeInfo.imageLinks
+                                      ?.thumbnail !=null?
+                             Image.network(
                               widget.bookimgs?[index].volumeInfo.imageLinks
                                       ?.thumbnail ??
-                                  '',
+                                  'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw' ,
                               width: 180,
                               fit: BoxFit.cover,
                               isAntiAlias: false,
-                            ),
+                            ):  Image.network(
+                              'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw'
+           
+                                  ,
+                              width: 180,
+                              fit: BoxFit.cover,
+                              isAntiAlias: false,
+                            ) ,
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,

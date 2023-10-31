@@ -76,7 +76,8 @@ class _AuthorListState extends State<AuthorList> {
                               children: [
                                 Image.network(
                                   volumeInfo.volumeInfo.imageLinks?.thumbnail ??
-                                      'https://www.google.com/search?q=code+geass+wallpaper&tbm=isch&chips=q:code+geass+wallpaper,g_1:minimalist:MGCWLS14Vbw%3D&hl=en&sa=X&ved=2ahUKEwiO4cGlr5uCAxUTb2wGHUWfAb4Q4lYoBHoECAEQNg&biw=1257&bih=571#imgrc=qhiT3YYCTrjwfM',
+                                     'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw',
+                  
                                   height: height,
                                   width: width / 3.5,
                                   fit: BoxFit.fitHeight,

@@ -10,7 +10,7 @@ _$ImageLinksImpl _$$ImageLinksImplFromJson(Map<String, dynamic> json) =>
     _$ImageLinksImpl(
       smallThumbnail: json['smallThumbnail'] as String,
       thumbnail: json['thumbnail'] ??
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.reddit.com%2Fr%2FAnimePhoneWallpapers%2Fcomments%2F3bxa25%2F1080x1920_minimalist_code_geass_wallpaper%2F&psig=AOvVaw3g6mybEzaL8Fn6vDONGHzN&ust=1698690920468000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJiCx_nym4IDFQAAAAAdAAAAABAE'
+          'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw'
               as String,
     );
 
