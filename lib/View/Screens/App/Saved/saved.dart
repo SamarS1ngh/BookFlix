@@ -10,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../Model/item.dart';
+
 class Saved extends StatefulWidget {
   const Saved({super.key});
 
@@ -43,6 +45,7 @@ class _SavedState extends State<Saved> {
                     Map<String, dynamic> data =
                         snapshot.data?.data() as Map<String, dynamic>;
                     final List savedList = data["Book"] ?? [];
+
                     // print(savedList.toString());
                     return savedList.isEmpty
                         ? Center(
@@ -55,15 +58,15 @@ class _SavedState extends State<Saved> {
                             itemCount: savedList.length,
                             itemBuilder: (context, index) {
                               //  print(savedList[index]['volumeInfo']['title']);
+                              Item item =
+                                  Item.fromJson(savedList[index]['item']);
                               return GestureDetector(
                                 onTap: () {
                                   // log('yamette');
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (BuildContext context) {
-                                    log(savedList[index]['item'].toString());
-                                    return OnlyBook(
-                                        selectedBook:
-                                            savedList[index]['item'] ?? []);
+                                    log(item.toString());
+                                    return OnlyBook(selectedBook: item);
                                   }));
                                 },
                                 child: Padding(
