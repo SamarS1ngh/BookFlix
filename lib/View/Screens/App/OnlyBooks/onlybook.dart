@@ -59,7 +59,7 @@ class _OnlyBookState extends State<OnlyBook> {
                         List<dynamic> books = data["Book"] ?? [];
 
                         for (var i in books) {
-                          if (i["id"] == selectedBook.id) {
+                          if (i["item"]["id"] == selectedBook.id) {
                             saved = true;
                           }
                         }

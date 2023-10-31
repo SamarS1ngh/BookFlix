@@ -60,12 +60,10 @@ class _SavedState extends State<Saved> {
                                   // log('yamette');
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (BuildContext context) {
-                                    // log(savedList[index]['volumeInfo']
-                                    //     .toString());
+                                    log(savedList[index]['item'].toString());
                                     return OnlyBook(
-                                        selectedBook: savedList[index]
-                                                ['volumeInfo'] ??
-                                            []);
+                                        selectedBook:
+                                            savedList[index]['item'] ?? []);
                                   }));
                                 },
                                 child: Padding(
@@ -78,7 +76,7 @@ class _SavedState extends State<Saved> {
                                               topRight: Radius.circular(8))),
                                       clipBehavior: Clip.antiAlias,
                                       child: Image.network(
-                                        savedList[index]['volumeInfo']
+                                        savedList[index]["item"]['volumeInfo']
                                             ['imageLinks']['thumbnail'],
                                         width: 180,
                                         fit: BoxFit.cover,
@@ -101,8 +99,8 @@ class _SavedState extends State<Saved> {
                                             child: Text(
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 1,
-                                              savedList[index]['volumeInfo']
-                                                      ['title']
+                                              savedList[index]['item']
+                                                      ['volumeInfo']['title']
                                                   .toString(),
                                               style: GoogleFonts.montserrat(
                                                   fontWeight: FontWeight.w400,
