@@ -37,7 +37,7 @@ class _SavedState extends State<Saved> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (snapshot.connectionState == ConnectionState.active) {
@@ -45,7 +45,7 @@ class _SavedState extends State<Saved> {
                     Map<String, dynamic> data =
                         snapshot.data?.data() as Map<String, dynamic>;
                     final List savedList = data["Book"] ?? [];
-
+            
                     // print(savedList.toString());
                     return savedList.isEmpty
                         ? Center(
@@ -73,6 +73,7 @@ class _SavedState extends State<Saved> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Stack(children: [
                                     Container(
+                                      height: 100,
                                       decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(8),
@@ -118,7 +119,7 @@ class _SavedState extends State<Saved> {
                                 ),
                               );
                             },
-                            physics: const NeverScrollableScrollPhysics(),
+                           // physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               childAspectRatio: 2,
