@@ -32,14 +32,11 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-          
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: GestureDetector(
                 onTap: () {
-                  log('home context $context ');
                   context.go("/search");
-                  log('going to search');
                 },
                 child: Container(
                   height: 0.047.sh,

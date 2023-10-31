@@ -32,7 +32,7 @@ class HomeBookFetch extends ChangeNotifier {
 
   Future fetchCategories() async {
     log("api called");
-    popularBooks = await apiService.fetchBooks(AppConstants.baseUrl);
+    popularBooks = await apiService.fetchBooks(AppConstants.popularUrl);
     // print('api key $key');
 
     scifiBooks = await _fetchHomeBooks('science+fiction');

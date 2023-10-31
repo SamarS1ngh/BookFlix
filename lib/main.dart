@@ -25,7 +25,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
-  FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
+  // FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -36,7 +36,6 @@ Future<void> main() async {
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => HomeBookFetch()),
       ChangeNotifierProvider(create: (context) => BooksbyAuthor()),
-     
       ChangeNotifierProvider(
         create: (context) => SearchProvider(),
       ),
@@ -61,7 +60,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(width, height),
       builder: (context, child) {
         return StreamBuilder<User?>(
-           stream: FirebaseAuth.instance.authStateChanges(),
+          stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               User? user = snapshot.data;
@@ -69,11 +68,9 @@ class MyApp extends StatelessWidget {
               if (user != null) {
                 prov.isLogged = true;
                 prov.notifyListeners();
-                
               } else {
                 prov.isLogged = false;
                 prov.notifyListeners();
-              
               }
             }
             return MaterialApp.router(
@@ -104,7 +101,7 @@ class MyApp extends StatelessWidget {
                       iconTheme: const IconThemeData(
                           color: AppColors.primaryColor, size: 27))),
             );
-          }, 
+          },
         );
       },
     );
