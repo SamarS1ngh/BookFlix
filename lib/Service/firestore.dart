@@ -57,11 +57,12 @@ class DatabaseService implements IFirestoreService {
     item['volumeInfo'] = book.volumeInfo.toJson();
     item['volumeInfo']['industryIdentifiers'] = iiList;
     item['volumeInfo']['readingModes'] = book.volumeInfo.readingModes.toJson();
-    item['volumeInfo']['imageLinks'] = book.volumeInfo.imageLinks!.toJson();
+    item['volumeInfo']['imageLinks'] = book.volumeInfo.imageLinks?.toJson();
     item['saleInfo'] = book.saleInfo.toJson();
     item['accessInfo'] = book.accessInfo.toJson();
     item['accessInfo']['epub'] = book.accessInfo.epub.toJson();
     item['accessInfo']['pdf'] = book.accessInfo.pdf.toJson();
+    item['searchInfo'] = book.searchInfo?.toJson();
     return item;
   }
 }
