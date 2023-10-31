@@ -73,7 +73,7 @@ class _SavedState extends State<Saved> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Stack(children: [
                                     Container(
-                                      height: 100,
+                                     // height: 100,
                                       decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(8),
@@ -83,7 +83,7 @@ class _SavedState extends State<Saved> {
                                         savedList[index]["item"]['volumeInfo']
                                             ['imageLinks']['thumbnail'],
                                         width: 180,
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.fill,
                                         isAntiAlias: false,
                                       ),
                                     ),
@@ -122,10 +122,10 @@ class _SavedState extends State<Saved> {
                            // physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 2,
+                              childAspectRatio: 1,
                               crossAxisCount: 2,
-                              crossAxisSpacing: 0.02.sw,
-                              mainAxisSpacing: 0.05.sw,
+                              crossAxisSpacing: 0.015.sw,
+                              mainAxisSpacing: 0.01.sw,
                             ),
                           );
                   }
