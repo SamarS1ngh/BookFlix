@@ -25,6 +25,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _pswd = TextEditingController();
   bool cansee = false;
+  bool tapped = false;
   @override
   void dispose() {
     super.dispose();
@@ -141,19 +142,29 @@ class _LoginState extends State<Login> {
                     borderRadius: BorderRadius.circular(10)),
                 child: TextButton(
                     onPressed: () async {
+                      setState(() {
+                        tapped = true;
+                      });
                       await authService.signin(
                           email: _email.text,
                           pswd: _pswd.text,
                           context: context);
-
-                      if (prov.isLogged) {
+                      if (!prov.isLogged) {
+                        setState(() {
+                          tapped = false;
+                        });
+                      } else if (prov.isLogged) {
                         context.go("/");
                       }
                     },
-                    child: Text(
-                      'Login',
-                      style: AppFonts.headingText,
-                    )),
+                    child: tapped
+                        ? CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : Text(
+                            'Login',
+                            style: AppFonts.headingText,
+                          )),
               ),
               const SizedBox(
                 height: 10,

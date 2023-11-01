@@ -55,39 +55,18 @@ class _OnlyBookState extends State<OnlyBook> {
                         ConnectionState.active) {
                       if (snapshot.data != null) {
                         Map<String, dynamic> data =
-                            snapshot.data?.data() as Map<String, dynamic>;
-                        List<dynamic> books = data["Book"] ?? [];
-
-                        for (var i in books) {
-                          if (i["item"]["id"] == selectedBook.id) {
-                            saved = true;
+                            snapshot.data!.data() as Map<String, dynamic>? ??
+                                {};
+                        List<dynamic> books =
+                            data["Book"] as List<dynamic>? ?? [];
+                        if (books.isNotEmpty) {
+                          for (var i in books) {
+                            if (i["item"]["id"] == selectedBook.id) {
+                              saved = true;
+                            }
                           }
                         }
-                        return IconButton(
-                            onPressed: () async {
-                              setState(() {
-                                saved = !saved;
-                                if (saved) {
-                                  db.save(saveBook: selectedBook);
-                                  log('saving');
-                                } else {
-                                  db.unsave(unsaveBook: selectedBook);
-                                }
-                              });
-                              //  log(saved.toString());
-                            },
-                            icon: saved == true
-                                ? const Icon(
-                                    Icons.bookmark,
-                                    color: Colors.white,
-                                    size: 27,
-                                  )
-                                : const Icon(
-                                    Icons.bookmark_border,
-                                    color: Colors.white,
-                                    size: 27,
-                                  ));
-                      } else {
+
                         return IconButton(
                             onPressed: () async {
                               setState(() {
@@ -114,7 +93,6 @@ class _OnlyBookState extends State<OnlyBook> {
                                   ));
                       }
                     }
-
                     return IconButton(
                         onPressed: () async {
                           setState(() {
@@ -153,17 +131,19 @@ class _OnlyBookState extends State<OnlyBook> {
                     children: [
                       Container(
                         color: Colors.red,
-                        child:selectedBook.volumeInfo.imageLinks!=null? Image.network(
-                          selectedBook.volumeInfo.imageLinks.thumbnail,
-                          fit: BoxFit.cover,
-                          height: .3.sh,
-                          width: .42.sw,
-                        ):Image.network(
-                          'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw',
-                          fit: BoxFit.cover,
-                          height: .3.sh,
-                          width: .42.sw,
-                        ),
+                        child: selectedBook.volumeInfo.imageLinks != null
+                            ? Image.network(
+                                selectedBook.volumeInfo.imageLinks.thumbnail,
+                                fit: BoxFit.cover,
+                                height: .3.sh,
+                                width: .42.sw,
+                              )
+                            : Image.network(
+                                'https://imgs.search.brave.com/CVm-5INAaGheoD5qdKJNbN6ZNdirgiJT-_TIF_LTLG8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2JmL2Yz/LzY2L2JmZjM2NmU3/YjNkNzJjN2MwMTNm/MzBjOTM5NGQ1Mjc4/LmpwZw',
+                                fit: BoxFit.cover,
+                                height: .3.sh,
+                                width: .42.sw,
+                              ),
                       ),
                       SizedBox(
                         width: .04.sw,

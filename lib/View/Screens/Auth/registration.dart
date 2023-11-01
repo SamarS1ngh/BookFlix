@@ -24,6 +24,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _pswd = TextEditingController();
   bool cansee = false;
+  bool tapped = false;
   // validator(String email, String pswd, BuildContext context) {
   //   if (email == '') {
   //     Message().message('Email field can\'t be empty');
@@ -142,13 +143,20 @@ class _RegisterState extends State<Register> {
                       color: AppColors.primaryColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: TextButton(
-                      onPressed: () {
-                        authService.signup(
+                      onPressed: () async {
+                        setState(() {
+                          tapped = true;
+                        });
+                        await authService.signup(
                             email: _email.text,
                             pswd: _pswd.text,
                             context: context);
-                        if (prov.isLogged) {
-                          context.go('/');
+                        if (!prov.isLogged) {
+                          setState(() {
+                            tapped = false;
+                          });
+                        } else if (prov.isLogged) {
+                          context.go("/");
                         }
                       },
                       child: Text(

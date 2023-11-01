@@ -51,6 +51,7 @@ class FirebaseAuthService implements IFirebaseService {
       await _auth.createUserWithEmailAndPassword(email: email, password: pswd);
       Message().message('Account created Successfully', context);
       prov.isLogged = true;
+      prov.notifyListeners();
 
       log('signing up ${prov.isLogged}');
     } catch (e) {
