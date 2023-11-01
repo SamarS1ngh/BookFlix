@@ -141,6 +141,7 @@ class FirebaseAuthService implements IFirebaseService {
           await FirebaseAuth.instance.signInWithCredential(credential);
       final User? user = FirebaseAuth.instance.currentUser;
       prov.isLogged = true;
+      Message().message('Logged in Successfully', context);
       prov.notifyListeners();
       return user;
     } catch (e) {
