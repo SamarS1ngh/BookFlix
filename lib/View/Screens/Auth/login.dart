@@ -202,7 +202,9 @@ class _LoginState extends State<Login> {
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(10)),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      FirebaseAuthService().googleSignIn(context: context);
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

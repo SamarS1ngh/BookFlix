@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:bookflix/Utils/Routes/app_router_config.dart';
 import 'package:bookflix/Utils/snackbars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import '../ViewModel/Providers/homeProvider.dart';
@@ -19,6 +19,7 @@ abstract class IFirebaseService {
       required String pswd,
       required BuildContext context});
   resetPswd({required String email, required BuildContext context});
+  googleSignIn({required BuildContext context});
 }
 
 class FirebaseAuthService implements IFirebaseService {
@@ -121,6 +122,29 @@ class FirebaseAuthService implements IFirebaseService {
       Message().message('Password reset link has been sent to $email', context);
     } on FirebaseAuthException catch (e) {
       Message().message(e.message ?? '', context);
+    }
+  }
+
+  Future<User?> googleSignIn({required BuildContext context}) async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final prov = Provider.of<HomeBookFetch>(context, listen: false);
+    if (googleUser == null) {
+      return null;
+    }
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+    try {
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = FirebaseAuth.instance.currentUser;
+      prov.isLogged = true;
+      prov.notifyListeners();
+      return user;
+    } catch (e) {
+      log(e.toString());
     }
   }
 }
