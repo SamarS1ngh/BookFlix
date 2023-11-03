@@ -40,7 +40,7 @@ Bookflix is a versatile Flutter application that brings the world of literature 
 4. Create a key at console.cloud.google.com to use the GoogleBooks API
 5. Add it in the dotenv file as "key = YOUR_API_KEY " in the root of the folder
 6. Run the project
- ```
-  flutter run
-  ```
+    ```
+     flutter run
+    ```
 
