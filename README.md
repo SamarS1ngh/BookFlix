@@ -44,3 +44,6 @@ Bookflix is a versatile Flutter application that brings the world of literature 
      flutter run
     ```
 
+## Contributing
+We welcome contributions to make Bookflix even better. Feel free to open issues, submit pull requests, or provide feedback.
+
