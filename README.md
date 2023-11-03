@@ -14,8 +14,5 @@ Bookflix is a versatile Flutter application that brings the world of literature 
 
 ## Screenshots
 
-<p align="center">
-<a href="https://ibb.co/Cb4kKYX"><img src="https://i.ibb.co/Cb4kKYX/Screenshot-2023-11-01-143932.png" alt="Screenshot-2023-11-01-143932" border="0"></a>
-  
-  <a href="https://ibb.co/xmGLxNH"><img src="https://i.ibb.co/xmGLxNH/Screenshot-2023-11-01-143427.png" alt="Screenshot-2023-11-01-143427" border="0"></a>
-</p>
+<img width="202" alt="Screenshot 2023-11-01 143856" src="https://github.com/SamarS1ngh/BookFlix/assets/112770584/9324747e-bbc4-4629-b311-efe320ff294b">
+
