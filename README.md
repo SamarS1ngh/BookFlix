@@ -23,6 +23,21 @@ Bookflix is a versatile Flutter application that brings the world of literature 
 <img width="203" alt="Screenshot 2023-11-01 143827" src="https://github.com/SamarS1ngh/BookFlix/assets/112770584/6016ac8a-577e-487f-8331-0dfde0a80bc4">
 <img width="202" alt="Screenshot 2023-11-01 143856" src="https://github.com/SamarS1ngh/BookFlix/assets/112770584/d4071185-da3b-4cac-80b3-247b2856f184">
 
+## Getting Started
 
-
+1. Clone the repository:
+   ```
+   git clone https://github.com/SamarS1ngh/BookFlix
+   ```
+2. Go to the downloaded repository folder
+   ```
+   cd BookFlix
+   ```
+3. Get all the flutter packages
+   ```
+   flutter pub get
+   ```
+4. Create a key at console.cloud.google.com to use the GoogleBooks API
+5. Add it in the dotenv file as "key = YOUR_API_KEY " in the root of the folder
+6.  ``` flutter run```
 
